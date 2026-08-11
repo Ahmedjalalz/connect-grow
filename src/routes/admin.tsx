@@ -1,12 +1,16 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
-import type { Database } from "@/integrations/supabase/types";
-
-type Stage = Database["public"]["Enums"]["lead_stage"];
-type Lead = Database["public"]["Tables"]["leads"]["Row"];
+import {
+  STAGES,
+  type Lead,
+  type Stage,
+  getLeads,
+  isSignedIn,
+  signOutDemo,
+  stageLabel,
+  updateLeadStage,
+} from "@/lib/local-leads";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -28,64 +32,30 @@ export const Route = createFileRoute("/admin")({
   component: AdminPage,
 });
 
-const STAGES: { value: Stage; label: string }[] = [
-  { value: "new_lead", label: "New lead" },
-  { value: "qualification", label: "Qualification" },
-  { value: "sales_contacted", label: "Sales contacted" },
-  { value: "consultation_booked", label: "Consultation booked" },
-  { value: "discovery_completed", label: "Discovery completed" },
-  { value: "proposal_sent", label: "Proposal sent" },
-  { value: "negotiation", label: "Negotiation" },
-  { value: "won", label: "Won" },
-  { value: "lost", label: "Lost" },
-];
-
-const stageLabel = (s: Stage) => STAGES.find((x) => x.value === s)?.label ?? s;
-
 function AdminPage() {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const [ready, setReady] = useState(false);
+  const [leads, setLeads] = useState<Lead[]>([]);
   const [filter, setFilter] = useState<Stage | "all">("all");
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (!data.session) navigate({ to: "/auth" });
-      else setReady(true);
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      if (!session) navigate({ to: "/auth" });
-    });
-    return () => sub.subscription.unsubscribe();
+    if (!isSignedIn()) {
+      navigate({ to: "/auth" });
+      return;
+    }
+    setLeads(getLeads());
+    setReady(true);
   }, [navigate]);
 
-  const leadsQuery = useQuery({
-    queryKey: ["leads"],
-    enabled: ready,
-    queryFn: async (): Promise<Lead[]> => {
-      const { data, error } = await supabase
-        .from("leads")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return data ?? [];
-    },
-  });
+  const changeStage = (id: string, stage: Stage) => {
+    updateLeadStage(id, stage);
+    setLeads(getLeads());
+    toast.success("Stage updated");
+  };
 
-  const updateStage = useMutation({
-    mutationFn: async ({ id, stage }: { id: string; stage: Stage }) => {
-      const { error } = await supabase.from("leads").update({ stage }).eq("id", id);
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["leads"] });
-      toast.success("Stage updated");
-    },
-    onError: () => toast.error("Could not update this lead."),
-  });
-
-  const leads = leadsQuery.data ?? [];
   const visible = filter === "all" ? leads : leads.filter((l) => l.stage === filter);
+
+  if (!ready) return null;
 
   return (
     <div className="min-h-screen">
@@ -106,8 +76,8 @@ function AdminPage() {
             </Link>
             <button
               type="button"
-              onClick={async () => {
-                await supabase.auth.signOut();
+              onClick={() => {
+                signOutDemo();
                 navigate({ to: "/auth" });
               }}
               className="rounded-full bg-primary-foreground px-4 py-2 text-sm font-semibold text-primary"
@@ -119,7 +89,11 @@ function AdminPage() {
       </header>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-10">
-        {/* pipeline counts */}
+        <p className="mb-6 rounded-xl border border-border bg-card px-4 py-3 text-xs text-muted-foreground">
+          Demo mode — leads are stored in this browser only, until the backend is
+          connected.
+        </p>
+
         <div className="flex flex-wrap gap-2">
           <button
             type="button"
@@ -151,17 +125,7 @@ function AdminPage() {
           })}
         </div>
 
-        {leadsQuery.isLoading ? (
-          <p className="mt-10 text-sm text-muted-foreground">Loading leads…</p>
-        ) : leadsQuery.isError ? (
-          <div className="mt-10 rounded-2xl border border-border bg-card p-6">
-            <p className="font-display text-lg font-semibold">No access</p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              This account isn't an admin yet, so leads stay hidden. Ask an
-              existing admin to grant the admin role to your user.
-            </p>
-          </div>
-        ) : visible.length === 0 ? (
+        {visible.length === 0 ? (
           <p className="mt-10 text-sm text-muted-foreground">
             No leads in this stage yet.
           </p>
@@ -195,12 +159,7 @@ function AdminPage() {
                     Stage
                     <select
                       value={lead.stage}
-                      onChange={(e) =>
-                        updateStage.mutate({
-                          id: lead.id,
-                          stage: e.target.value as Stage,
-                        })
-                      }
+                      onChange={(e) => changeStage(lead.id, e.target.value as Stage)}
                       className="mt-1.5 block rounded-xl border border-input bg-background px-3 py-2 text-sm font-medium text-foreground outline-none focus:border-primary"
                     >
                       {STAGES.map((s) => (
