@@ -63,52 +63,63 @@
 :root {
   --radius: 0.75rem;
 
-  --navy-deep: oklch(0.24 0.072 259);
-  --navy: oklch(0.34 0.096 259);
-  --navy-soft: oklch(0.52 0.096 254);
-  --steel: oklch(0.72 0.048 249);
-  --ivory: oklch(0.985 0.005 250);
-  --signal: oklch(0.72 0.13 205);
+  --navy-deep: oklch(0.23 0.105 262);
+  --navy: oklch(0.34 0.135 262);
+  --navy-soft: oklch(0.53 0.145 256);
+  --steel: oklch(0.72 0.072 249);
+  --ivory: oklch(0.984 0.009 250);
+  --signal: oklch(0.74 0.16 202);
 
-  --background: oklch(0.985 0.005 250);
-  --foreground: oklch(0.24 0.072 259);
+  --background: oklch(0.984 0.009 250);
+  --foreground: oklch(0.23 0.105 262);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.24 0.072 259);
+  --card-foreground: oklch(0.23 0.105 262);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.24 0.072 259);
-  --primary: oklch(0.34 0.096 259);
-  --primary-foreground: oklch(0.985 0.005 250);
-  --secondary: oklch(0.95 0.012 250);
-  --secondary-foreground: oklch(0.34 0.096 259);
-  --muted: oklch(0.955 0.01 250);
-  --muted-foreground: oklch(0.52 0.03 254);
-  --accent: oklch(0.93 0.03 240);
-  --accent-foreground: oklch(0.28 0.08 259);
+  --popover-foreground: oklch(0.23 0.105 262);
+  --primary: oklch(0.34 0.135 262);
+  --primary-foreground: oklch(0.984 0.009 250);
+  --secondary: oklch(0.948 0.022 252);
+  --secondary-foreground: oklch(0.34 0.135 262);
+  --muted: oklch(0.952 0.018 252);
+  --muted-foreground: oklch(0.51 0.055 256);
+  --accent: oklch(0.925 0.045 246);
+  --accent-foreground: oklch(0.28 0.115 262);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0.005 250);
-  --border: oklch(0.9 0.014 252);
-  --input: oklch(0.9 0.014 252);
-  --ring: oklch(0.52 0.096 254);
-  --chart-1: oklch(0.34 0.096 259);
-  --chart-2: oklch(0.52 0.096 254);
-  --chart-3: oklch(0.72 0.13 205);
-  --chart-4: oklch(0.72 0.048 249);
+  --border: oklch(0.896 0.024 252);
+  --input: oklch(0.896 0.024 252);
+  --ring: oklch(0.53 0.145 256);
+  --chart-1: oklch(0.34 0.135 262);
+  --chart-2: oklch(0.53 0.145 256);
+  --chart-3: oklch(0.74 0.16 202);
+  --chart-4: oklch(0.72 0.072 249);
   --chart-5: oklch(0.85 0.03 250);
-  --sidebar: oklch(0.24 0.072 259);
+  --sidebar: oklch(0.23 0.105 262);
   --sidebar-foreground: oklch(0.985 0.005 250);
-  --sidebar-primary: oklch(0.72 0.13 205);
+  --sidebar-primary: oklch(0.74 0.16 202);
   --sidebar-primary-foreground: oklch(0.24 0.072 259);
-  --sidebar-accent: oklch(0.3 0.084 259);
+  --sidebar-accent: oklch(0.3 0.12 262);
   --sidebar-accent-foreground: oklch(0.985 0.005 250);
-  --sidebar-border: oklch(0.3 0.084 259);
-  --sidebar-ring: oklch(0.52 0.096 254);
+  --sidebar-border: oklch(0.3 0.12 262);
+  --sidebar-ring: oklch(0.53 0.145 256);
 
-  --gradient-navy: linear-gradient(150deg, var(--navy-deep), var(--navy) 55%, var(--navy-soft));
+  /* Smooth, banding-free blends: interpolate in oklab with dense stops. */
+  --gradient-navy: linear-gradient(
+    152deg in oklab,
+    oklch(0.23 0.105 262) 0%,
+    oklch(0.27 0.118 262) 22%,
+    oklch(0.32 0.13 261) 44%,
+    oklch(0.39 0.14 259) 66%,
+    oklch(0.47 0.145 257) 84%,
+    oklch(0.53 0.145 256) 100%
+  );
   --gradient-chrome: linear-gradient(
-    100deg,
-    oklch(0.42 0.09 259),
-    oklch(0.62 0.08 252) 42%,
-    oklch(0.3 0.086 259)
+    100deg in oklab,
+    oklch(0.38 0.135 262) 0%,
+    oklch(0.47 0.145 258) 26%,
+    oklch(0.58 0.135 252) 52%,
+    oklch(0.44 0.14 258) 78%,
+    oklch(0.31 0.125 262) 100%
   );
   --shadow-lift: 0 24px 60px -28px color-mix(in oklab, var(--navy-deep) 45%, transparent);
   --shadow-soft: 0 10px 30px -18px color-mix(in oklab, var(--navy-deep) 35%, transparent);
@@ -190,13 +201,13 @@
 }
 
 @utility swing-receiver {
-  transform-origin: 50% 0%;
-  animation: receiver-swing 6.5s ease-in-out infinite;
+  transform-origin: 50% 2%;
+  animation: receiver-swing 7.5s ease-in-out infinite;
 }
 
 @utility cord-sway {
   transform-origin: 50% 0%;
-  animation: receiver-swing 6.5s ease-in-out infinite;
+  animation: receiver-swing 7.5s ease-in-out infinite;
 }
 
 @utility wave-ring {
@@ -210,10 +221,10 @@
 @keyframes receiver-swing {
   0%,
   100% {
-    transform: rotate(-2.6deg);
+    transform: rotate(-1.3deg);
   }
   50% {
-    transform: rotate(2.6deg);
+    transform: rotate(1.3deg);
   }
 }
 
