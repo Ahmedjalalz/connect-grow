@@ -30,6 +30,17 @@ export type Lead = {
   message: string | null;
 };
 
+export type Booking = {
+  id: string;
+  created_at: string;
+  name: string;
+  email: string;
+  date: string;
+  timeSlot: string;
+};
+
+const BOOKINGS_KEY = "northlinecx.bookings";
+
 export const stageLabel = (s: Stage) =>
   STAGES.find((x) => x.value === s)?.label ?? s;
 
@@ -83,6 +94,29 @@ export function updateLeadStage(id: string, stage: Stage) {
 
 export function deleteLead(id: string) {
   write(read().filter((l) => l.id !== id));
+}
+
+/* ---------- bookings ---------- */
+
+export function getBookings(): Booking[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(BOOKINGS_KEY);
+    return raw ? (JSON.parse(raw) as Booking[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function addBooking(input: Omit<Booking, "id" | "created_at">): Booking {
+  const booking: Booking = {
+    ...input,
+    id: typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now()),
+    created_at: new Date().toISOString(),
+  };
+  const existing = getBookings();
+  window.localStorage.setItem(BOOKINGS_KEY, JSON.stringify([booking, ...existing]));
+  return booking;
 }
 
 /* ---------- dummy auth ---------- */

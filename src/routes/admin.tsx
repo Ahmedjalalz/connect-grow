@@ -10,6 +10,8 @@ import {
   signOutDemo,
   stageLabel,
   updateLeadStage,
+  getBookings,
+  type Booking,
 } from "@/lib/local-leads";
 
 export const Route = createFileRoute("/admin")({
@@ -36,6 +38,8 @@ function AdminPage() {
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [tab, setTab] = useState<"leads" | "bookings">("leads");
   const [filter, setFilter] = useState<Stage | "all">("all");
 
   useEffect(() => {
@@ -44,6 +48,7 @@ function AdminPage() {
       return;
     }
     setLeads(getLeads());
+    setBookings(getBookings());
     setReady(true);
   }, [navigate]);
 
@@ -89,7 +94,28 @@ function AdminPage() {
       </header>
 
       <div className="mx-auto w-full max-w-6xl px-5 py-10">
-        <p className="mb-6 rounded-xl border border-border bg-card px-4 py-3 text-xs text-muted-foreground">
+        <div className="mb-8 flex border-b border-border">
+          <button
+            onClick={() => setTab("leads")}
+            className={`px-6 py-3 text-sm font-semibold transition-colors ${
+              tab === "leads" ? "border-b-2 border-primary text-primary" : "text-muted-foreground"
+            }`}
+          >
+            Leads Pipeline
+          </button>
+          <button
+            onClick={() => setTab("bookings")}
+            className={`px-6 py-3 text-sm font-semibold transition-colors ${
+              tab === "bookings" ? "border-b-2 border-primary text-primary" : "text-muted-foreground"
+            }`}
+          >
+            Consultations · {bookings.length}
+          </button>
+        </div>
+
+        {tab === "leads" ? (
+          <>
+            <p className="mb-6 rounded-xl border border-border bg-card px-4 py-3 text-xs text-muted-foreground">
           Demo mode — leads are stored in this browser only, until the backend is
           connected.
         </p>
@@ -142,7 +168,12 @@ function AdminPage() {
                       <h2 className="font-display text-lg font-semibold">
                         {lead.company}
                       </h2>
-                      <span className="rounded-full bg-secondary px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-primary">
+                      <span className={`rounded-full px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] shadow-sm ${
+                        lead.stage === 'won' ? 'bg-green-100 text-green-700' :
+                        lead.stage === 'lost' ? 'bg-red-100 text-red-700' :
+                        lead.stage === 'new_lead' ? 'bg-blue-100 text-blue-700' :
+                        'bg-secondary text-primary'
+                      }`}>
                         {stageLabel(lead.stage)}
                       </span>
                     </div>
@@ -189,6 +220,26 @@ function AdminPage() {
                 ) : null}
               </article>
             ))}
+            </div>
+          </>
+        ) : (
+          <div className="grid gap-4">
+            {bookings.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No consultations booked yet.</p>
+            ) : (
+              bookings.map((b) => (
+                <article key={b.id} className="rounded-2xl border border-border bg-card p-6 shadow-soft flex justify-between items-center">
+                  <div>
+                    <h3 className="font-display font-semibold">{b.name}</h3>
+                    <p className="text-sm text-muted-foreground">{b.email}</p>
+                  </div>
+                  <div className="text-right">
+                    <p className="font-semibold text-primary">{new Date(b.date).toLocaleDateString()}</p>
+                    <p className="text-sm text-muted-foreground">{b.timeSlot}</p>
+                  </div>
+                </article>
+              ))
+            )}
           </div>
         )}
       </div>
