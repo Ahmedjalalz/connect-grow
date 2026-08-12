@@ -45,11 +45,7 @@ export function DeviceArt({ shape }: { shape: DeviceShape }) {
       return (
         <div className="relative h-full w-full flex items-center justify-center p-4">
           <div className="absolute inset-0 grid-blueprint opacity-20 rounded-2xl" />
-          <img 
-            src="/images/receiver-card.png" 
-            alt="Receiver" 
-            className="h-auto w-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
-          />
+          <PhoneCall className="h-12 w-12 text-primary drop-shadow-sm transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
         </div>
       );
     case "dialpad":

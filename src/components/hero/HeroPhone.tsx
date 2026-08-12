@@ -17,10 +17,10 @@ export function HeroPhone() {
         }}
       />
 
-      {/* sound waves around the earpiece */}
+      {/* sound waves around the speaker (bottom) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-[38%] top-[36%] h-0 w-0"
+        className="pointer-events-none absolute left-[45%] top-[72%] h-0 w-0"
       >
         {[0, 0.9, 1.8].map((delay, i) => (
           <span
@@ -37,7 +37,7 @@ export function HeroPhone() {
         ))}
       </div>
 
-      <div className="swing-receiver relative">
+      <div className="swing-receiver hover:swing-receiver-hover relative transition-all duration-300">
         <img
           src={receiver}
           alt="Navy telephone receiver hanging from a coiled cord"

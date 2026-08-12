@@ -214,7 +214,13 @@
 @utility swing-receiver {
   transform-origin: 50% 2%;
   animation: receiver-swing 7.5s ease-in-out infinite;
+  transition: filter 0.2s ease-in-out;
 }
+
+@utility swing-receiver-hover {
+  animation: receiver-swing 7.5s ease-in-out infinite, receiver-vibrate 0.1s linear infinite;
+}
+
 
 @utility cord-sway {
   transform-origin: 50% 0%;
@@ -262,6 +268,13 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes receiver-vibrate {
+  0%, 100% { transform: translate(0, 0) rotate(var(--tw-rotate, 0deg)); }
+  25% { transform: translate(1px, 1px) rotate(calc(var(--tw-rotate, 0deg) + 0.5deg)); }
+  50% { transform: translate(-1px, 1px) rotate(calc(var(--tw-rotate, 0deg) - 0.5deg)); }
+  75% { transform: translate(-1px, -1px) rotate(calc(var(--tw-rotate, 0deg) + 0.5deg)); }
 }
 
 @keyframes float {
