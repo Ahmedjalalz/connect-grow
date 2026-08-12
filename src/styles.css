@@ -272,9 +272,9 @@
 
 @keyframes receiver-vibrate {
   0%, 100% { transform: translate(0, 0) rotate(var(--tw-rotate, 0deg)); }
-  25% { transform: translate(1px, 1px) rotate(calc(var(--tw-rotate, 0deg) + 0.5deg)); }
-  50% { transform: translate(-1px, 1px) rotate(calc(var(--tw-rotate, 0deg) - 0.5deg)); }
-  75% { transform: translate(-1px, -1px) rotate(calc(var(--tw-rotate, 0deg) + 0.5deg)); }
+  25% { transform: translate(0.4px, 0.4px) rotate(calc(var(--tw-rotate, 0deg) + 0.15deg)); }
+  50% { transform: translate(-0.4px, 0.4px) rotate(calc(var(--tw-rotate, 0deg) - 0.15deg)); }
+  75% { transform: translate(-0.4px, -0.4px) rotate(calc(var(--tw-rotate, 0deg) + 0.15deg)); }
 }
 
 @keyframes float {

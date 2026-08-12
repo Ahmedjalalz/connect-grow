@@ -20,7 +20,7 @@ export function HeroPhone() {
       {/* sound waves around the speaker (bottom) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-[45%] top-[72%] h-0 w-0"
+        className="pointer-events-none absolute left-[45%] top-[80%] h-0 w-0"
       >
         {[0, 0.9, 1.8].map((delay, i) => (
           <span
