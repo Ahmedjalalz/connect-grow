@@ -169,6 +169,16 @@
 
 /* ---------- Utilities ---------- */
 
+@utility glass-card {
+  background-color: color-mix(in oklab, var(--card) 60%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in oklab, var(--border) 40%, transparent);
+}
+
+@utility float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
 @utility surface-navy {
   background-image: var(--gradient-navy);
   color: var(--color-primary-foreground);
@@ -188,6 +198,7 @@
 @utility shadow-soft {
   box-shadow: var(--shadow-soft);
 }
+
 
 @utility grid-blueprint {
   background-image:
@@ -251,6 +262,11 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

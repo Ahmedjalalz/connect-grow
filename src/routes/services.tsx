@@ -151,13 +151,14 @@ function ServicesPage() {
 
                 {/* device panel */}
                 <div
-                  className={`relative flex aspect-[4/3] items-center justify-center rounded-3xl border p-10 ${
+                  className={`relative flex aspect-[4/3] items-center justify-center rounded-3xl border p-10 group overflow-hidden ${
                     dark
                       ? "border-primary-foreground/12 bg-primary-foreground/[0.04]"
                       : "border-border bg-card shadow-soft"
                   }`}
                 >
-                  <div className="h-full w-full max-w-sm">
+                  <div aria-hidden className="absolute inset-0 grid-blueprint opacity-0 group-hover:opacity-10 transition-opacity" />
+                  <div className="h-full w-full max-w-sm transition-transform duration-700 group-hover:scale-105">
                     <DeviceArt shape={service.device} />
                   </div>
                   <div

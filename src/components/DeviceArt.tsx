@@ -43,22 +43,14 @@ export function DeviceArt({ shape }: { shape: DeviceShape }) {
   switch (shape) {
     case "handset":
       return (
-        <svg viewBox="0 0 120 80" className="h-full w-full">
-          <path
-            d="M18 46 h30 a8 8 0 0 1 8 8 v6 a8 8 0 0 1 -8 8 h-30 a10 10 0 0 1 -10 -10 v-2 a10 10 0 0 1 10 -10z"
-            fill={fill}
+        <div className="relative h-full w-full flex items-center justify-center p-4">
+          <div className="absolute inset-0 grid-blueprint opacity-20 rounded-2xl" />
+          <img 
+            src="/images/receiver-card.png" 
+            alt="Receiver" 
+            className="h-auto w-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
           />
-          <rect x="52" y="52" width="36" height="14" rx="7" fill={fill} />
-          <path
-            d="M84 46 h18 a10 10 0 0 1 10 10 v2 a10 10 0 0 1 -10 10 h-18 a8 8 0 0 1 -8 -8 v-6 a8 8 0 0 1 8 -8z"
-            fill={fill}
-          />
-          <g fill="none" stroke={stroke} strokeWidth="2">
-            <path d="M28 34 a16 16 0 0 1 22 0" opacity="0.7" />
-            <path d="M20 24 a28 28 0 0 1 38 0" opacity="0.45" />
-            <path d="M12 14 a40 40 0 0 1 54 0" opacity="0.25" />
-          </g>
-        </svg>
+        </div>
       );
     case "dialpad":
       return (
