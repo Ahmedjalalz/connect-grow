@@ -172,6 +172,48 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- CONSULTATION ---------------- */}
+      <section className="relative overflow-hidden border-b border-border/60 bg-secondary/30">
+        <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28 flex flex-col md:flex-row items-center gap-12">
+          <div className="flex-1">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">Expert Guidance</p>
+            <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
+              Not sure where to start? <br/>
+              <span className="text-gradient-navy">Consult an expert</span>
+            </h2>
+            <p className="mt-6 text-muted-foreground leading-relaxed max-w-lg">
+              Book a 15-minute strategy session to discuss your specific needs. No commitment, just a roadmap for your customer experience transformation.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link to="/consult" className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5">
+                Book a consultation
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+          <div className="flex-1 relative">
+            <div className="absolute -inset-4 bg-primary/5 blur-2xl rounded-full" />
+            <div className="glass-card p-8 rounded-3xl relative overflow-hidden float-slow">
+              <div aria-hidden className="absolute inset-0 grid-blueprint opacity-20" />
+              <div className="relative">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-12 w-12 rounded-full bg-navy flex items-center justify-center text-white font-display text-xl font-bold">AJ</div>
+                  <div>
+                    <p className="font-semibold text-primary">Ahmed Jalal</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-widest">CX Strategy Expert</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="h-2 w-full bg-border rounded-full" />
+                  <div className="h-2 w-3/4 bg-border rounded-full" />
+                  <div className="h-2 w-5/6 bg-border rounded-full" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ---------------- PROCESS ---------------- */}
       <section className="relative overflow-hidden surface-navy">
         <div aria-hidden className="absolute inset-0 opacity-[0.07] grid-blueprint" />
