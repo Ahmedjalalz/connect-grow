@@ -15,17 +15,17 @@ import type { DeviceShape } from "@/lib/services";
 import type { ReactNode } from "react";
 
 const ICONS: Record<DeviceShape, ReactNode> = {
-  handset: <PhoneCall className="h-5 w-5" />,
-  dialpad: <Grid3x3 className="h-5 w-5" />,
-  chat: <MessageSquare className="h-5 w-5" />,
-  envelope: <Mail className="h-5 w-5" />,
-  headset: <Headphones className="h-5 w-5" />,
-  radar: <Radar className="h-5 w-5" />,
-  calendar: <Calendar className="h-5 w-5" />,
-  target: <Crosshair className="h-5 w-5" />,
-  terminal: <Terminal className="h-5 w-5" />,
-  drawer: <FolderOpen className="h-5 w-5" />,
-  blueprint: <Ruler className="h-5 w-5" />,
+  handset: <PhoneCall className="h-6 w-6" />,
+  dialpad: <Grid3x3 className="h-6 w-6" />,
+  chat: <MessageSquare className="h-6 w-6" />,
+  envelope: <Mail className="h-6 w-6" />,
+  headset: <Headphones className="h-6 w-6" />,
+  radar: <Radar className="h-6 w-6" />,
+  calendar: <Calendar className="h-6 w-6" />,
+  target: <Crosshair className="h-6 w-6" />,
+  terminal: <Terminal className="h-6 w-6" />,
+  drawer: <FolderOpen className="h-6 w-6" />,
+  blueprint: <Ruler className="h-6 w-6" />,
 };
 
 export function DeviceIcon({ shape }: { shape: DeviceShape }) {
