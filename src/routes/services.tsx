@@ -161,19 +161,21 @@ function ServicesPage() {
                 <div
                   className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-10"
                 >
-                  <div className={`flex flex-col items-start ${i % 4 === 2 ? "md:order-last" : ""}`}>
-                    {/* Number tag above text, left-aligned with content */}
-                    <div
-                      className={`service-connector-inline mb-6 ${
-                        dark
-                          ? "bg-primary-foreground text-primary connector-glow-dark"
-                          : "bg-primary text-primary-foreground connector-glow"
-                      } connector-pulse`}
-                    >
-                      {number}
-                    </div>
+                  {/* Number tag: Always top-left of the section grid, regardless of column order */}
+                  <div
+                    className={`absolute top-10 left-5 md:left-10 z-20 service-connector-inline ${
+                      dark
+                        ? "bg-primary-foreground text-primary connector-glow-dark"
+                        : "bg-primary text-primary-foreground connector-glow"
+                    } connector-pulse`}
+                  >
+                    {number}
+                  </div>
 
-                <div>
+                  <div className={`flex flex-col items-start ${i % 4 === 2 ? "md:order-last" : ""}`}>
+                    {/* Spacer to account for the absolute number tag above */}
+                    <div className="h-14 w-full" />
+                    <div>
                   <div
                     className={`flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] ${
                       dark ? "text-primary-foreground/55" : "text-navy-soft"
