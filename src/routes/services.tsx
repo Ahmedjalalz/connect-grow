@@ -128,10 +128,10 @@ function ServicesPage() {
             >
               {/* separator before fancy section */}
               {fancy && !dark && (
-                <WaveSeparator className="section-wave-top" />
+                <WaveSeparator className="section-wave-top text-primary" />
               )}
               {angled && dark && (
-                <div className="angled-separator angled-separator-top" />
+                <div className="angled-separator angled-separator-top bg-background" />
               )}
 
               {dark ? (
@@ -278,10 +278,10 @@ function ServicesPage() {
 
               {/* separator after section */}
               {fancy && !dark && (
-                <WaveSeparator className="section-wave-bottom" />
+                <WaveSeparator className="section-wave-bottom text-primary" />
               )}
               {angled && dark && (
-                <div className="angled-separator angled-separator-bottom" />
+                <div className="angled-separator angled-separator-bottom bg-background" />
               )}
             </section>
           );
