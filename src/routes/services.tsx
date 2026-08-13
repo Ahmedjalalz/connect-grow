@@ -28,27 +28,36 @@ function WaveSeparator({ className, flip }: { className: string; flip?: boolean 
   return (
     <svg
       className={className}
-      viewBox="0 0 1440 80"
+      viewBox="0 0 1440 120"
       preserveAspectRatio="none"
       aria-hidden
       style={{ transform: flip ? "translateY(99%) rotate(180deg)" : undefined }}
     >
       <defs>
         <linearGradient id="waveGradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="var(--navy-deep)" stopOpacity="0.25" />
-          <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.06" />
+          <stop offset="0%" stopColor="currentColor" stopOpacity="0.08" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
         </linearGradient>
       </defs>
+      {/* Primary wave fill */}
       <path
-        d="M0,48 C180,76 360,20 540,48 C720,76 900,20 1080,48 C1260,76 1350,28 1440,48 L1440,80 L0,80 Z"
+        d="M0,80 C240,120 480,40 720,80 C960,120 1200,40 1440,80 L1440,120 L0,120 Z"
         fill="url(#waveGradient)"
       />
+      {/* Crisp stroke lines for definition */}
       <path
-        d="M0,56 C200,84 400,28 600,56 C800,84 1000,28 1200,56 C1340,80 1400,48 1440,56"
+        d="M0,80 C240,120 480,40 720,80 C960,120 1200,40 1440,80"
         fill="none"
-        stroke="var(--primary)"
-        strokeOpacity="0.12"
+        stroke="currentColor"
+        strokeOpacity="0.15"
         strokeWidth="1.5"
+      />
+      <path
+        d="M0,95 C240,135 480,55 720,95 C960,135 1200,55 1440,95"
+        fill="none"
+        stroke="currentColor"
+        strokeOpacity="0.08"
+        strokeWidth="1"
       />
     </svg>
   );
