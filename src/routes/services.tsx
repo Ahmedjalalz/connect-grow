@@ -163,16 +163,17 @@ function ServicesPage() {
                     i % 4 === 2 ? "md:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  {/* connector number badge - absolute relative to section, not inside grid */}
-                  <div
-                    className={`service-connector left-5 md:left-8 lg:left-0 ${
-                      dark
-                        ? "bg-primary-foreground text-primary connector-glow"
-                        : "bg-primary text-primary-foreground connector-glow"
-                    } ${i === 0 ? "connector-pulse" : ""}`}
-                  >
-                    {number}
-                  </div>
+                  <div>
+                    {/* connector number badge - positioned above text */}
+                    <div
+                      className={`service-connector-inline mb-6 ${
+                        dark
+                          ? "bg-primary-foreground text-primary connector-glow"
+                          : "bg-primary text-primary-foreground connector-glow"
+                      } ${i === 0 ? "connector-pulse" : ""}`}
+                    >
+                      {number}
+                    </div>
 
                 <div>
                   <div
@@ -245,6 +246,7 @@ function ServicesPage() {
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
+              </div>
 
                 {/* device panel */}
                 <div
