@@ -140,7 +140,7 @@ function Home() {
               
               <div className={i === 0 ? "sm:max-w-md relative z-10" : "relative z-10"}>
                 <div className="flex items-center gap-3 text-navy-soft">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
                     <DeviceIcon shape={service.device} />
                   </span>
                   <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] opacity-70">

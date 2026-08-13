@@ -182,7 +182,7 @@ function ServicesPage() {
                     }`}
                   >
                     <span
-                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${
+                      className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${
                         dark
                           ? "bg-primary-foreground/10 text-primary-foreground"
                           : "bg-secondary text-primary"
