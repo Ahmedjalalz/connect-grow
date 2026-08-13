@@ -159,12 +159,12 @@ function ServicesPage() {
               />
 
                 <div
-                  className={`relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-20 ${
+                  className={`relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-10 ${
                     i % 4 === 2 ? "md:[&>*:first-child]:order-2" : ""
                   }`}
                 >
-                  <div>
-                    {/* connector number badge - positioned above text */}
+                  <div className="flex flex-col items-start">
+                    {/* Number tag above text, left-aligned with content */}
                     <div
                       className={`service-connector-inline mb-6 ${
                         dark
