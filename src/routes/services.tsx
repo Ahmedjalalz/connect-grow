@@ -170,7 +170,7 @@ function ServicesPage() {
                         dark
                           ? "bg-primary-foreground text-primary connector-glow"
                           : "bg-primary text-primary-foreground connector-glow"
-                      } ${i === 0 ? "connector-pulse" : ""}`}
+                      } connector-pulse`}
                     >
                       {number}
                     </div>
