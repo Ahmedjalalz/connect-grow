@@ -126,34 +126,36 @@ function Home() {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service, i) => (
             <Link
               key={service.slug}
               to="/services"
               hash={service.slug}
-              className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift ${
-                i === 0 ? "sm:col-span-2 sm:flex-row sm:items-center sm:gap-8" : ""
+              className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/50 bg-card p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-lift ${
+                i === 0 ? "sm:col-span-2 sm:flex-row sm:items-center sm:gap-12" : ""
               }`}
             >
-              <div className={i === 0 ? "sm:max-w-sm" : ""}>
-                <div className="flex items-center gap-2 text-navy-soft">
-                  <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-secondary text-primary">
+              <div aria-hidden className="absolute inset-0 grid-blueprint opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500" />
+              
+              <div className={i === 0 ? "sm:max-w-md relative z-10" : "relative z-10"}>
+                <div className="flex items-center gap-3 text-navy-soft">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                     <DeviceIcon shape={service.device} />
                   </span>
-                  <span className="text-[0.7rem] font-semibold uppercase tracking-[0.16em]">
+                  <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] opacity-70">
                     {service.metric.value} {service.metric.label}
                   </span>
                 </div>
 
-                <h3 className="mt-4 font-display text-lg font-semibold">
+                <h3 className="mt-6 font-display text-xl font-semibold leading-tight">
                   {service.name}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground/90">
                   {service.short}
                 </p>
                 {i === 0 ? (
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground/80">
                     {service.blurb}
                   </p>
                 ) : null}
@@ -161,10 +163,11 @@ function Home() {
 
               <div
                 aria-hidden
-                className={`pointer-events-none mt-6 opacity-70 transition-opacity group-hover:opacity-100 ${
-                  i === 0 ? "h-28 w-48 sm:mt-0" : "h-20 w-full"
+                className={`pointer-events-none relative z-10 mt-8 opacity-60 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105 ${
+                  i === 0 ? "h-36 w-56 sm:mt-0" : "h-24 w-full"
                 }`}
               >
+                <div className="absolute inset-0 bg-primary/5 blur-3xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <DeviceArt shape={service.device} />
               </div>
             </Link>
@@ -192,21 +195,56 @@ function Home() {
             </div>
           </div>
           <div className="flex-1 relative">
-            <div className="absolute -inset-4 bg-primary/5 blur-2xl rounded-full" />
-            <div className="glass-card p-8 rounded-3xl relative overflow-hidden float-slow">
-              <div aria-hidden className="absolute inset-0 grid-blueprint opacity-20" />
+            <div className="absolute -inset-12 bg-primary/10 blur-[80px] rounded-full opacity-50" />
+            <div className="absolute -top-10 -right-10 h-32 w-32 bg-signal/10 blur-[60px] rounded-full float-reverse" />
+            
+            <div className="glass-card-premium p-10 rounded-[2.5rem] relative overflow-hidden float-slow">
+              <div aria-hidden className="absolute inset-0 grid-blueprint opacity-[0.03]" />
               <div className="relative">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="h-12 w-12 rounded-full bg-navy flex items-center justify-center text-white font-display text-xl font-bold">AJ</div>
+                <div className="flex items-center gap-5 mb-8">
+                  <div className="relative">
+                    <div className="absolute -inset-1 bg-gradient-navy rounded-full blur-[2px] opacity-20" />
+                    <div className="h-16 w-16 rounded-2xl bg-navy flex items-center justify-center text-white font-display text-2xl font-bold relative shadow-lift">
+                      AJ
+                    </div>
+                  </div>
                   <div>
-                    <p className="font-semibold text-primary">Ahmed Jalal</p>
-                    <p className="text-xs text-muted-foreground uppercase tracking-widest">CX Strategy Expert</p>
+                    <p className="text-xl font-bold text-primary tracking-tight">Ahmed Jalal</p>
+                    <p className="text-[0.65rem] text-navy-soft font-bold uppercase tracking-[0.2em] mt-0.5">CX Strategy Expert</p>
                   </div>
                 </div>
-                <div className="space-y-4">
-                  <div className="h-2 w-full bg-border rounded-full" />
-                  <div className="h-2 w-3/4 bg-border rounded-full" />
-                  <div className="h-2 w-5/6 bg-border rounded-full" />
+                
+                <div className="space-y-5">
+                  <div className="flex items-center gap-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-signal" />
+                    <div className="h-2 w-full bg-navy/5 rounded-full overflow-hidden">
+                      <div className="h-full w-full bg-navy/10" />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-signal/50" />
+                    <div className="h-2 w-4/5 bg-navy/5 rounded-full overflow-hidden">
+                      <div className="h-full w-full bg-navy/10" />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-signal/30" />
+                    <div className="h-2 w-5/6 bg-navy/5 rounded-full overflow-hidden">
+                      <div className="h-full w-full bg-navy/10" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 pt-8 border-t border-navy/5 flex items-center justify-between">
+                  <div className="flex -space-x-2">
+                    {[1,2,3].map(i => (
+                      <div key={i} className="h-8 w-8 rounded-full border-2 border-card bg-secondary" />
+                    ))}
+                    <div className="h-8 w-8 rounded-full border-2 border-card bg-primary flex items-center justify-center text-[10px] text-primary-foreground font-bold">
+                      +12
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-bold text-navy-soft uppercase tracking-widest">Available now</span>
                 </div>
               </div>
             </div>

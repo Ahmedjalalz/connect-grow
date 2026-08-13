@@ -151,21 +151,24 @@ function ServicesPage() {
 
                 {/* device panel */}
                 <div
-                  className={`relative flex aspect-[4/3] items-center justify-center rounded-3xl border p-10 group overflow-hidden ${
+                  className={`relative flex aspect-[4/3] items-center justify-center rounded-[2.5rem] border p-12 group overflow-hidden transition-all duration-700 ${
                     dark
-                      ? "border-primary-foreground/12 bg-primary-foreground/[0.04]"
-                      : "border-border bg-card shadow-soft"
+                      ? "border-primary-foreground/12 bg-primary-foreground/[0.04] hover:bg-primary-foreground/[0.07]"
+                      : "border-border/50 bg-card shadow-soft hover:shadow-lift hover:border-primary/20"
                   }`}
                 >
-                  <div aria-hidden className="absolute inset-0 grid-blueprint opacity-0 group-hover:opacity-10 transition-opacity" />
-                  <div className="h-full w-full max-w-sm transition-transform duration-700 group-hover:scale-105">
+                  <div aria-hidden className="absolute inset-0 grid-blueprint opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700" />
+                  <div className="absolute -inset-20 bg-primary/5 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  
+                  <div className="h-full w-full max-w-sm relative z-10 transition-all duration-700 group-hover:scale-110 group-hover:rotate-1">
                     <DeviceArt shape={service.device} />
                   </div>
+                  
                   <div
-                    className={`absolute bottom-5 left-6 rounded-full px-4 py-1.5 text-xs font-semibold ${
+                    className={`absolute bottom-6 left-8 rounded-full px-5 py-2 text-[0.65rem] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md transition-all duration-500 group-hover:translate-x-2 ${
                       dark
-                        ? "bg-primary-foreground/10 text-primary-foreground/80"
-                        : "bg-secondary text-primary"
+                        ? "bg-primary-foreground/10 text-primary-foreground/80 border border-primary-foreground/10"
+                        : "bg-secondary/80 text-primary border border-primary/10"
                     }`}
                   >
                     {service.metric.value} · {service.metric.label}
