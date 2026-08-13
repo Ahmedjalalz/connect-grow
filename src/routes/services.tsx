@@ -165,7 +165,7 @@ function ServicesPage() {
                 >
                   {/* connector number badge - absolute relative to section, not inside grid */}
                   <div
-                    className={`service-connector left-5 md:left-8 lg:left-12 ${
+                    className={`service-connector left-5 md:left-8 lg:left-0 ${
                       dark
                         ? "bg-primary-foreground text-primary connector-glow"
                         : "bg-primary text-primary-foreground connector-glow"
