@@ -305,6 +305,12 @@
     0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
 }
 
+@utility connector-glow-dark {
+  box-shadow:
+    0 0 0 6px color-mix(in oklab, var(--primary) 20%, transparent),
+    0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
+}
+
 @utility connector-pulse {
   animation: connector-pulse 2.4s ease-out infinite;
 }
@@ -392,12 +398,12 @@
 @keyframes connector-pulse {
   0%, 100% {
     box-shadow:
-      0 0 0 0 color-mix(in oklab, var(--primary) 45%, transparent),
+      0 0 0 0 color-mix(in oklab, currentColor 45%, transparent),
       0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
   }
   50% {
     box-shadow:
-      0 0 0 12px color-mix(in oklab, var(--primary) 0%, transparent),
+      0 0 0 12px color-mix(in oklab, currentColor 0%, transparent),
       0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
   }
 }
