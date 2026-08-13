@@ -24,15 +24,32 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-function WaveSeparator({ className }: { className: string }) {
+function WaveSeparator({ className, flip }: { className: string; flip?: boolean }) {
   return (
     <svg
       className={className}
-      viewBox="0 0 1440 56"
+      viewBox="0 0 1440 80"
       preserveAspectRatio="none"
       aria-hidden
+      style={{ transform: flip ? "translateY(99%) rotate(180deg)" : undefined }}
     >
-      <path d="M0,32 C240,56 480,0 720,28 C960,56 1200,0 1440,32 L1440,56 L0,56 Z" />
+      <defs>
+        <linearGradient id="waveGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--navy-deep)" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.06" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M0,48 C180,76 360,20 540,48 C720,76 900,20 1080,48 C1260,76 1350,28 1440,48 L1440,80 L0,80 Z"
+        fill="url(#waveGradient)"
+      />
+      <path
+        d="M0,56 C200,84 400,28 600,56 C800,84 1000,28 1200,56 C1340,80 1400,48 1440,56"
+        fill="none"
+        stroke="var(--primary)"
+        strokeOpacity="0.12"
+        strokeWidth="1.5"
+      />
     </svg>
   );
 }
