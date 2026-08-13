@@ -158,21 +158,21 @@ function ServicesPage() {
                 }}
               />
 
-              <div
-                className={`relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-20 ${
-                  i % 4 === 2 ? "md:[&>*:first-child]:order-2" : ""
-                }`}
-              >
-                {/* connector number badge */}
                 <div
-                  className={`service-connector ${
-                    dark
-                      ? "bg-primary-foreground text-primary connector-glow"
-                      : "bg-primary text-primary-foreground connector-glow"
-                  } ${i === 0 ? "connector-pulse" : ""}`}
+                  className={`relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-20 ${
+                    i % 4 === 2 ? "md:[&>*:first-child]:order-2" : ""
+                  }`}
                 >
-                  {number}
-                </div>
+                  {/* connector number badge - absolute relative to section, not inside grid */}
+                  <div
+                    className={`service-connector left-5 md:left-8 lg:left-0 ${
+                      dark
+                        ? "bg-primary-foreground text-primary connector-glow"
+                        : "bg-primary text-primary-foreground connector-glow"
+                    } ${i === 0 ? "connector-pulse" : ""}`}
+                  >
+                    {number}
+                  </div>
 
                 <div>
                   <div
