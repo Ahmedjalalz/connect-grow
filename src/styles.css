@@ -246,6 +246,90 @@
   animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@utility section-wave-top {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 56px;
+  width: 100%;
+  transform: translateY(-99%);
+  fill: var(--color-background);
+  z-index: 10;
+  pointer-events: none;
+}
+
+@utility section-wave-bottom {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 56px;
+  width: 100%;
+  transform: translateY(99%) rotate(180deg);
+  fill: var(--color-background);
+  z-index: 10;
+  pointer-events: none;
+}
+
+@utility service-connector {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transform: translateY(-50%);
+  z-index: 20;
+  box-shadow: 0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+@utility connector-glow {
+  box-shadow:
+    0 0 0 6px color-mix(in oklab, var(--color-background) 80%, transparent),
+    0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
+}
+
+@utility connector-pulse {
+  animation: connector-pulse 2.4s ease-out infinite;
+}
+
+@utility angled-separator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 80px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@utility angled-separator-top {
+  top: 0;
+  transform: translateY(-99%);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+  background: var(--color-background);
+}
+
+@utility angled-separator-bottom {
+  bottom: 0;
+  transform: translateY(99%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+  background: var(--color-background);
+}
+
+@utility service-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(40px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: float 10s ease-in-out infinite;
+}
+
+
 @keyframes receiver-swing {
   0%,
   100% {
@@ -291,6 +375,19 @@
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes connector-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--primary) 45%, transparent),
+      0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 12px color-mix(in oklab, var(--primary) 0%, transparent),
+      0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
