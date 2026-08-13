@@ -249,7 +249,7 @@ function ServicesPage() {
                 {/* device panel */}
                 <div
                   className={`relative flex aspect-[4/3] items-center justify-center rounded-[2.5rem] border p-12 group overflow-hidden transition-all duration-700 ${
-                    i % 4 === 2 ? "md:order-1" : ""
+                    i % 4 === 2 ? "md:order-first" : ""
                   } ${
                     dark
                       ? "border-primary-foreground/12 bg-primary-foreground/[0.04] hover:bg-primary-foreground/[0.07]"
