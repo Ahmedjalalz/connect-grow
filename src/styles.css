@@ -377,6 +377,19 @@
   50% { transform: translateY(-10px); }
 }
 
+@keyframes connector-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--primary) 45%, transparent),
+      0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 12px color-mix(in oklab, var(--primary) 0%, transparent),
+      0 10px 28px -12px color-mix(in oklab, var(--navy-deep) 55%, transparent);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .swing-receiver,
   .cord-sway,
