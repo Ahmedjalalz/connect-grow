@@ -161,7 +161,7 @@ function ServicesPage() {
                 <div
                   className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-10"
                 >
-                  <div className={`flex flex-col items-start ${i % 4 === 2 ? "md:order-2" : ""}`}>
+                  <div className={`flex flex-col items-start ${i % 4 === 2 ? "md:order-2" : "md:order-1"}`}>
                     {/* Number tag above text, left-aligned with content */}
                     <div
                       className={`service-connector-inline mb-6 ${
