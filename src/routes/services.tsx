@@ -163,11 +163,11 @@ function ServicesPage() {
                 >
                   {/* Number tag: Always top-left of the section grid, regardless of column order */}
                   <div
-                    className={`absolute top-10 left-5 md:left-10 z-20 service-connector-inline ${
+                    className={`absolute top-10 left-5 md:left-10 z-20 service-connector-inline connector-pulse ${
                       dark
                         ? "bg-primary-foreground text-primary connector-glow-dark"
                         : "bg-primary text-primary-foreground connector-glow"
-                    } connector-pulse`}
+                    }`}
                   >
                     {number}
                   </div>
