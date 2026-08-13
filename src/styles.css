@@ -106,20 +106,20 @@
   /* Smooth, banding-free blends: interpolate in oklab with dense stops. */
   --gradient-navy: linear-gradient(
     152deg in oklab,
-    oklch(0.23 0.105 262) 0%,
-    oklch(0.27 0.118 262) 22%,
-    oklch(0.32 0.13 261) 44%,
-    oklch(0.39 0.14 259) 66%,
-    oklch(0.47 0.145 257) 84%,
-    oklch(0.53 0.145 256) 100%
+    #0F2747 0%,
+    #18365D 22%,
+    #234676 44%,
+    #2F5A94 66%,
+    #3C6FAF 84%,
+    #4A86CB 100%
   );
   --gradient-chrome: linear-gradient(
     100deg in oklab,
-    oklch(0.38 0.135 262) 0%,
-    oklch(0.47 0.145 258) 26%,
-    oklch(0.58 0.135 252) 52%,
-    oklch(0.44 0.14 258) 78%,
-    oklch(0.31 0.125 262) 100%
+    #2F6BFF 0%,
+    #5589FF 26%,
+    #82ACFF 52%,
+    #5589FF 78%,
+    #2F6BFF 100%
   );
   --shadow-lift: 0 24px 60px -28px color-mix(in oklab, var(--navy-deep) 45%, transparent);
   --shadow-soft: 0 10px 30px -18px color-mix(in oklab, var(--navy-deep) 35%, transparent);
