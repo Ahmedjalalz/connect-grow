@@ -161,7 +161,7 @@ function ServicesPage() {
                 <div
                   className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-10"
                 >
-                  <div className={`flex flex-col items-start ${i % 4 === 2 ? "md:order-2" : "md:order-1"}`}>
+                  <div className={`flex flex-col items-start ${i % 4 === 2 ? "md:order-last" : ""}`}>
                     {/* Number tag above text, left-aligned with content */}
                     <div
                       className={`service-connector-inline mb-6 ${
@@ -249,7 +249,7 @@ function ServicesPage() {
                 {/* device panel */}
                 <div
                   className={`relative flex aspect-[4/3] items-center justify-center rounded-[2.5rem] border p-12 group overflow-hidden transition-all duration-700 ${
-                    i % 4 === 2 ? "md:order-1" : ""
+                    i % 4 === 2 ? "md:order-first" : ""
                   } ${
                     dark
                       ? "border-primary-foreground/12 bg-primary-foreground/[0.04] hover:bg-primary-foreground/[0.07]"
