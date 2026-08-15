@@ -3,6 +3,7 @@ import { ArrowRight, Clock, Globe2, ShieldCheck } from "lucide-react";
 import { HeroPhone } from "@/components/hero/HeroPhone";
 import { DeviceArt, DeviceIcon } from "@/components/DeviceArt";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { RotarySection } from "@/components/services/RotarySection";
 import { SERVICES } from "@/lib/services";
 
 export const Route = createFileRoute("/")({

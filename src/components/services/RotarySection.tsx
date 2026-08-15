@@ -15,7 +15,7 @@ export function RotarySection() {
   const [touched, setTouched] = useState(false);
 
   const shown = preview ?? index;
-  const service = SERVICES[shown - 1];
+  const service = SERVICES[shown - 1] ?? SERVICES[0]!;
 
   return (
     <section className="surface-navy relative overflow-hidden">
