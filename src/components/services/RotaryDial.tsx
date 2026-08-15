@@ -9,15 +9,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import dialWheel from "@/assets/rotary-dial.png";
 import phoneBody from "@/assets/rotary-phone.jpg";
 
-/** clockwise degrees from 12 o'clock */
-const STOP_ANGLE = 120;
-const STEP = 30;
+/** clockwise degrees from 12 o'clock, measured from the dial artwork */
+const STOP_ANGLE = 128;
+const HOLE_ANGLES = [110, 77.5, 45.2, 13.3, 340.7, 308.6, 277.4, 246.1, 215.3, 183.4, 146.2];
 /** hole angle for number n (1-based) */
-const holeAngle = (n: number) => (STOP_ANGLE - n * STEP + 360) % 360;
+const holeAngle = (n: number) => HOLE_ANGLES[n - 1] ?? 0;
 /** rotation needed to bring hole n to the finger stop */
 const travelFor = (n: number) => (STOP_ANGLE - holeAngle(n) + 360) % 360;
 
-const HOLE_RADIUS = 0.355; // fraction of dial size, matches the wheel artwork
+const HOLE_RADIUS = 0.337; // fraction of dial size, matches the wheel artwork
 
 type Props = {
   count: number;
