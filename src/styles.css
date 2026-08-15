@@ -210,6 +210,15 @@
   box-shadow: var(--shadow-soft);
 }
 
+@utility signal-bar {
+  animation: signal-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes signal-bounce {
+  0%, 100% { transform: scaleY(0.55); opacity: 0.55; }
+  50% { transform: scaleY(1.25); opacity: 1; }
+}
+
 
 @utility grid-blueprint {
   background-image:
