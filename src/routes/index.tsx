@@ -175,6 +175,11 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- ROTARY DIAL ---------------- */}
+      <RotarySection />
+
+
+
       {/* ---------------- CONSULTATION ---------------- */}
       <section className="relative overflow-hidden border-b border-border/60 bg-secondary/30">
         <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28 flex flex-col md:flex-row items-center gap-12">
