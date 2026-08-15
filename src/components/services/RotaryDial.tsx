@@ -36,6 +36,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   } | null>(null);
 
   const [rotation, setRotation] = useState(0);
+  const rotationRef = useRef(0);
   const [returning, setReturning] = useState(false);
   const [held, setHeld] = useState<number | null>(null);
 
@@ -110,7 +111,6 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
     };
   }, [pointerAngle, onSelect, onPreview]);
 
-  const rotationRef = useRef(0);
   rotationRef.current = rotation;
 
   /** tap / keyboard fallback: dial the number without precise dragging */
