@@ -43,11 +43,19 @@ export function DeviceArt({ shape }: { shape: DeviceShape }) {
   switch (shape) {
     case "handset":
       return (
-        <div className="relative h-full w-full flex items-center justify-center p-4">
-          <div className="absolute inset-0 grid-blueprint opacity-20 rounded-2xl" />
-          <PhoneCall className="h-12 w-12 text-primary drop-shadow-sm transition-transform duration-500 group-hover:scale-110" strokeWidth={1.5} />
-        </div>
+        <svg viewBox="0 0 120 80" className="h-full w-full">
+          <path
+            d="M28 18 a10 10 0 0 1 14 0 l6 8 a6 6 0 0 1 -1 8 l-6 5 a34 34 0 0 0 18 18 l5 -6 a6 6 0 0 1 8 -1 l8 6 a10 10 0 0 1 0 14 l-5 5 c-8 7 -22 3 -34 -8 c-13 -12 -19 -27 -13 -35 z"
+            fill={fill}
+          />
+          <g fill="none" stroke={stroke} strokeWidth="2.5" strokeLinecap="round">
+            <path d="M80 20 a20 20 0 0 1 14 14" opacity="0.75" />
+            <path d="M76 30 a11 11 0 0 1 8 8" opacity="0.5" />
+          </g>
+          <circle cx="98" cy="14" r="4.5" fill="oklch(0.72 0.13 205)" />
+        </svg>
       );
+
     case "dialpad":
       return (
         <svg viewBox="0 0 120 80" className="h-full w-full">
