@@ -35,7 +35,8 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   const plateRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{
     id: number;
-    startAngle: number;
+    lastAngle: number;
+    total: number;
     hole: number;
     max: number;
   } | null>(null);
@@ -74,7 +75,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   const onPointerDown = (e: React.PointerEvent) => {
     const a = pointerAngle(e.clientX, e.clientY);
     const hole = nearestHole(a);
-    dragRef.current = { id: e.pointerId, startAngle: a, hole, max: travelFor(hole) };
+    dragRef.current = { id: e.pointerId, lastAngle: a, total: 0, hole, max: travelFor(hole) };
     setReturning(false);
     setHeld(hole);
     onPreview?.(hole);
@@ -86,24 +87,29 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       const drag = dragRef.current;
       if (!drag) return;
       const a = pointerAngle(e.clientX, e.clientY);
-      let delta = a - drag.startAngle;
-      if (delta < -180) delta += 360;
-      if (delta > 180) delta -= 360;
-      // resistance near the stop
-      const clamped = Math.max(0, Math.min(drag.max, delta));
-      const over = Math.max(0, Math.min(delta, drag.max + 40) - drag.max);
+      // incremental delta, unwrapped — lets total travel exceed 180deg
+      let step = a - drag.lastAngle;
+      if (step < -180) step += 360;
+      if (step > 180) step -= 360;
+      drag.lastAngle = a;
+      drag.total = Math.max(0, Math.min(drag.max + 40, drag.total + step));
+
+      // resistance past the finger stop
+      const clamped = Math.min(drag.max, drag.total);
+      const over = Math.max(0, drag.total - drag.max);
       setRotation(clamped + over * 0.12);
     };
 
     const up = () => {
       const drag = dragRef.current;
       if (!drag) return;
+      const reached = drag.total >= drag.max * 0.85;
       dragRef.current = null;
       setReturning(true);
       setRotation(0);
       setHeld(null);
       onPreview?.(null);
-      if (rotationRef.current >= drag.max * 0.6) onSelect(drag.hole);
+      if (reached) onSelect(drag.hole);
     };
 
     window.addEventListener("pointermove", move);
