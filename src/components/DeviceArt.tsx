@@ -15,7 +15,7 @@ import type { DeviceShape } from "@/lib/services";
 import type { ReactNode } from "react";
 
 const ICONS: Record<DeviceShape, ReactNode> = {
-  handset: <PhoneCall className="h-6 w-6" />,
+  handset: <PhoneCall className="h-6 w-6" strokeWidth={1.5} />,
   dialpad: <Grid3x3 className="h-6 w-6" />,
   chat: <MessageSquare className="h-6 w-6" />,
   envelope: <Mail className="h-6 w-6" />,
@@ -44,14 +44,16 @@ export function DeviceArt({ shape }: { shape: DeviceShape }) {
     case "handset":
       return (
         <svg viewBox="0 0 120 80" className="h-full w-full">
+          {/* Main body of the handset - simplified, more professional curve */}
           <path
-            d="M28 18 a10 10 0 0 1 14 0 l6 8 a6 6 0 0 1 -1 8 l-6 5 a34 34 0 0 0 18 18 l5 -6 a6 6 0 0 1 8 -1 l8 6 a10 10 0 0 1 0 14 l-5 5 c-8 7 -22 3 -34 -8 c-13 -12 -19 -27 -13 -35 z"
+            d="M30 20 c0 -5 5 -10 10 -10 h40 c5 0 10 5 10 10 v5 c0 5 -5 10 -10 10 h-15 l-10 20 h-15 l-10 -20 h-15 c-5 0 -10 -5 -10 -10 z"
             fill={fill}
+            transform="rotate(-15 60 40)"
           />
-          <g fill="none" stroke={stroke} strokeWidth="2.5" strokeLinecap="round">
-            <path d="M80 20 a20 20 0 0 1 14 14" opacity="0.75" />
-            <path d="M76 30 a11 11 0 0 1 8 8" opacity="0.5" />
-          </g>
+          {/* Subtle speaker/mic grills */}
+          <circle cx="35" cy="25" r="2" fill="white" opacity="0.2" transform="rotate(-15 60 40)" />
+          <circle cx="85" cy="25" r="2" fill="white" opacity="0.2" transform="rotate(-15 60 40)" />
+          {/* Signal/Status indicator */}
           <circle cx="98" cy="14" r="4.5" fill="oklch(0.72 0.13 205)" />
         </svg>
       );
