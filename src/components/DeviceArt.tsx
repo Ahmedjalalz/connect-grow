@@ -5,7 +5,6 @@ import {
   Headphones,
   Mail,
   MessageSquare,
-  PhoneCall,
   Radar,
   Ruler,
   Terminal,
@@ -14,8 +13,27 @@ import {
 import type { DeviceShape } from "@/lib/services";
 import type { ReactNode } from "react";
 
+/** Classic corded receiver, drawn to match the hero handset rather than a generic phone glyph. */
+const HANDSET_PATH =
+  "M8.6 3.2 h6.8 a1.6 1.6 0 0 1 1.6 1.6 v2.1 a1.6 1.6 0 0 1 -1.6 1.6 h-2 v7 h2 a1.6 1.6 0 0 1 1.6 1.6 v2.1 a1.6 1.6 0 0 1 -1.6 1.6 h-6.8 a1.6 1.6 0 0 1 -1.6 -1.6 v-2.1 a1.6 1.6 0 0 1 1.6 -1.6 h2 v-7 h-2 a1.6 1.6 0 0 1 -1.6 -1.6 v-2.1 a1.6 1.6 0 0 1 1.6 -1.6 z";
+
+function HandsetGlyph({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
+      <g transform="rotate(-38 12 12)">
+        <path
+          d={HANDSET_PATH}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+}
+
 const ICONS: Record<DeviceShape, ReactNode> = {
-  handset: <PhoneCall className="h-6 w-6" strokeWidth={1.5} />,
+  handset: <HandsetGlyph className="h-6 w-6" />,
   dialpad: <Grid3x3 className="h-6 w-6" />,
   chat: <MessageSquare className="h-6 w-6" />,
   envelope: <Mail className="h-6 w-6" />,
@@ -44,19 +62,24 @@ export function DeviceArt({ shape }: { shape: DeviceShape }) {
     case "handset":
       return (
         <svg viewBox="0 0 120 80" className="h-full w-full">
-          {/* Main body of the handset - simplified, more professional curve */}
-          <path
-            d="M30 20 c0 -5 5 -10 10 -10 h40 c5 0 10 5 10 10 v5 c0 5 -5 10 -10 10 h-15 l-10 20 h-15 l-10 -20 h-15 c-5 0 -10 -5 -10 -10 z"
-            fill={fill}
-            transform="rotate(-15 60 40)"
-          />
-          {/* Subtle speaker/mic grills */}
-          <circle cx="35" cy="25" r="2" fill="white" opacity="0.2" transform="rotate(-15 60 40)" />
-          <circle cx="85" cy="25" r="2" fill="white" opacity="0.2" transform="rotate(-15 60 40)" />
-          {/* Signal/Status indicator */}
-          <circle cx="98" cy="14" r="4.5" fill="oklch(0.72 0.13 205)" />
+          {/* cradle base */}
+          <rect x="22" y="58" width="76" height="10" rx="5" fill={stroke} opacity="0.28" />
+          {/* coiled cord */}
+          <g fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" opacity="0.55">
+            <path d="M74 52 c6 0 6 -7 12 -7 s6 7 12 7" />
+            <path d="M74 58 c6 0 6 -7 12 -7 s6 7 12 7" opacity="0.6" />
+          </g>
+          {/* receiver, filled, tilted like the hero handset */}
+          <g transform="rotate(-24 60 36) translate(24 -4) scale(2.2)">
+            <path d={HANDSET_PATH} fill={fill} />
+            <circle cx="12" cy="5.9" r="1.5" fill="oklch(0.72 0.048 249)" opacity="0.5" />
+            <circle cx="12" cy="18.1" r="1.5" fill="oklch(0.72 0.048 249)" opacity="0.5" />
+          </g>
+          {/* live indicator */}
+          <circle cx="100" cy="14" r="4.5" fill="oklch(0.72 0.13 205)" />
         </svg>
       );
+
 
     case "dialpad":
       return (
