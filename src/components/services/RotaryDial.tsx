@@ -11,11 +11,16 @@ import phoneBody from "@/assets/rotary-phone.jpg";
 
 /** clockwise degrees from 12 o'clock, measured from the dial artwork */
 const STOP_ANGLE = 128;
-const HOLE_ANGLES = [110, 77.5, 45.2, 13.3, 340.7, 308.6, 277.4, 246.1, 215.3, 183.4, 146.2];
+const HOLE_ANGLES = [110, 78, 46, 14, 342, 310, 278, 246, 214, 182, 150];
 /** hole angle for number n (1-based) */
 const holeAngle = (n: number) => HOLE_ANGLES[n - 1] ?? 0;
 /** rotation needed to bring hole n to the finger stop */
-const travelFor = (n: number) => (STOP_ANGLE - holeAngle(n) + 360) % 360;
+const travelFor = (n: number) => {
+  const angle = holeAngle(n);
+  // Ensure we always rotate clockwise.
+  // We want (STOP_ANGLE - angle) but wrapped to 0..360 range.
+  return (STOP_ANGLE - angle + 360) % 360;
+};
 
 const HOLE_RADIUS = 0.337; // fraction of dial size, matches the wheel artwork
 
