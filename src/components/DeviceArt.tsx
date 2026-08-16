@@ -13,24 +13,47 @@ import {
 import type { DeviceShape } from "@/lib/services";
 import type { ReactNode } from "react";
 
-/** Classic corded receiver, drawn to match the hero handset rather than a generic phone glyph. */
-const HANDSET_PATH =
-  "M8.6 3.2 h6.8 a1.6 1.6 0 0 1 1.6 1.6 v2.1 a1.6 1.6 0 0 1 -1.6 1.6 h-2 v7 h2 a1.6 1.6 0 0 1 1.6 1.6 v2.1 a1.6 1.6 0 0 1 -1.6 1.6 h-6.8 a1.6 1.6 0 0 1 -1.6 -1.6 v-2.1 a1.6 1.6 0 0 1 1.6 -1.6 h2 v-7 h-2 a1.6 1.6 0 0 1 -1.6 -1.6 v-2.1 a1.6 1.6 0 0 1 1.6 -1.6 z";
-
+/**
+ * Classic corded receiver: an arched handle with an earpiece and a mouthpiece,
+ * so it reads as the handset from the hero rather than a generic phone glyph.
+ */
 function HandsetGlyph({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
-      <g transform="rotate(-38 12 12)">
+      <g transform="rotate(-32 12 12)">
+        {/* arched handle */}
         <path
-          d={HANDSET_PATH}
+          d="M6.4 9.2 C8.6 15.4 15.4 15.4 17.6 9.2"
           stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        {/* earpiece + mouthpiece cups */}
+        <rect
+          x="3.1"
+          y="6.1"
+          width="6.6"
+          height="4"
+          rx="2"
+          transform="rotate(-28 6.4 8.1)"
+          stroke="currentColor"
+          strokeWidth="1.7"
+        />
+        <rect
+          x="14.3"
+          y="6.1"
+          width="6.6"
+          height="4"
+          rx="2"
+          transform="rotate(28 17.6 8.1)"
+          stroke="currentColor"
+          strokeWidth="1.7"
         />
       </g>
     </svg>
   );
 }
+
 
 const ICONS: Record<DeviceShape, ReactNode> = {
   handset: <HandsetGlyph className="h-6 w-6" />,
