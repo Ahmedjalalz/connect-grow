@@ -250,7 +250,7 @@ function ServicesPage() {
 
                 {/* device panel */}
                 <div
-                  className={`relative flex aspect-[4/3] items-center justify-center rounded-[2.5rem] border p-12 group overflow-hidden transition-all duration-700 ${
+                  className={`relative flex aspect-[4/3] flex-col justify-between rounded-[2.5rem] border p-8 group overflow-hidden transition-all duration-700 ${
                     i % 4 === 2 ? "md:order-first" : ""
                   } ${
                     dark
@@ -260,24 +260,83 @@ function ServicesPage() {
                 >
                   <div
                     aria-hidden
-                    className="absolute inset-0 grid-blueprint opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700"
+                    className="absolute inset-0 grid-blueprint opacity-[0.04] transition-opacity duration-700 group-hover:opacity-[0.09]"
                   />
                   <div className="absolute -inset-20 bg-primary/5 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
-                  <div className="h-full w-full max-w-sm relative z-10 transition-all duration-700 group-hover:scale-110 group-hover:rotate-1">
+                  {/* corner ticks */}
+                  {[
+                    "left-6 top-6 border-l border-t",
+                    "right-6 top-6 border-r border-t",
+                    "left-6 bottom-6 border-l border-b",
+                    "right-6 bottom-6 border-r border-b",
+                  ].map((pos) => (
+                    <span
+                      key={pos}
+                      aria-hidden
+                      className={`absolute h-5 w-5 rounded-[3px] ${pos} ${
+                        dark
+                          ? "border-primary-foreground/20"
+                          : "border-primary/15"
+                      }`}
+                    />
+                  ))}
+
+                  <div className="relative z-10 flex items-start justify-between">
+                    <span
+                      className={`font-display text-[3.4rem] font-semibold leading-none ${
+                        dark
+                          ? "text-primary-foreground/10"
+                          : "text-primary/[0.08]"
+                      }`}
+                    >
+                      {number}
+                    </span>
+                    <span
+                      aria-hidden
+                      className="flex items-end gap-1.5 pt-3 pr-1"
+                    >
+                      {[0, 1, 2, 3, 4].map((b) => (
+                        <span
+                          key={b}
+                          className={`signal-bar block w-1 rounded-full ${
+                            dark ? "bg-signal/70" : "bg-navy-soft/50"
+                          }`}
+                          style={{
+                            height: 8 + ((b * 7) % 16),
+                            animationDelay: `${b * 0.13}s`,
+                          }}
+                        />
+                      ))}
+                    </span>
+                  </div>
+
+                  <div className="relative z-10 mx-auto h-[55%] w-full max-w-[19rem] transition-all duration-700 group-hover:scale-[1.06]">
                     <DeviceArt shape={service.device} />
                   </div>
 
-                  <div
-                    className={`absolute bottom-6 left-8 rounded-full px-5 py-2 text-[0.65rem] font-bold uppercase tracking-[0.2em] shadow-sm backdrop-blur-md transition-all duration-500 group-hover:translate-x-2 ${
-                      dark
-                        ? "bg-primary-foreground/10 text-primary-foreground/80 border border-primary-foreground/10"
-                        : "bg-secondary/80 text-primary border border-primary/10"
-                    }`}
-                  >
-                    {service.metric.value} · {service.metric.label}
+                  <div className="relative z-10 flex items-center justify-between gap-3">
+                    <span
+                      className={`rounded-full px-4 py-2 text-[0.62rem] font-bold uppercase tracking-[0.2em] backdrop-blur-md transition-all duration-500 group-hover:translate-x-1 ${
+                        dark
+                          ? "bg-primary-foreground/10 text-primary-foreground/80 border border-primary-foreground/10"
+                          : "bg-secondary/80 text-primary border border-primary/10"
+                      }`}
+                    >
+                      {service.metric.value} · {service.metric.label}
+                    </span>
+                    <span
+                      className={`hidden text-[0.6rem] font-semibold uppercase tracking-[0.2em] sm:inline ${
+                        dark
+                          ? "text-primary-foreground/35"
+                          : "text-muted-foreground/60"
+                      }`}
+                    >
+                      Live pod
+                    </span>
                   </div>
                 </div>
+
               </div>
 
               {/* separator after section */}
