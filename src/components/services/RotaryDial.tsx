@@ -24,6 +24,37 @@ const travelFor = (n: number) => {
 
 const HOLE_RADIUS = 0.337; // fraction of dial size, matches the wheel artwork
 
+/** Generate a springy coiled cord path from start to end. */
+function coiledCordPath(
+  startX: number,
+  startY: number,
+  endX: number,
+  endY: number,
+  coils = 12,
+  amplitude = 18,
+  points = 120,
+) {
+  const dx = endX - startX;
+  const dy = endY - startY;
+  const length = Math.sqrt(dx * dx + dy * dy);
+  const ux = dx / length;
+  const uy = dy / length;
+  const px = -uy;
+  const py = ux;
+  let d = `M ${startX} ${startY}`;
+  for (let i = 1; i <= points; i++) {
+    const t = i / points;
+    const dist = t * length;
+    const baseX = startX + ux * dist;
+    const baseY = startY + uy * dist;
+    const wave =
+      Math.sin(t * Math.PI * 2 * coils) * amplitude * (1 - t * 0.45);
+    d += ` L ${baseX + px * wave} ${baseY + py * wave}`;
+  }
+  return d;
+}
+
+
 type Props = {
   count: number;
   active: number; // 1-based
