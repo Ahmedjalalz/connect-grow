@@ -43,6 +43,15 @@ export function RotarySection() {
 
         <div className="mt-14 grid items-center gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
           <div className="relative">
+            <div
+              className={`pointer-events-none absolute left-1/2 top-2 z-30 -translate-x-1/2 select-none items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/[0.08] px-4 py-2 text-xs font-semibold text-primary-foreground/80 shadow-lg backdrop-blur-sm transition-opacity duration-700 sm:flex ${
+                touched ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              <MousePointer2 className="h-4 w-4" />
+              <span className="tracking-wide">Drag the dial to explore</span>
+            </div>
+
             <RotaryDial
               count={SERVICES.length}
               active={index}
@@ -60,6 +69,7 @@ export function RotarySection() {
               Turn the dial to explore our services
             </p>
           </div>
+
 
           <div className="relative">
             <div
