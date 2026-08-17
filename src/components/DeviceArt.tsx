@@ -86,20 +86,28 @@ export function DeviceArt({ shape }: { shape: DeviceShape }) {
       return (
         <svg viewBox="0 0 120 80" className="h-full w-full">
           {/* cradle base */}
-          <rect x="22" y="58" width="76" height="10" rx="5" fill={stroke} opacity="0.28" />
-          {/* coiled cord */}
-          <g fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" opacity="0.55">
-            <path d="M74 52 c6 0 6 -7 12 -7 s6 7 12 7" />
-            <path d="M74 58 c6 0 6 -7 12 -7 s6 7 12 7" opacity="0.6" />
+          <rect x="18" y="60" width="84" height="9" rx="4.5" fill={stroke} opacity="0.25" />
+          {/* coiled cord dropping from the mouthpiece */}
+          <g fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" opacity="0.5">
+            <path d="M84 46 c7 0 7 6 14 6" />
+            <path d="M84 52 c7 0 7 6 14 6" opacity="0.7" />
           </g>
-          {/* receiver, filled, tilted like the hero handset */}
-          <g transform="rotate(-24 60 36) translate(24 -4) scale(2.2)">
-            <path d={HANDSET_PATH} fill={fill} />
-            <circle cx="12" cy="5.9" r="1.5" fill="oklch(0.72 0.048 249)" opacity="0.5" />
-            <circle cx="12" cy="18.1" r="1.5" fill="oklch(0.72 0.048 249)" opacity="0.5" />
+          {/* classic receiver: arched handle with earpiece + mouthpiece cups */}
+          <g transform="rotate(-14 60 38)">
+            <path
+              d="M30 26 C36 52 84 52 90 26"
+              fill="none"
+              stroke={fill}
+              strokeWidth="11"
+              strokeLinecap="round"
+            />
+            <rect x="14" y="16" width="30" height="17" rx="8.5" transform="rotate(-12 29 24.5)" fill={fill} />
+            <rect x="76" y="16" width="30" height="17" rx="8.5" transform="rotate(12 91 24.5)" fill={fill} />
+            <circle cx="29" cy="24" r="3.4" fill="oklch(0.72 0.048 249)" opacity="0.55" />
+            <circle cx="91" cy="24" r="3.4" fill="oklch(0.72 0.048 249)" opacity="0.55" />
           </g>
           {/* live indicator */}
-          <circle cx="100" cy="14" r="4.5" fill="oklch(0.72 0.13 205)" />
+          <circle cx="104" cy="12" r="4.5" fill="oklch(0.72 0.13 205)" />
         </svg>
       );
 
