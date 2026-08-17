@@ -4,10 +4,11 @@
  */
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MousePointer2 } from "lucide-react";
 import { RotaryDial } from "./RotaryDial";
 import { ServiceMetaphor } from "./ServiceMetaphor";
 import { SERVICES } from "@/lib/services";
+
 
 export function RotarySection() {
   const [index, setIndex] = useState(1); // 1-based
