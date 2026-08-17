@@ -248,6 +248,33 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
           }}
         />
       </div>
+
+      {/* receiver cord — implies the handset is resting off-frame */}
+      <svg
+        aria-hidden
+        viewBox="0 0 540 540"
+        preserveAspectRatio="xMidYMid meet"
+        className="pointer-events-none absolute inset-0 z-20 h-full w-full"
+      >
+        <defs>
+          <linearGradient id="cord-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="oklch(0.32 0.05 260)" />
+            <stop offset="40%" stopColor="oklch(0.5 0.04 250)" />
+            <stop offset="70%" stopColor="oklch(0.42 0.045 255)" />
+            <stop offset="100%" stopColor="oklch(0.28 0.05 260)" />
+          </linearGradient>
+        </defs>
+        <path
+          d={coiledCordPath(176, 96, -52, -40, 13, 16)}
+          fill="none"
+          stroke="url(#cord-gradient)"
+          strokeWidth="14"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          filter="drop-shadow(2px 4px 7px rgba(0,0,0,0.5))"
+        />
+      </svg>
     </div>
   );
 }
+
