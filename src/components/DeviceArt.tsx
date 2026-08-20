@@ -5,6 +5,7 @@ import {
   Headphones,
   Mail,
   MessageSquare,
+  PhoneCall,
   Radar,
   Ruler,
   Terminal,
@@ -13,50 +14,8 @@ import {
 import type { DeviceShape } from "@/lib/services";
 import type { ReactNode } from "react";
 
-/**
- * Classic corded receiver: an arched handle with an earpiece and a mouthpiece,
- * so it reads as the handset from the hero rather than a generic phone glyph.
- */
-function HandsetGlyph({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
-      <g transform="rotate(-32 12 12)">
-        {/* arched handle */}
-        <path
-          d="M6.4 9.2 C8.6 15.4 15.4 15.4 17.6 9.2"
-          stroke="currentColor"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-        />
-        {/* earpiece + mouthpiece cups */}
-        <rect
-          x="3.1"
-          y="6.1"
-          width="6.6"
-          height="4"
-          rx="2"
-          transform="rotate(-28 6.4 8.1)"
-          stroke="currentColor"
-          strokeWidth="1.7"
-        />
-        <rect
-          x="14.3"
-          y="6.1"
-          width="6.6"
-          height="4"
-          rx="2"
-          transform="rotate(28 17.6 8.1)"
-          stroke="currentColor"
-          strokeWidth="1.7"
-        />
-      </g>
-    </svg>
-  );
-}
-
-
 const ICONS: Record<DeviceShape, ReactNode> = {
-  handset: <HandsetGlyph className="h-6 w-6" />,
+  handset: <PhoneCall className="h-6 w-6" />,
   dialpad: <Grid3x3 className="h-6 w-6" />,
   chat: <MessageSquare className="h-6 w-6" />,
   envelope: <Mail className="h-6 w-6" />,
@@ -85,29 +44,36 @@ export function DeviceArt({ shape }: { shape: DeviceShape }) {
     case "handset":
       return (
         <svg viewBox="0 0 120 80" className="h-full w-full">
-          {/* cradle base */}
-          <rect x="18" y="60" width="84" height="9" rx="4.5" fill={stroke} opacity="0.25" />
-          {/* coiled cord dropping from the mouthpiece */}
-          <g fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" opacity="0.5">
-            <path d="M84 46 c7 0 7 6 14 6" />
-            <path d="M84 52 c7 0 7 6 14 6" opacity="0.7" />
-          </g>
-          {/* classic receiver: arched handle with earpiece + mouthpiece cups */}
-          <g transform="rotate(-14 60 38)">
+          {/* Main phone handset shape */}
+          <g transform="translate(24, 12)">
             <path
-              d="M30 26 C36 52 84 52 90 26"
-              fill="none"
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              fill={fill}
               stroke={fill}
-              strokeWidth="11"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              transform="scale(2.2)"
+            />
+            {/* Call waves */}
+            <path
+              d="M56 12 A 16 16 0 0 1 56 36"
+              fill="none"
+              stroke={stroke}
+              strokeWidth="2.5"
               strokeLinecap="round"
             />
-            <rect x="14" y="16" width="30" height="17" rx="8.5" transform="rotate(-12 29 24.5)" fill={fill} />
-            <rect x="76" y="16" width="30" height="17" rx="8.5" transform="rotate(12 91 24.5)" fill={fill} />
-            <circle cx="29" cy="24" r="3.4" fill="oklch(0.72 0.048 249)" opacity="0.55" />
-            <circle cx="91" cy="24" r="3.4" fill="oklch(0.72 0.048 249)" opacity="0.55" />
+            <path
+              d="M65 4 A 26 26 0 0 1 65 44"
+              fill="none"
+              stroke={stroke}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              opacity="0.6"
+            />
           </g>
           {/* live indicator */}
-          <circle cx="104" cy="12" r="4.5" fill="oklch(0.72 0.13 205)" />
+          <circle cx="102" cy="14" r="4.5" fill="oklch(0.72 0.13 205)" />
         </svg>
       );
 

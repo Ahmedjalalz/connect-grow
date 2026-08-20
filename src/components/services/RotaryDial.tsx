@@ -24,35 +24,6 @@ const travelFor = (n: number) => {
 
 const HOLE_RADIUS = 0.337; // fraction of dial size, matches the wheel artwork
 
-/** Generate a springy coiled cord path from start to end. */
-function coiledCordPath(
-  startX: number,
-  startY: number,
-  endX: number,
-  endY: number,
-  coils = 12,
-  amplitude = 18,
-  points = 120,
-) {
-  const dx = endX - startX;
-  const dy = endY - startY;
-  const length = Math.sqrt(dx * dx + dy * dy);
-  const ux = dx / length;
-  const uy = dy / length;
-  const px = -uy;
-  const py = ux;
-  let d = `M ${startX} ${startY}`;
-  for (let i = 1; i <= points; i++) {
-    const t = i / points;
-    const dist = t * length;
-    const baseX = startX + ux * dist;
-    const baseY = startY + uy * dist;
-    const wave =
-      Math.sin(t * Math.PI * 2 * coils) * amplitude * (1 - t * 0.45);
-    d += ` L ${baseX + px * wave} ${baseY + py * wave}`;
-  }
-  return d;
-}
 
 
 type Props = {
@@ -248,33 +219,6 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
           }}
         />
       </div>
-
-      {/* receiver cord — implies the handset is resting off-frame */}
-      <svg
-        aria-hidden
-        viewBox="0 0 540 540"
-        preserveAspectRatio="xMidYMid meet"
-        className="pointer-events-none absolute inset-0 z-20 h-full w-full"
-      >
-        <defs>
-          <linearGradient id="cord-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="oklch(0.2 0.04 260)" />
-            <stop offset="40%" stopColor="oklch(0.35 0.04 252)" />
-            <stop offset="70%" stopColor="oklch(0.28 0.045 255)" />
-            <stop offset="100%" stopColor="oklch(0.18 0.04 260)" />
-          </linearGradient>
-        </defs>
-        <path
-          d={coiledCordPath(176, 96, -52, -40, 13, 16)}
-          fill="none"
-          stroke="url(#cord-gradient)"
-          strokeWidth="11"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          filter="drop-shadow(2px 4px 7px rgba(0,0,0,0.55))"
-        />
-
-      </svg>
     </div>
   );
 }
