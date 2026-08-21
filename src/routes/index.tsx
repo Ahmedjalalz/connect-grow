@@ -4,7 +4,15 @@ import { HeroPhone } from "@/components/hero/HeroPhone";
 import { DeviceArt, DeviceIcon } from "@/components/DeviceArt";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { RotarySection } from "@/components/services/RotarySection";
+import { ListenSection } from "@/components/cx/ListenSection";
+import { ChannelsSection } from "@/components/cx/ChannelsSection";
+import { SwitchboardSection } from "@/components/cx/SwitchboardSection";
+import { QueueSection } from "@/components/cx/QueueSection";
+import { BeforeAfterSection } from "@/components/cx/BeforeAfterSection";
+import { AgentDeskSection } from "@/components/cx/AgentDeskSection";
+import { ConversationTestimonials } from "@/components/cx/ConversationTestimonials";
 import { SERVICES } from "@/lib/services";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
