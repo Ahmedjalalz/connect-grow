@@ -121,7 +121,8 @@ export function ListenSection() {
                   const played = i <= head;
                   const near = Math.abs(i - head);
                   const boost = playing && near < 6 ? 1 + (6 - near) * 0.07 : 1;
-                  const height = Math.min(100, amp * 100 * boost);
+                  const height =
+                    Math.round(Math.min(100, amp * 100 * boost) * 100) / 100;
                   return (
                     <span
                       key={i}
