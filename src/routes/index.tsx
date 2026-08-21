@@ -335,7 +335,11 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- TESTIMONIAL CONVERSATION ---------------- */}
+      <ConversationTestimonials />
+
       {/* ---------------- CTA ---------------- */}
+
       <section className="mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-14 text-center shadow-soft sm:px-12">
           <div aria-hidden className="absolute inset-0 grid-blueprint opacity-50" />
