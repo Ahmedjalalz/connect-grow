@@ -277,6 +277,16 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- QUEUE ---------------- */}
+      <QueueSection />
+
+      {/* ---------------- BEFORE / AFTER ---------------- */}
+      <BeforeAfterSection />
+
+      {/* ---------------- AGENT DESK ---------------- */}
+      <AgentDeskSection />
+
+
       {/* ---------------- PROCESS ---------------- */}
       <section className="relative overflow-hidden surface-navy">
         <div aria-hidden className="absolute inset-0 opacity-[0.07] grid-blueprint" />
