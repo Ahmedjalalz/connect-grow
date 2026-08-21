@@ -184,8 +184,19 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- LISTEN ---------------- */}
+      <ListenSection />
+
       {/* ---------------- ROTARY DIAL ---------------- */}
       <RotarySection />
+
+      {/* ---------------- CHANNELS ---------------- */}
+      <ChannelsSection />
+
+      {/* ---------------- SWITCHBOARD ---------------- */}
+      <SwitchboardSection />
+
+
 
 
 
