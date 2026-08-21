@@ -87,6 +87,7 @@ export function QueueSection() {
                 );
               })}
             </div>
+            </div>
 
             {/* slider */}
             <div className="mt-9">
