@@ -37,7 +37,7 @@ export function BeforeAfterSection() {
       <div className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
-            Step five — improve
+            Step four — improve
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
             What <span className="text-signal">better CX</span> looks like.

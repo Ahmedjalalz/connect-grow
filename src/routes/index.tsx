@@ -1,17 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, Globe2, ShieldCheck } from "lucide-react";
 import { HeroPhone } from "@/components/hero/HeroPhone";
-import { DeviceArt, DeviceIcon } from "@/components/DeviceArt";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { RotarySection } from "@/components/services/RotarySection";
 import { ListenSection } from "@/components/cx/ListenSection";
 import { ChannelsSection } from "@/components/cx/ChannelsSection";
-import { SwitchboardSection } from "@/components/cx/SwitchboardSection";
 import { QueueSection } from "@/components/cx/QueueSection";
 import { BeforeAfterSection } from "@/components/cx/BeforeAfterSection";
 import { AgentDeskSection } from "@/components/cx/AgentDeskSection";
 import { ConversationTestimonials } from "@/components/cx/ConversationTestimonials";
-import { SERVICES } from "@/lib/services";
 
 
 export const Route = createFileRoute("/")({
@@ -115,75 +112,6 @@ function Home() {
         </div>
       </section>
 
-      {/* ---------------- SERVICES ---------------- */}
-      <section className="mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">
-              What we run for you
-            </p>
-            <h2 className="mt-3 max-w-lg font-display text-3xl font-semibold sm:text-4xl">
-              Eleven ways to hand off the work
-            </h2>
-          </div>
-          <Link
-            to="/services"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-primary"
-          >
-            See every service in detail
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </div>
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((service, i) => (
-            <Link
-              key={service.slug}
-              to="/services"
-              hash={service.slug}
-              className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-border/50 bg-card p-8 transition-all duration-500 hover:-translate-y-2 hover:border-primary/20 hover:shadow-lift ${
-                i === 0 ? "sm:col-span-2 sm:flex-row sm:items-center sm:gap-12" : ""
-              }`}
-            >
-              <div aria-hidden className="absolute inset-0 grid-blueprint opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500" />
-              
-              <div className={i === 0 ? "sm:max-w-md relative z-10" : "relative z-10"}>
-                <div className="flex items-center gap-3 text-navy-soft">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-primary transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground group-hover:scale-110">
-                    <DeviceIcon shape={service.device} />
-                  </span>
-                  <span className="text-[0.65rem] font-bold uppercase tracking-[0.2em] opacity-70">
-                    {service.metric.value} {service.metric.label}
-                  </span>
-                </div>
-
-                <h3 className="mt-6 font-display text-xl font-semibold leading-tight">
-                  {service.name}
-                </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground/90">
-                  {service.short}
-                </p>
-                {i === 0 ? (
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground/80">
-                    {service.blurb}
-                  </p>
-                ) : null}
-              </div>
-
-              <div
-                aria-hidden
-                className={`pointer-events-none relative z-10 mt-8 opacity-60 transition-all duration-500 group-hover:opacity-100 group-hover:scale-105 ${
-                  i === 0 ? "h-36 w-56 sm:mt-0" : "h-24 w-full"
-                }`}
-              >
-                <div className="absolute inset-0 bg-primary/5 blur-3xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <DeviceArt shape={service.device} />
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
       {/* ---------------- LISTEN ---------------- */}
       <ListenSection />
 
@@ -192,9 +120,6 @@ function Home() {
 
       {/* ---------------- CHANNELS ---------------- */}
       <ChannelsSection />
-
-      {/* ---------------- SWITCHBOARD ---------------- */}
-      <SwitchboardSection />
 
 
 

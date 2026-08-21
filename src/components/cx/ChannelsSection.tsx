@@ -3,7 +3,7 @@
  * real communication objects light up one at a time around a single customer.
  */
 import { useScrollProgress } from "@/hooks/use-scroll-reveal";
-import phoneImg from "@/assets/cx/obj-phone.png";
+import phoneImg from "@/assets/cx/obj-phone-modern.png";
 import chatImg from "@/assets/cx/obj-chat.png";
 import emailImg from "@/assets/cx/obj-email.png";
 import smsImg from "@/assets/cx/obj-sms.png";

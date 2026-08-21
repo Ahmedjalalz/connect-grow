@@ -98,7 +98,7 @@ export function AgentDeskSection() {
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
-              Step seven — the desk
+              Step six — the desk
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
               Everything we run for you{" "}

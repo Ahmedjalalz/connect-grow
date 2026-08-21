@@ -192,14 +192,13 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         {/* rotating chrome finger wheel */}
         <img
           src={dialWheel}
-          alt=""
-          aria-hidden
+          alt="Interactive rotary dial wheel - drag clockwise to dial"
           width={1024}
           height={1024}
           loading="lazy"
           draggable={false}
           onPointerDown={onPointerDown}
-          className="pointer-events-auto absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing"
+          className="pointer-events-auto absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing hover:brightness-110 transition-[filter]"
           style={{
             transform: `rotate(${rotation}deg)`,
             transition: returning
@@ -212,12 +211,21 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         {/* finger stop */}
         <span
           aria-hidden
-          className="absolute h-[7%] w-[7%] rounded-full bg-signal/70 blur-[1px]"
+          title="Finger Stop"
+          className="absolute h-[8%] w-[8%] rounded-full bg-signal shadow-[0_0_12px_2px_rgba(255,200,0,0.6)]"
           style={{
-            left: `${50 + Math.cos(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 3.5}%`,
-            top: `${50 + Math.sin(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 3.5}%`,
+            left: `${50 + Math.cos(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4}%`,
+            top: `${50 + Math.sin(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4}%`,
           }}
         />
+      </div>
+
+      {/* Subtle rotational instruction helper arc */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-4 flex items-center justify-center">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/15 bg-navy-deep/80 px-3 py-1 text-[0.68rem] font-medium tracking-wider text-primary-foreground/80 shadow-md backdrop-blur-sm">
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal animate-ping" />
+          Drag hole clockwise to stop, or tap number directly
+        </span>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export function QueueSection() {
       <div className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">
-            Step four — respond
+            Step three — respond
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
             Less waiting.{" "}

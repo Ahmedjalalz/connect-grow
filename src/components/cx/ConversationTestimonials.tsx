@@ -41,7 +41,7 @@ export function ConversationTestimonials() {
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">
-              Step six — deliver
+              Step five — deliver
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.4rem]">
               The conversation that{" "}
