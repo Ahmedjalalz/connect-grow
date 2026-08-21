@@ -22,7 +22,7 @@ const PLUGS = [
 ];
 
 const PLUG_X = 15;
-const JACK_X = 79;
+const JACK_X = 71;
 
 type Conns = Record<string, string | undefined>;
 
@@ -136,7 +136,7 @@ export function SwitchboardSection() {
             className="absolute inset-0"
             style={{
               background:
-                "radial-gradient(120% 90% at 50% 40%, color-mix(in oklab, oklch(0.2 0.06 262) 55%, transparent), oklch(0.16 0.05 262) 100%)",
+                "radial-gradient(120% 90% at 50% 40%, color-mix(in oklab, oklch(0.22 0.06 262) 25%, transparent), color-mix(in oklab, oklch(0.15 0.05 262) 88%, transparent) 100%)",
             }}
           />
 
@@ -163,8 +163,8 @@ export function SwitchboardSection() {
                   <path
                     d={`M ${PLUG_X} ${p.y} C ${PLUG_X + 14} ${sag}, ${end.x - 14} ${sag}, ${end.x} ${end.y}`}
                     fill="none"
-                    stroke="oklch(0.16 0.03 262)"
-                    strokeWidth={2.6}
+                    stroke="oklch(0.13 0.025 262)"
+                    strokeWidth={9}
                     strokeLinecap="round"
                     vectorEffect="non-scaling-stroke"
                   />
@@ -176,9 +176,9 @@ export function SwitchboardSection() {
                         ? "color-mix(in oklab, var(--signal) 92%, transparent)"
                         : "color-mix(in oklab, var(--steel) 70%, transparent)"
                     }
-                    strokeWidth={1.3}
+                    strokeWidth={4}
                     strokeLinecap="round"
-                    strokeDasharray="2.5 2"
+                    strokeDasharray="6 5"
                     vectorEffect="non-scaling-stroke"
                     className={jack && !live ? "cx-signal-flow" : ""}
                     style={{

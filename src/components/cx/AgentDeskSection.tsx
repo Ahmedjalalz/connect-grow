@@ -132,7 +132,7 @@ export function AgentDeskSection() {
             style={{
               opacity: active ? 1 : 0,
               background: active
-                ? `radial-gradient(circle at ${active.x}% ${active.y}%, transparent 8%, color-mix(in oklab, oklch(0.16 0.05 262) 72%, transparent) 42%)`
+                ? `radial-gradient(circle at ${active.x}% ${active.y}%, transparent 8%, color-mix(in oklab, oklch(0.16 0.05 262) 52%, transparent) 48%)`
                 : "none",
               backdropFilter: active ? "blur(1.5px)" : "none",
             }}
