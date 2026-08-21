@@ -4,7 +4,15 @@ import { HeroPhone } from "@/components/hero/HeroPhone";
 import { DeviceArt, DeviceIcon } from "@/components/DeviceArt";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { RotarySection } from "@/components/services/RotarySection";
+import { ListenSection } from "@/components/cx/ListenSection";
+import { ChannelsSection } from "@/components/cx/ChannelsSection";
+import { SwitchboardSection } from "@/components/cx/SwitchboardSection";
+import { QueueSection } from "@/components/cx/QueueSection";
+import { BeforeAfterSection } from "@/components/cx/BeforeAfterSection";
+import { AgentDeskSection } from "@/components/cx/AgentDeskSection";
+import { ConversationTestimonials } from "@/components/cx/ConversationTestimonials";
 import { SERVICES } from "@/lib/services";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -176,8 +184,19 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- LISTEN ---------------- */}
+      <ListenSection />
+
       {/* ---------------- ROTARY DIAL ---------------- */}
       <RotarySection />
+
+      {/* ---------------- CHANNELS ---------------- */}
+      <ChannelsSection />
+
+      {/* ---------------- SWITCHBOARD ---------------- */}
+      <SwitchboardSection />
+
+
 
 
 
@@ -258,6 +277,16 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- QUEUE ---------------- */}
+      <QueueSection />
+
+      {/* ---------------- BEFORE / AFTER ---------------- */}
+      <BeforeAfterSection />
+
+      {/* ---------------- AGENT DESK ---------------- */}
+      <AgentDeskSection />
+
+
       {/* ---------------- PROCESS ---------------- */}
       <section className="relative overflow-hidden surface-navy">
         <div aria-hidden className="absolute inset-0 opacity-[0.07] grid-blueprint" />
@@ -306,7 +335,11 @@ function Home() {
         </div>
       </section>
 
+      {/* ---------------- TESTIMONIAL CONVERSATION ---------------- */}
+      <ConversationTestimonials />
+
       {/* ---------------- CTA ---------------- */}
+
       <section className="mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-14 text-center shadow-soft sm:px-12">
           <div aria-hidden className="absolute inset-0 grid-blueprint opacity-50" />
