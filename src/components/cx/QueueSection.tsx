@@ -59,8 +59,13 @@ export function QueueSection() {
           </div>
 
           <div className="px-6 py-9 sm:px-9">
-            {/* the queue itself */}
-            <div className="flex min-h-[9.5rem] flex-wrap content-start gap-1.5">
+            {/* the queue itself, held inside a waiting lane */}
+            <div className="relative rounded-2xl border border-dashed border-border/70 bg-secondary/25 p-5">
+              <div className="mb-4 flex items-center justify-between text-[0.6rem] font-bold uppercase tracking-[0.22em] text-muted-foreground/70">
+                <span>Waiting line</span>
+                <span>Answered</span>
+              </div>
+            <div className="flex min-h-[7.5rem] flex-wrap content-start gap-1.5">
               {tickets.map((i) => {
                 const gone = i >= waiting;
                 return (
