@@ -7,19 +7,29 @@ import { SERVICES } from "@/lib/services";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Call Center, CX & Back-office Pods | NorthlineCX" },
+      { title: "Services — Call Center, CX & Back-office Pods | KyteLine" },
       {
         name: "description",
         content:
           "Inbound call support, outbound calling, live chat, email support, customer service, lead generation, appointment setting, sales outreach, technical support and back-office pods.",
       },
-      { property: "og:title", content: "Services — NorthlineCX" },
+      { property: "og:title", content: "Services — KyteLine" },
       {
         property: "og:description",
         content:
           "Eleven outsourced customer experience services, each with a dedicated pod, scripts, QA and reporting.",
       },
+      { property: "og:url", content: "/services" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Call Center & CX Services — KyteLine" },
+      {
+        name: "twitter:description",
+        content:
+          "Inbound, outbound, chat, email, lead generation, appointment setting, technical support and back-office pods.",
+      },
     ],
+    links: [{ rel: "canonical", href: "/services" }],
   }),
   component: ServicesPage,
 });

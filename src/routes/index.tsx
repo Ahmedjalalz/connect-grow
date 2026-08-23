@@ -8,17 +8,54 @@ import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NorthlineCX — Outsourced Call Center & CX Teams for B2B" },
+      { title: "KyteLine — Outsourced Call Center & CX Teams for B2B" },
       {
         name: "description",
         content:
           "Inbound and outbound calling, live chat, email support, lead generation and back-office pods. Launch a trained customer experience team in weeks.",
       },
-      { property: "og:title", content: "NorthlineCX — Outsourced Call Center & CX Teams" },
+      { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
       {
         property: "og:description",
         content:
           "Trained agents for inbound support, outbound calling, live chat, lead generation and back-office work. Coverage in weeks, not quarters.",
+      },
+      { property: "og:url", content: "/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      {
+        name: "twitter:description",
+        content:
+          "Outsourced call center and CX pods for B2B teams: inbound, outbound, chat, email, lead gen and back-office.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "KyteLine",
+          description:
+            "KyteLine provides outsourced call center and customer experience teams for B2B companies: inbound call support, outbound calling, live chat, email support, lead generation, appointment setting, sales outreach, technical support and back-office data entry.",
+          serviceType: [
+            "Inbound Call Support",
+            "Outbound Calling",
+            "Live Chat Support",
+            "Email Support",
+            "Customer Service Outsourcing",
+            "Lead Generation",
+            "Appointment Setting",
+            "Sales Outreach",
+            "Technical Support",
+            "Back-office & Data Entry",
+          ],
+          areaServed: "Worldwide",
+          availableLanguage: ["English", "Spanish", "Urdu", "Arabic"],
+          url: "/",
+        }),
       },
     ],
   }),
@@ -58,7 +95,7 @@ function Home() {
             </h1>
 
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
-              NorthlineCX builds outsourced{" "}
+              KyteLine builds outsourced{" "}
               <strong className="font-semibold text-primary">call center</strong>{" "}
               and{" "}
               <strong className="font-semibold text-primary">

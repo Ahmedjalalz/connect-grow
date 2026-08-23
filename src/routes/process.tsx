@@ -12,19 +12,23 @@ import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: "Our Process — How We Deliver World-Class CX | NorthlineCX" },
+      { title: "Our Process — How We Deliver World-Class CX | KyteLine" },
       {
         name: "description",
         content:
-          "Explore the end-to-end NorthlineCX operational framework. From listening and multi-channel routing to rapid queue response, continuous QA, and dedicated agent workstations.",
+          "Explore the end-to-end KyteLine operational framework. From listening and multi-channel routing to rapid queue response, continuous QA, and dedicated agent workstations.",
       },
-      { property: "og:title", content: "Our Process — NorthlineCX" },
+      { property: "og:title", content: "Our Process — KyteLine" },
       {
         property: "og:description",
         content:
           "Discover how our 6-step customer experience blueprint transforms your support and sales operations.",
       },
+      { property: "og:url", content: "/process" },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/process" }],
   }),
   component: ProcessPage,
 });
@@ -62,7 +66,7 @@ function ProcessPage() {
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-              The NorthlineCX Operational Blueprint
+              The KyteLine Operational Blueprint
             </span>
 
             <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]">

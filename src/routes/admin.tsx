@@ -17,13 +17,13 @@ import {
 export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
-      { title: "Lead Pipeline — NorthlineCX Admin" },
+      { title: "Lead Pipeline — KyteLine Admin" },
       {
         name: "description",
         content:
-          "Internal pipeline for NorthlineCX quote requests, from new lead through to won or lost.",
+          "Internal pipeline for KyteLine quote requests, from new lead through to won or lost.",
       },
-      { property: "og:title", content: "Lead Pipeline — NorthlineCX Admin" },
+      { property: "og:title", content: "Lead Pipeline — KyteLine Admin" },
       {
         property: "og:description",
         content: "Internal lead pipeline for incoming quote requests.",
@@ -68,7 +68,7 @@ function AdminPage() {
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-6">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
-              NorthlineCX
+              KyteLine
             </p>
             <h1 className="mt-1 font-display text-2xl font-semibold">Lead desk</h1>
           </div>

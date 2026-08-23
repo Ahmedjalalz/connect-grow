@@ -39,18 +39,18 @@ export type Booking = {
   timeSlot: string;
 };
 
-const BOOKINGS_KEY = "northlinecx.bookings";
+const BOOKINGS_KEY = "kyteline.bookings";
 
 export const stageLabel = (s: Stage) =>
   STAGES.find((x) => x.value === s)?.label ?? s;
 
-const LEADS_KEY = "northlinecx.leads";
-const SESSION_KEY = "northlinecx.session";
+const LEADS_KEY = "kyteline.leads";
+const SESSION_KEY = "kyteline.session";
 
 /** Demo credentials while there is no backend. */
 export const DEMO_CREDENTIALS = {
-  email: "admin@northlinecx.com",
-  password: "northline",
+  email: "admin@kyteline.com",
+  password: "kyteline",
 };
 
 function read(): Lead[] {

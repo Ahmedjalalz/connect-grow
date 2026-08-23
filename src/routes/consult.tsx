@@ -7,6 +7,26 @@ import { toast } from "sonner";
 
 
 export const Route = createFileRoute("/consult")({
+  head: () => ({
+    meta: [
+      { title: "Book a CX Consultation — Free 15-Min Call | KyteLine" },
+      {
+        name: "description",
+        content:
+          "Pick a date and time slot to speak with a KyteLine call center strategy expert. Get a roadmap for inbound support, outbound calling and CX outsourcing.",
+      },
+      { property: "og:title", content: "Book a CX Consultation — KyteLine" },
+      {
+        property: "og:description",
+        content:
+          "Choose a slot and talk to a call center outsourcing expert. 15 minutes, no commitment.",
+      },
+      { property: "og:url", content: "/consult" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/consult" }],
+  }),
   component: ConsultExpertPage,
 });
 
