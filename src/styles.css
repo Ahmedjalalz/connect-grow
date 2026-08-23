@@ -251,6 +251,11 @@
   animation: wave-pulse 2.8s ease-out infinite;
 }
 
+@utility phone-ring-shake {
+  animation: phone-ring-shake 2.4s ease-in-out infinite;
+}
+
+
 @utility rise-in {
   animation: rise-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
