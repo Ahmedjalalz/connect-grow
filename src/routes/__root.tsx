@@ -93,6 +93,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:site_name", content: "KyteLine" },
+      { name: "keywords", content: "outsourced call center, inbound call support, outbound calling, live chat support, email support outsourcing, lead generation, appointment setting, technical support outsourcing, back-office data entry, B2B customer experience" },
     ],
     links: [
       {
@@ -106,6 +108,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "KyteLine",
+          url: "/",
+          description:
+            "KyteLine builds outsourced call center and customer experience teams for growing B2B operations.",
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              contactType: "sales",
+              availableLanguage: ["English", "Spanish", "Urdu", "Arabic"],
+            },
+          ],
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
