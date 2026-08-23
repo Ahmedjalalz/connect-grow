@@ -7,13 +7,13 @@ import { SERVICES } from "@/lib/services";
 export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
-      { title: "Services — Call Center, CX & Back-office Pods | NorthlineCX" },
+      { title: "Services — Call Center, CX & Back-office Pods | KyteLine" },
       {
         name: "description",
         content:
           "Inbound call support, outbound calling, live chat, email support, customer service, lead generation, appointment setting, sales outreach, technical support and back-office pods.",
       },
-      { property: "og:title", content: "Services — NorthlineCX" },
+      { property: "og:title", content: "Services — KyteLine" },
       {
         property: "og:description",
         content:

@@ -6,16 +6,16 @@ import { DEMO_CREDENTIALS, isSignedIn, signInDemo } from "@/lib/local-leads";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Team Sign In — NorthlineCX Lead Desk" },
+      { title: "Team Sign In — KyteLine Lead Desk" },
       {
         name: "description",
         content:
-          "Sign in to the NorthlineCX internal lead desk to review and progress incoming quote requests.",
+          "Sign in to the KyteLine internal lead desk to review and progress incoming quote requests.",
       },
-      { property: "og:title", content: "Team Sign In — NorthlineCX" },
+      { property: "og:title", content: "Team Sign In — KyteLine" },
       {
         property: "og:description",
-        content: "Internal sign in for the NorthlineCX lead desk.",
+        content: "Internal sign in for the KyteLine lead desk.",
       },
       { name: "robots", content: "noindex" },
     ],

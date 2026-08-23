@@ -8,13 +8,13 @@ import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NorthlineCX — Outsourced Call Center & CX Teams for B2B" },
+      { title: "KyteLine — Outsourced Call Center & CX Teams for B2B" },
       {
         name: "description",
         content:
           "Inbound and outbound calling, live chat, email support, lead generation and back-office pods. Launch a trained customer experience team in weeks.",
       },
-      { property: "og:title", content: "NorthlineCX — Outsourced Call Center & CX Teams" },
+      { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
       {
         property: "og:description",
         content:
@@ -58,7 +58,7 @@ function Home() {
             </h1>
 
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
-              NorthlineCX builds outsourced{" "}
+              KyteLine builds outsourced{" "}
               <strong className="font-semibold text-primary">call center</strong>{" "}
               and{" "}
               <strong className="font-semibold text-primary">

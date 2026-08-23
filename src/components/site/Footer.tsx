@@ -7,7 +7,7 @@ export function Footer() {
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
           <p className="font-display text-xl font-semibold">
-            Northline<span className="text-steel">CX</span>
+            Kyte<span className="text-steel">Line</span>
           </p>
           <p className="mt-3 max-w-xs text-sm text-primary-foreground/70">
             Outsourced call center and customer experience teams for growing B2B
@@ -78,7 +78,7 @@ export function Footer() {
 
       <div className="border-t border-primary-foreground/10">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-5 py-6 text-xs text-primary-foreground/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} NorthlineCX. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} KyteLine. All rights reserved.</p>
           <p>Operations across 3 time zones · English, Spanish, Urdu, Arabic</p>
         </div>
       </div>

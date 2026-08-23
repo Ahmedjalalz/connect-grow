@@ -78,14 +78,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NorthlineCX — Outsourced Call Center & CX Teams" },
+      { title: "KyteLine — Outsourced Call Center & CX Teams" },
       {
         name: "description",
         content:
           "Outsourced call center and customer experience pods for B2B teams: inbound, outbound, chat, email, lead gen and back-office.",
       },
-      { name: "author", content: "NorthlineCX" },
-      { property: "og:title", content: "NorthlineCX — Outsourced Call Center & CX Teams" },
+      { name: "author", content: "KyteLine" },
+      { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
       {
         property: "og:description",
         content:

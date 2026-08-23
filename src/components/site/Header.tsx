@@ -21,7 +21,7 @@ export function Header() {
             <span className="absolute inset-0 rounded-lg ring-1 ring-inset ring-primary-foreground/20" />
           </span>
           <span className="font-display text-[1.05rem] font-semibold tracking-tight">
-            Northline<span className="text-navy-soft">CX</span>
+            Kyte<span className="text-navy-soft">Line</span>
           </span>
         </Link>
 

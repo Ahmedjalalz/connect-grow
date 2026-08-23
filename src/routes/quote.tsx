@@ -10,13 +10,13 @@ import { OPERATION_SIZES, QUOTE_SERVICE_OPTIONS } from "@/lib/services";
 export const Route = createFileRoute("/quote")({
   head: () => ({
     meta: [
-      { title: "Get a Quote — Outsourced CX Pricing in 3 Steps | NorthlineCX" },
+      { title: "Get a Quote — Outsourced CX Pricing in 3 Steps | KyteLine" },
       {
         name: "description",
         content:
           "Tell us which support lines you need, how large your operation is, and where to reach you. We reply with a scoped quote within one business day.",
       },
-      { property: "og:title", content: "Get a Quote — NorthlineCX" },
+      { property: "og:title", content: "Get a Quote — KyteLine" },
       {
         property: "og:description",
         content:
