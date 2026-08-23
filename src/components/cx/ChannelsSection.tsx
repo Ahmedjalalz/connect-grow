@@ -53,43 +53,43 @@ export function ChannelsSection() {
                 <span className="text-signal">They just want an answer.</span>
               </h2>
               <p className="mt-5 max-w-md text-sm leading-relaxed text-primary-foreground/65">
-                One person, five ways of reaching you. We staff every line with
-                the same context, the same tone and the same runbook — so the
-                conversation never restarts.
+                One person, five ways of reaching you. Pick a channel — we staff
+                every line with the same context, the same tone and the same
+                runbook, so the conversation never restarts.
               </p>
 
               <ul className="mt-8 space-y-2.5">
                 {CHANNELS.map((c, i) => {
                   const active = i === stage;
-                  const done = i < stage;
                   return (
-                    <li
-                      key={c.key}
-                      className={`flex items-center gap-3 rounded-full border px-4 py-2.5 text-sm transition-all duration-500 ${
-                        active
-                          ? "border-signal/50 bg-signal/10 text-primary-foreground"
-                          : "border-primary-foreground/10 bg-primary-foreground/[0.03] text-primary-foreground/55"
-                      }`}
-                    >
-                      <span
-                        className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                    <li key={c.key}>
+                      <button
+                        type="button"
+                        onClick={() => setStage(i)}
+                        aria-pressed={active}
+                        className={`flex w-full items-center gap-3 rounded-full border px-4 py-2.5 text-sm transition-all duration-500 ${
                           active
-                            ? "animate-pulse bg-signal"
-                            : done
-                              ? "bg-signal/50"
-                              : "bg-primary-foreground/25"
+                            ? "border-signal/50 bg-signal/10 text-primary-foreground"
+                            : "border-primary-foreground/10 bg-primary-foreground/[0.03] text-primary-foreground/55 hover:border-signal/30 hover:bg-primary-foreground/[0.07] hover:text-primary-foreground/80"
                         }`}
-                      />
-                      <span className="font-semibold uppercase tracking-[0.14em] text-[0.7rem]">
-                        {c.label}
-                      </span>
-                      <span className="ml-auto text-[0.65rem] uppercase tracking-[0.2em]">
-                        {active ? "Active" : done ? "Answered" : "Idle"}
-                      </span>
+                      >
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                            active ? "animate-pulse bg-signal" : "bg-primary-foreground/25"
+                          }`}
+                        />
+                        <span className="font-semibold uppercase tracking-[0.14em] text-[0.7rem]">
+                          {c.label}
+                        </span>
+                        <span className="ml-auto text-[0.65rem] uppercase tracking-[0.2em]">
+                          {active ? "Active" : "Idle"}
+                        </span>
+                      </button>
                     </li>
                   );
                 })}
               </ul>
+
             </div>
 
             {/* stage */}
