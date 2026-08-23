@@ -58,38 +58,39 @@ export function RingingQuoteSection() {
               <Link
                 to="/quote"
                 aria-label="Answer the call and get a quote"
-                className="group relative block"
+                className="group relative block [transform:perspective(1400px)_rotateX(14deg)] [transform-style:preserve-3d]"
               >
                 {/* static base */}
                 <img
                   src={phoneBase}
-                  alt="Navy rotary telephone base"
-                  width={1024}
-                  height={1024}
+                  alt="Navy desk telephone base"
+                  width={641}
+                  height={808}
                   loading="lazy"
-                  className="relative z-10 w-full drop-shadow-[0_26px_50px_rgba(20,28,54,0.35)] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="relative z-10 w-full drop-shadow-[0_30px_55px_rgba(20,28,54,0.38)] transition-transform duration-500 group-hover:scale-[1.02]"
                 />
 
-                {/* receiver resting in the cradle, vibrating */}
+                {/* receiver resting face-down in the cradle, vibrating */}
                 <img
                   src={phoneReceiver}
                   alt="Navy telephone receiver ringing in its cradle"
-                  width={992}
-                  height={387}
+                  width={861}
+                  height={286}
                   loading="lazy"
-                  className="phone-ring-shake pointer-events-none absolute left-1/2 top-[5%] z-20 w-[56%] -translate-x-1/2 drop-shadow-[0_10px_18px_rgba(20,28,54,0.45)]"
+                  className="phone-ring-shake pointer-events-none absolute left-1/2 top-[1.5%] z-20 w-[92%] -translate-x-1/2 drop-shadow-[0_12px_20px_rgba(20,28,54,0.5)]"
                 />
 
                 {/* call waves around the receiver */}
                 <span
                   aria-hidden
-                  className="wave-ring pointer-events-none absolute left-1/2 top-[14%] z-0 h-44 w-44 -translate-x-1/2 rounded-full border border-signal/50"
+                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] z-0 h-44 w-44 -translate-x-1/2 rounded-full border border-signal/50"
                 />
                 <span
                   aria-hidden
-                  className="wave-ring pointer-events-none absolute left-1/2 top-[14%] z-0 h-44 w-44 -translate-x-1/2 rounded-full border border-signal/30"
+                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] z-0 h-44 w-44 -translate-x-1/2 rounded-full border border-signal/30"
                   style={{ animationDelay: "1.2s" }}
                 />
+
 
               </Link>
 
