@@ -264,28 +264,8 @@ function Home() {
       <ConversationTestimonials />
 
       {/* ---------------- CTA ---------------- */}
+      <RingingQuoteSection />
 
-      <section className="mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-card px-6 py-14 text-center shadow-soft sm:px-12">
-          <div aria-hidden className="absolute inset-0 grid-blueprint opacity-50" />
-          <div className="relative">
-            <h2 className="mx-auto max-w-xl font-display text-3xl font-semibold sm:text-4xl">
-              Tell us what to pick up — we'll quote it in{" "}
-              <span className="text-gradient-navy">one business day</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Three short steps. No sales maze, no 20-field form.
-            </p>
-            <Link
-              to="/quote"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
-            >
-              Get a quote
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
     </SiteLayout>
   );
 }
