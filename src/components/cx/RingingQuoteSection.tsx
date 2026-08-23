@@ -57,15 +57,6 @@ export function RingingQuoteSection() {
                 aria-label="Answer the call and get a quote"
                 className="group relative block"
               >
-                <span
-                  aria-hidden
-                  className="wave-ring absolute left-1/2 top-[18%] h-40 w-40 -translate-x-1/2 rounded-full border border-signal/40"
-                />
-                <span
-                  aria-hidden
-                  className="wave-ring absolute left-1/2 top-[18%] h-40 w-40 -translate-x-1/2 rounded-full border border-signal/25"
-                  style={{ animationDelay: "1.2s" }}
-                />
                 <img
                   src={ringingPhone}
                   alt="Navy rotary telephone ringing with its receiver resting in the cradle"
@@ -74,6 +65,16 @@ export function RingingQuoteSection() {
                   loading="lazy"
                   className="phone-ring-shake relative w-full rounded-[2rem] object-cover shadow-lift transition-transform duration-500 group-hover:scale-[1.02]"
                 />
+                <span
+                  aria-hidden
+                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] h-44 w-44 -translate-x-1/2 rounded-full border border-signal/50"
+                />
+                <span
+                  aria-hidden
+                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] h-44 w-44 -translate-x-1/2 rounded-full border border-signal/30"
+                  style={{ animationDelay: "1.2s" }}
+                />
+
               </Link>
 
               <p className="relative mt-5 text-center text-[0.7rem] font-bold uppercase tracking-[0.2em] text-navy-soft">
