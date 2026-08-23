@@ -1,8 +1,8 @@
 /**
- * "One conversation, many channels" — a sticky, scroll-driven composition where
- * real communication objects light up one at a time around a single customer.
+ * "One conversation, many channels" — a click-driven composition where
+ * real communication objects light up around a single customer.
  */
-import { useScrollProgress } from "@/hooks/use-scroll-reveal";
+import { useState } from "react";
 import phoneImg from "@/assets/cx/obj-phone-modern.png";
 import chatImg from "@/assets/cx/obj-chat.png";
 import emailImg from "@/assets/cx/obj-email.png";
@@ -28,18 +28,13 @@ const CHANNELS: Channel[] = [
 ];
 
 export function ChannelsSection() {
-  const { ref, progress } = useScrollProgress<HTMLDivElement>();
+  const [stage, setStage] = useState(0);
 
-  // 5 stages spread across the scroll, with a lead-in.
-  const stage = Math.min(
-    CHANNELS.length - 1,
-    Math.max(0, Math.floor(progress * (CHANNELS.length + 0.35))),
-  );
 
   return (
     <section className="relative surface-navy">
-      <div ref={ref} className="relative h-[320vh]">
-        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="relative">
+        <div className="relative flex items-center overflow-hidden py-20 md:py-24">
           <div aria-hidden className="absolute inset-0 grid-blueprint opacity-[0.07]" />
           <div
             aria-hidden
@@ -47,6 +42,7 @@ export function ChannelsSection() {
           />
 
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-10 lg:grid-cols-[0.85fr_1.15fr]">
+
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
                 Step two — connect
@@ -57,43 +53,43 @@ export function ChannelsSection() {
                 <span className="text-signal">They just want an answer.</span>
               </h2>
               <p className="mt-5 max-w-md text-sm leading-relaxed text-primary-foreground/65">
-                One person, five ways of reaching you. We staff every line with
-                the same context, the same tone and the same runbook — so the
-                conversation never restarts.
+                One person, five ways of reaching you. Pick a channel — we staff
+                every line with the same context, the same tone and the same
+                runbook, so the conversation never restarts.
               </p>
 
               <ul className="mt-8 space-y-2.5">
                 {CHANNELS.map((c, i) => {
                   const active = i === stage;
-                  const done = i < stage;
                   return (
-                    <li
-                      key={c.key}
-                      className={`flex items-center gap-3 rounded-full border px-4 py-2.5 text-sm transition-all duration-500 ${
-                        active
-                          ? "border-signal/50 bg-signal/10 text-primary-foreground"
-                          : "border-primary-foreground/10 bg-primary-foreground/[0.03] text-primary-foreground/55"
-                      }`}
-                    >
-                      <span
-                        className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                    <li key={c.key}>
+                      <button
+                        type="button"
+                        onClick={() => setStage(i)}
+                        aria-pressed={active}
+                        className={`flex w-full items-center gap-3 rounded-full border px-4 py-2.5 text-sm transition-all duration-500 ${
                           active
-                            ? "animate-pulse bg-signal"
-                            : done
-                              ? "bg-signal/50"
-                              : "bg-primary-foreground/25"
+                            ? "border-signal/50 bg-signal/10 text-primary-foreground"
+                            : "border-primary-foreground/10 bg-primary-foreground/[0.03] text-primary-foreground/55 hover:border-signal/30 hover:bg-primary-foreground/[0.07] hover:text-primary-foreground/80"
                         }`}
-                      />
-                      <span className="font-semibold uppercase tracking-[0.14em] text-[0.7rem]">
-                        {c.label}
-                      </span>
-                      <span className="ml-auto text-[0.65rem] uppercase tracking-[0.2em]">
-                        {active ? "Active" : done ? "Answered" : "Idle"}
-                      </span>
+                      >
+                        <span
+                          className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                            active ? "animate-pulse bg-signal" : "bg-primary-foreground/25"
+                          }`}
+                        />
+                        <span className="font-semibold uppercase tracking-[0.14em] text-[0.7rem]">
+                          {c.label}
+                        </span>
+                        <span className="ml-auto text-[0.65rem] uppercase tracking-[0.2em]">
+                          {active ? "Active" : "Idle"}
+                        </span>
+                      </button>
                     </li>
                   );
                 })}
               </ul>
+
             </div>
 
             {/* stage */}
@@ -164,13 +160,17 @@ export function ChannelsSection() {
               {CHANNELS.map((c, i) => {
                 const active = i === stage;
                 return (
-                  <div
+                  <button
                     key={c.key}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    type="button"
+                    onClick={() => setStage(i)}
+                    aria-pressed={active}
+                    aria-label={`Show ${c.label} channel`}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer focus:outline-none"
                     style={{ left: `${c.x}%`, top: `${c.y}%` }}
                   >
                     <div
-                      className="relative transition-all duration-700 ease-out"
+                      className="relative transition-all duration-500 ease-out hover:scale-105"
                       style={{
                         transform: active ? "scale(1.12)" : "scale(0.94)",
                         filter: active
@@ -201,9 +201,10 @@ export function ChannelsSection() {
                     >
                       {active ? c.note : c.label}
                     </p>
-                  </div>
+                  </button>
                 );
               })}
+
             </div>
           </div>
         </div>
