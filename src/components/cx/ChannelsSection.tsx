@@ -160,13 +160,17 @@ export function ChannelsSection() {
               {CHANNELS.map((c, i) => {
                 const active = i === stage;
                 return (
-                  <div
+                  <button
                     key={c.key}
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    type="button"
+                    onClick={() => setStage(i)}
+                    aria-pressed={active}
+                    aria-label={`Show ${c.label} channel`}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer focus:outline-none"
                     style={{ left: `${c.x}%`, top: `${c.y}%` }}
                   >
                     <div
-                      className="relative transition-all duration-700 ease-out"
+                      className="relative transition-all duration-500 ease-out hover:scale-105"
                       style={{
                         transform: active ? "scale(1.12)" : "scale(0.94)",
                         filter: active
@@ -197,9 +201,10 @@ export function ChannelsSection() {
                     >
                       {active ? c.note : c.label}
                     </p>
-                  </div>
+                  </button>
                 );
               })}
+
             </div>
           </div>
         </div>
