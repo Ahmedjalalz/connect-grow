@@ -24,7 +24,11 @@ export const Route = createFileRoute("/process")({
         content:
           "Discover how our 6-step customer experience blueprint transforms your support and sales operations.",
       },
+      { property: "og:url", content: "/process" },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/process" }],
   }),
   component: ProcessPage,
 });

@@ -19,7 +19,17 @@ export const Route = createFileRoute("/services")({
         content:
           "Eleven outsourced customer experience services, each with a dedicated pod, scripts, QA and reporting.",
       },
+      { property: "og:url", content: "/services" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Call Center & CX Services — KyteLine" },
+      {
+        name: "twitter:description",
+        content:
+          "Inbound, outbound, chat, email, lead generation, appointment setting, technical support and back-office pods.",
+      },
     ],
+    links: [{ rel: "canonical", href: "/services" }],
   }),
   component: ServicesPage,
 });

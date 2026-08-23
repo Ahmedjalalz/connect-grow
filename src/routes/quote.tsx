@@ -22,7 +22,11 @@ export const Route = createFileRoute("/quote")({
         content:
           "A three-step quote request: pick your services, tell us your team size, leave your details.",
       },
+      { property: "og:url", content: "/quote" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "/quote" }],
   }),
   component: QuotePage,
 });
