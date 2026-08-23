@@ -9,6 +9,8 @@ import { QueueSection } from "@/components/cx/QueueSection";
 import { BeforeAfterSection } from "@/components/cx/BeforeAfterSection";
 import { AgentDeskSection } from "@/components/cx/AgentDeskSection";
 import { ConversationTestimonials } from "@/components/cx/ConversationTestimonials";
+import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
+
 
 
 export const Route = createFileRoute("/")({
