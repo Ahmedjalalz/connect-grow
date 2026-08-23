@@ -6,8 +6,8 @@
  */
 import { Link } from "@tanstack/react-router";
 import { PhoneCall } from "lucide-react";
-import phoneBase from "@/assets/cx/rotary-phone-base.png";
-import phoneReceiver from "@/assets/cx/rotary-phone-receiver.png";
+import phoneBase from "@/assets/cx/desk-phone-base.png";
+import phoneReceiver from "@/assets/cx/desk-phone-receiver.png";
 
 export function RingingQuoteSection() {
   return (
