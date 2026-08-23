@@ -33,8 +33,8 @@ export function ChannelsSection() {
 
   return (
     <section className="relative surface-navy">
-      <div ref={ref} className="relative h-[320vh]">
-        <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="relative">
+        <div className="relative flex items-center overflow-hidden py-20 md:py-24">
           <div aria-hidden className="absolute inset-0 grid-blueprint opacity-[0.07]" />
           <div
             aria-hidden
@@ -42,6 +42,7 @@ export function ChannelsSection() {
           />
 
           <div className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-10 lg:grid-cols-[0.85fr_1.15fr]">
+
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
                 Step two — connect
