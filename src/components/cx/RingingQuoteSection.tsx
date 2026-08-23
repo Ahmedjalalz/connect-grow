@@ -77,7 +77,7 @@ export function RingingQuoteSection() {
                   width={992}
                   height={387}
                   loading="lazy"
-                  className="phone-ring-shake pointer-events-none absolute left-1/2 top-[9.5%] z-20 w-[58%] -translate-x-1/2 drop-shadow-[0_10px_18px_rgba(20,28,54,0.45)]"
+                  className="phone-ring-shake pointer-events-none absolute left-1/2 top-[5%] z-20 w-[56%] -translate-x-1/2 drop-shadow-[0_10px_18px_rgba(20,28,54,0.45)]"
                 />
 
                 {/* call waves around the receiver */}
