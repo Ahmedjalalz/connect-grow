@@ -1,8 +1,5 @@
-/**
- * The Agent Desk — an editorial photograph of a support workspace where each
- * object on the desk reveals the service it stands for on hover/focus.
- */
 import { useState } from "react";
+import { X, Sparkles } from "lucide-react";
 import deskImg from "@/assets/cx/agent-desk.jpg";
 
 type Spot = {
@@ -92,6 +89,10 @@ const SPOTS: Spot[] = [
 export function AgentDeskSection() {
   const [active, setActive] = useState<Spot | null>(null);
 
+  const toggleSpot = (s: Spot) => {
+    setActive((prev) => (prev?.id === s.id ? null : s));
+  };
+
   return (
     <section className="relative overflow-hidden bg-navy-deep text-primary-foreground">
       <div className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
@@ -107,22 +108,20 @@ export function AgentDeskSection() {
           </div>
           <p className="inline-flex w-fit items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/[0.06] px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.18em] text-primary-foreground/75">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal" />
-            Explore the desk
+            Tap any object to inspect
           </p>
         </div>
 
-        <div
-          className="relative mt-10 overflow-hidden rounded-[2rem] border border-primary-foreground/12 shadow-lift"
-          onPointerLeave={() => setActive(null)}
-        >
+        {/* The Desk Stage */}
+        <div className="relative mt-10 overflow-hidden rounded-[2rem] border border-primary-foreground/12 shadow-lift">
           <img
             src={deskImg}
-            alt="A premium customer support agent's desk with a vintage telephone, monitor, headset, calendar, notebook and documents"
+            alt="A customer support agent's desk with telephone, monitor, headset, calendar, notebook and documents"
             loading="lazy"
             width={1920}
             height={1080}
-            className="block h-full w-full object-cover transition-transform duration-[1200ms] ease-out"
-            style={{ transform: active ? "scale(1.035)" : "scale(1)" }}
+            className="block h-full w-full object-cover transition-transform duration-[1200ms] ease-out select-none"
+            style={{ transform: active ? "scale(1.025)" : "scale(1)" }}
           />
 
           {/* gentle camera focus */}
@@ -132,7 +131,7 @@ export function AgentDeskSection() {
             style={{
               opacity: active ? 1 : 0,
               background: active
-                ? `radial-gradient(circle at ${active.x}% ${active.y}%, transparent 8%, color-mix(in oklab, oklch(0.16 0.05 262) 52%, transparent) 48%)`
+                ? `radial-gradient(circle at ${active.x}% ${active.y}%, transparent 12%, color-mix(in oklab, oklch(0.16 0.05 262) 55%, transparent) 55%)`
                 : "none",
               backdropFilter: active ? "blur(1.5px)" : "none",
             }}
@@ -145,11 +144,11 @@ export function AgentDeskSection() {
               <button
                 key={s.id}
                 type="button"
+                onClick={() => toggleSpot(s)}
                 onPointerEnter={() => setActive(s)}
                 onFocus={() => setActive(s)}
-                onBlur={() => setActive(null)}
                 aria-label={s.title}
-                className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl outline-none"
+                className="absolute -translate-x-1/2 -translate-y-1/2 rounded-2xl outline-none cursor-pointer touch-manipulation z-20"
                 style={{
                   left: `${s.x}%`,
                   top: `${s.y}%`,
@@ -161,28 +160,28 @@ export function AgentDeskSection() {
                   aria-hidden
                   className="absolute inset-0 rounded-2xl transition-all duration-500"
                   style={{
-                    transform: on ? "translateY(-4px) scale(1.02)" : "none",
+                    transform: on ? "translateY(-4px) scale(1.04)" : "none",
                     boxShadow: on
-                      ? "inset 0 0 40px color-mix(in oklab, var(--signal) 18%, transparent), 0 0 26px color-mix(in oklab, var(--signal) 22%, transparent)"
+                      ? "inset 0 0 40px color-mix(in oklab, var(--signal) 22%, transparent), 0 0 28px color-mix(in oklab, var(--signal) 30%, transparent)"
                       : "none",
                     border: on
-                      ? "1px solid color-mix(in oklab, var(--signal) 45%, transparent)"
+                      ? "2px solid color-mix(in oklab, var(--signal) 65%, transparent)"
                       : "1px solid transparent",
                   }}
                 />
                 <span
                   aria-hidden
-                  className="absolute left-1/2 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal transition-all duration-500"
+                  className="absolute left-1/2 top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-signal transition-all duration-500"
                   style={{
-                    opacity: on ? 0 : 0.55,
+                    opacity: on ? 0 : 0.75,
                     boxShadow:
-                      "0 0 12px color-mix(in oklab, var(--signal) 80%, transparent)",
+                      "0 0 14px 2px color-mix(in oklab, var(--signal) 90%, transparent)",
                   }}
                 />
 
-                {/* label */}
+                {/* Desktop label (hidden on mobile, shown on tablet/desktop) */}
                 <span
-                  className="pointer-events-none absolute top-1/2 z-20 w-56 -translate-y-1/2 rounded-2xl border border-primary-foreground/15 bg-navy-deep/85 p-4 text-left backdrop-blur-md transition-all duration-500 sm:w-64"
+                  className="pointer-events-none hidden sm:block absolute top-1/2 z-30 w-56 -translate-y-1/2 rounded-2xl border border-primary-foreground/20 bg-navy-deep/95 p-4 text-left shadow-2xl backdrop-blur-md transition-all duration-500 sm:w-64"
                   style={{
                     opacity: on ? 1 : 0,
                     [s.side === "right" ? "left" : "right"]: "108%",
@@ -194,16 +193,70 @@ export function AgentDeskSection() {
                   <span className="block text-[0.58rem] font-bold uppercase tracking-[0.2em] text-signal">
                     On this desk
                   </span>
-                  <span className="mt-1.5 block font-display text-base font-semibold">
+                  <span className="mt-1.5 block font-display text-base font-semibold text-primary-foreground">
                     {s.title}
                   </span>
-                  <span className="mt-1.5 block text-xs leading-relaxed text-primary-foreground/65">
+                  <span className="mt-1.5 block text-xs leading-relaxed text-primary-foreground/75">
                     {s.body}
                   </span>
                 </span>
               </button>
             );
           })}
+
+          {/* Mobile unclipped floating info card at bottom of stage */}
+          {active ? (
+            <div className="sm:hidden absolute inset-x-3 bottom-3 z-30 flex items-start justify-between gap-3 rounded-2xl border border-signal/40 bg-navy-deep/95 p-4 shadow-2xl backdrop-blur-md animate-fade-in">
+              <div className="min-w-0 flex-1">
+                <span className="block text-[0.6rem] font-bold uppercase tracking-[0.2em] text-signal">
+                  On this desk • Selected
+                </span>
+                <p className="mt-1 font-display text-base font-semibold text-primary-foreground">
+                  {active.title}
+                </p>
+                <p className="mt-1.5 text-xs leading-relaxed text-primary-foreground/80">
+                  {active.body}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActive(null);
+                }}
+                className="rounded-full bg-primary-foreground/15 p-1.5 text-primary-foreground/80 hover:bg-primary-foreground/25 hover:text-white"
+                aria-label="Close"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          ) : null}
+        </div>
+
+        {/* Quick tap selector chips below the desk image */}
+        <div className="mt-6">
+          <p className="mb-3 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-primary-foreground/50">
+            Select an item on the desk:
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {SPOTS.map((s) => {
+              const on = active?.id === s.id;
+              return (
+                <button
+                  key={s.id}
+                  type="button"
+                  onClick={() => toggleSpot(s)}
+                  className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all duration-200 cursor-pointer touch-manipulation ${
+                    on
+                      ? "bg-signal text-navy shadow-md scale-105"
+                      : "bg-primary-foreground/10 text-primary-foreground/75 hover:bg-primary-foreground/20 hover:text-primary-foreground"
+                  }`}
+                >
+                  {s.title}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

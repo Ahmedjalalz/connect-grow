@@ -232,13 +232,13 @@
 }
 
 @utility swing-receiver {
-  transform-origin: 50% 2%;
-  animation: receiver-swing 7.5s ease-in-out infinite;
+  transform-origin: 50% 0%;
+  animation: receiver-swing 6.2s ease-in-out infinite;
   transition: filter 0.2s ease-in-out;
 }
 
-@utility swing-receiver-hover {
-  animation: receiver-swing 7.5s ease-in-out infinite, receiver-vibrate 0.1s linear infinite;
+@utility receiver-buzz {
+  animation: receiver-vibrate 0.12s linear infinite;
 }
 
 
@@ -365,10 +365,10 @@
 @keyframes receiver-swing {
   0%,
   100% {
-    transform: rotate(-1.3deg);
+    transform: rotate(-3.8deg);
   }
   50% {
-    transform: rotate(1.3deg);
+    transform: rotate(3.8deg);
   }
 }
 
@@ -398,10 +398,11 @@
 }
 
 @keyframes receiver-vibrate {
-  0%, 100% { transform: translate(0, 0) rotate(var(--tw-rotate, 0deg)); }
-  25% { transform: translate(0.4px, 0.4px) rotate(calc(var(--tw-rotate, 0deg) + 0.15deg)); }
-  50% { transform: translate(-0.4px, 0.4px) rotate(calc(var(--tw-rotate, 0deg) - 0.15deg)); }
-  75% { transform: translate(-0.4px, -0.4px) rotate(calc(var(--tw-rotate, 0deg) + 0.15deg)); }
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-1.2px, 0.8px) rotate(-0.35deg); }
+  50% { transform: translate(1.2px, -0.6px) rotate(0.35deg); }
+  75% { transform: translate(-0.8px, -0.8px) rotate(-0.25deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
 }
 
 @keyframes phone-ring-shake {

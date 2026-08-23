@@ -42,9 +42,25 @@ export function Footer() {
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/50">
-            More
+            Company & Process
           </p>
           <ul className="mt-4 space-y-2">
+            <li>
+              <Link
+                to="/process"
+                className="text-sm font-medium text-signal transition-colors hover:underline"
+              >
+                Our 6-Step Process →
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/consult"
+                className="text-sm text-primary-foreground/75 transition-colors hover:text-primary-foreground"
+              >
+                Book a Consultation
+              </Link>
+            </li>
             {SERVICES.slice(6).map((s) => (
               <li key={s.slug}>
                 <Link

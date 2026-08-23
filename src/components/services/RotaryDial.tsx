@@ -159,10 +159,11 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       {/* dial plate — sits over the phone's dial recess */}
       <div
         ref={plateRef}
-        className="absolute left-1/2 top-1/2 aspect-square w-[43%] -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 aspect-square w-[43%] -translate-x-1/2 -translate-y-1/2 touch-none"
+        style={{ touchAction: "none" }}
       >
         {/* fixed number ring, read through the holes */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 z-10 pointer-events-auto">
           {Array.from({ length: count }, (_, i) => i + 1).map((n) => {
             const a = ((holeAngle(n) - 90) * Math.PI) / 180;
             const isActive = n === active;
@@ -171,12 +172,19 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
               <button
                 key={n}
                 type="button"
-                onClick={() => dialTo(n)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  dialTo(n);
+                }}
+                onPointerDown={(e) => {
+                  e.stopPropagation();
+                  dialTo(n);
+                }}
                 aria-label={`Dial ${n}`}
-                className={`absolute flex h-[19%] w-[19%] items-center justify-center rounded-full font-display text-[clamp(0.7rem,1.6vw,0.95rem)] font-semibold transition-all duration-300 ${
+                className={`absolute flex h-[19%] w-[19%] items-center justify-center rounded-full font-display text-[clamp(0.7rem,1.6vw,0.95rem)] font-semibold transition-all duration-300 touch-manipulation cursor-pointer ${
                   isActive || isHeld
-                    ? "bg-signal/25 text-primary-foreground shadow-[0_0_18px_2px_color-mix(in_oklab,var(--signal)_45%,transparent)]"
-                    : "text-primary-foreground/70 hover:bg-primary-foreground/10"
+                    ? "bg-signal/25 text-primary-foreground shadow-[0_0_18px_2px_color-mix(in_oklab,var(--signal)_45%,transparent)] scale-110"
+                    : "text-primary-foreground/70 hover:bg-primary-foreground/10 active:scale-95"
                 }`}
                 style={{
                   left: `${50 + Math.cos(a) * HOLE_RADIUS * 100 - 9.5}%`,
@@ -198,8 +206,9 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
           loading="lazy"
           draggable={false}
           onPointerDown={onPointerDown}
-          className="pointer-events-auto absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing hover:brightness-110 transition-[filter]"
+          className="pointer-events-auto absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing hover:brightness-110 transition-[filter] touch-none select-none"
           style={{
+            touchAction: "none",
             transform: `rotate(${rotation}deg)`,
             transition: returning
               ? "transform 900ms cubic-bezier(0.22, 1.4, 0.3, 1)"

@@ -30,6 +30,29 @@ export function BeforeAfterSection() {
     };
   }, [move]);
 
+  const onPointerDown = (e: React.PointerEvent) => {
+    dragging.current = true;
+    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    move(e.clientX);
+  };
+
+  const onPointerMove = (e: React.PointerEvent) => {
+    if (dragging.current) move(e.clientX);
+  };
+
+  const onPointerUp = (e: React.PointerEvent) => {
+    dragging.current = false;
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+    } catch {}
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (e.touches[0]) {
+      move(e.touches[0].clientX);
+    }
+  };
+
   return (
     <section className="relative overflow-hidden surface-navy">
       <div aria-hidden className="absolute inset-0 grid-blueprint opacity-[0.07]" />
@@ -43,18 +66,22 @@ export function BeforeAfterSection() {
             What <span className="text-signal">better CX</span> looks like.
           </h2>
           <p className="mt-5 max-w-lg text-sm leading-relaxed text-primary-foreground/65">
-            Same inbox, same customers, different operation. Drag the divider
-            across the console.
+            Same inbox, same customers, different operation. Drag the divider across the console or tap to slide.
           </p>
         </div>
 
         <div
           ref={stage}
-          onPointerDown={(e) => {
-            dragging.current = true;
-            move(e.clientX);
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          onTouchStart={(e) => {
+            if (e.touches[0]) move(e.touches[0].clientX);
           }}
-          className="relative mt-12 h-[30rem] cursor-ew-resize select-none overflow-hidden rounded-[2.25rem] border border-primary-foreground/12 bg-primary-foreground/[0.04] shadow-lift sm:h-[27rem]"
+          onTouchMove={onTouchMove}
+          style={{ touchAction: "none" }}
+          className="relative mt-12 h-[34rem] sm:h-[28rem] cursor-ew-resize select-none overflow-hidden rounded-[2.25rem] border border-primary-foreground/12 bg-primary-foreground/[0.04] shadow-lift touch-none"
         >
           {/* AFTER (base layer) */}
           <Console variant="after" />
@@ -69,14 +96,14 @@ export function BeforeAfterSection() {
 
           {/* divider */}
           <div
-            className="absolute inset-y-0 z-20 w-px bg-signal"
+            className="absolute inset-y-0 z-20 w-px bg-signal touch-none pointer-events-none"
             style={{
               left: `${pos}%`,
               boxShadow: "0 0 22px color-mix(in oklab, var(--signal) 65%, transparent)",
             }}
           >
-            <span className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-signal/50 bg-navy-deep/90 backdrop-blur-sm">
-              <span className="text-signal">⟷</span>
+            <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-signal bg-navy-deep/95 shadow-xl backdrop-blur-md">
+              <span className="text-signal font-bold text-sm select-none">⟷</span>
             </span>
           </div>
         </div>

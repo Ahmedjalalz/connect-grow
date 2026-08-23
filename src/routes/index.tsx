@@ -3,15 +3,7 @@ import { ArrowRight, Clock, Globe2, ShieldCheck } from "lucide-react";
 import { HeroPhone } from "@/components/hero/HeroPhone";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { RotarySection } from "@/components/services/RotarySection";
-import { ListenSection } from "@/components/cx/ListenSection";
-import { ChannelsSection } from "@/components/cx/ChannelsSection";
-import { QueueSection } from "@/components/cx/QueueSection";
-import { BeforeAfterSection } from "@/components/cx/BeforeAfterSection";
-import { AgentDeskSection } from "@/components/cx/AgentDeskSection";
-import { ConversationTestimonials } from "@/components/cx/ConversationTestimonials";
 import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
-
-
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,9 +42,9 @@ function Home() {
           className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-background to-transparent"
         />
 
-        <div className="relative mx-auto grid w-full max-w-6xl gap-4 px-5 pb-20 pt-14 md:grid-cols-[1.05fr_0.95fr] md:pb-28 md:pt-8">
+        <div className="relative mx-auto grid w-full max-w-6xl gap-4 px-5 pb-20 pt-0 md:grid-cols-[1.05fr_0.95fr] md:pb-28 md:pt-0">
           {/* copy column — CTAs sit around the earpiece height of the receiver */}
-          <div className="flex flex-col justify-center md:pt-24">
+          <div className="flex flex-col justify-center pt-8 pb-4 md:pt-20 md:pb-0">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
               Lines open 24/7
@@ -114,18 +106,36 @@ function Home() {
         </div>
       </section>
 
-      {/* ---------------- LISTEN ---------------- */}
-      <ListenSection />
-
       {/* ---------------- ROTARY DIAL ---------------- */}
       <RotarySection />
 
-      {/* ---------------- CHANNELS ---------------- */}
-      <ChannelsSection />
-
-
-
-
+      {/* ---------------- PROCESS TEASER BANNER ---------------- */}
+      <section className="mx-auto w-full max-w-6xl px-5 py-14">
+        <div className="relative overflow-hidden rounded-[2.5rem] border border-border/70 bg-card p-8 sm:p-12 shadow-soft">
+          <div aria-hidden className="absolute inset-0 grid-blueprint opacity-40" />
+          <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div className="max-w-xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.16em] text-navy-soft">
+                <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+                The 6-Step CX Engine
+              </span>
+              <h2 className="mt-4 font-display text-2xl sm:text-3xl font-semibold">
+                Explore our full operational process.
+              </h2>
+              <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
+                See how we listen to customers, unify omnichannel communication, eliminate hold times, apply proactive QA, and manage it all from a single agent cockpit.
+              </p>
+            </div>
+            <Link
+              to="/process"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5 whitespace-nowrap"
+            >
+              See Our Process
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ---------------- CONSULTATION ---------------- */}
       <section className="relative overflow-hidden border-b border-border/60 bg-secondary/30">
@@ -204,16 +214,6 @@ function Home() {
         </div>
       </section>
 
-      {/* ---------------- QUEUE ---------------- */}
-      <QueueSection />
-
-      {/* ---------------- BEFORE / AFTER ---------------- */}
-      <BeforeAfterSection />
-
-      {/* ---------------- AGENT DESK ---------------- */}
-      <AgentDeskSection />
-
-
       {/* ---------------- PROCESS ---------------- */}
       <section className="relative overflow-hidden surface-navy">
         <div aria-hidden className="absolute inset-0 opacity-[0.07] grid-blueprint" />
@@ -261,9 +261,6 @@ function Home() {
           </ol>
         </div>
       </section>
-
-      {/* ---------------- TESTIMONIAL CONVERSATION ---------------- */}
-      <ConversationTestimonials />
 
       {/* ---------------- CTA ---------------- */}
       <RingingQuoteSection />

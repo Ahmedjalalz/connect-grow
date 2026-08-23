@@ -5,6 +5,7 @@ import { useState } from "react";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
+  { to: "/process", label: "Our Process" },
   { to: "/quote", label: "Get a quote" },
 ] as const;
 
@@ -25,12 +26,12 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {NAV.slice(0, 2).map((item) => (
+          {NAV.slice(0, 3).map((item) => (
             <Link
               key={item.to}
               to={item.to}
               className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              activeProps={{ className: "text-foreground" }}
+              activeProps={{ className: "text-foreground font-semibold" }}
             >
               {item.label}
             </Link>

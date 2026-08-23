@@ -1,12 +1,11 @@
-/**
- * Hero visual: a real telephone receiver photo hanging from its coiled cord,
- * with a subtle swing and soft sound-wave pulses at earpiece height.
- */
+import { useState } from "react";
 import receiver from "@/assets/receiver.png";
 
 export function HeroPhone() {
+  const [isHeld, setIsHeld] = useState(false);
+
   return (
-    <div className="relative mx-auto w-full max-w-[380px]">
+    <div className="relative mx-auto w-full max-w-[380px] -mt-2 sm:-mt-3 select-none">
       {/* soft halo */}
       <div
         aria-hidden
@@ -37,14 +36,27 @@ export function HeroPhone() {
         ))}
       </div>
 
-      <div className="swing-receiver hover:swing-receiver-hover relative transition-all duration-300">
-        <img
-          src={receiver}
-          alt="Navy telephone receiver hanging from a coiled cord"
-          width={768}
-          height={1280}
-          className="relative mx-auto w-full select-none drop-shadow-[0_30px_45px_rgba(20,28,54,0.28)]"
-        />
+      <div
+        className="group swing-receiver relative cursor-pointer"
+        onPointerDown={() => setIsHeld(true)}
+        onPointerUp={() => setIsHeld(false)}
+        onPointerCancel={() => setIsHeld(false)}
+        onPointerLeave={() => setIsHeld(false)}
+      >
+        <div
+          className={`relative transition-all duration-300 ${
+            isHeld ? "receiver-buzz" : "group-hover:receiver-buzz"
+          }`}
+        >
+          <img
+            src={receiver}
+            alt="Navy telephone receiver hanging from a coiled cord - tap or hover to ring"
+            width={768}
+            height={1280}
+            draggable={false}
+            className="relative mx-auto w-full select-none drop-shadow-[0_30px_45px_rgba(20,28,54,0.28)] transition-all duration-300 group-hover:drop-shadow-[0_35px_55px_rgba(20,28,54,0.38)]"
+          />
+        </div>
       </div>
     </div>
   );

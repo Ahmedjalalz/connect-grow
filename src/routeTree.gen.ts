@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConsultRouteImport } from './routes/consult'
+import { Route as ProcessRouteImport } from './routes/process'
 import { Route as QuoteRouteImport } from './routes/quote'
 import { Route as ServicesRouteImport } from './routes/services'
 
@@ -36,6 +37,11 @@ const ConsultRoute = ConsultRouteImport.update({
   path: '/consult',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProcessRoute = ProcessRouteImport.update({
+  id: '/process',
+  path: '/process',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuoteRoute = QuoteRouteImport.update({
   id: '/quote',
   path: '/quote',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/consult': typeof ConsultRoute
+  '/process': typeof ProcessRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/consult': typeof ConsultRoute
+  '/process': typeof ProcessRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
 }
@@ -69,16 +77,26 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
   '/consult': typeof ConsultRoute
+  '/process': typeof ProcessRoute
   '/quote': typeof QuoteRoute
   '/services': typeof ServicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/auth' | '/consult' | '/quote' | '/services'
+  fullPaths:
+    '/' | '/admin' | '/auth' | '/consult' | '/process' | '/quote' | '/services'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/auth' | '/consult' | '/quote' | '/services'
+  to:
+    '/' | '/admin' | '/auth' | '/consult' | '/process' | '/quote' | '/services'
   id:
-    '__root__' | '/' | '/admin' | '/auth' | '/consult' | '/quote' | '/services'
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/consult'
+    | '/process'
+    | '/quote'
+    | '/services'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -86,6 +104,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
   ConsultRoute: typeof ConsultRoute
+  ProcessRoute: typeof ProcessRoute
   QuoteRoute: typeof QuoteRoute
   ServicesRoute: typeof ServicesRoute
 }
@@ -120,6 +139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConsultRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/process': {
+      id: '/process'
+      path: '/process'
+      fullPath: '/process'
+      preLoaderRoute: typeof ProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quote': {
       id: '/quote'
       path: '/quote'
@@ -142,6 +168,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
   ConsultRoute: ConsultRoute,
+  ProcessRoute: ProcessRoute,
   QuoteRoute: QuoteRoute,
   ServicesRoute: ServicesRoute,
 }
