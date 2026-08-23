@@ -1,10 +1,13 @@
 /**
  * Closing CTA — the rotary phone from the services dial, now with the receiver
  * resting in its cradle and ringing. Answering it = getting a quote.
+ *
+ * The phone is split into two layers: a static base and a vibrating receiver.
  */
 import { Link } from "@tanstack/react-router";
 import { PhoneCall } from "lucide-react";
-import ringingPhone from "@/assets/cx/rotary-phone-ringing.jpg";
+import phoneBase from "@/assets/cx/rotary-phone-base.png";
+import phoneReceiver from "@/assets/cx/rotary-phone-receiver.png";
 
 export function RingingQuoteSection() {
   return (
@@ -57,24 +60,36 @@ export function RingingQuoteSection() {
                 aria-label="Answer the call and get a quote"
                 className="group relative block"
               >
+                {/* static base */}
                 <img
-                  src={ringingPhone}
-                  alt="Navy rotary telephone ringing with its receiver resting in the cradle"
+                  src={phoneBase}
+                  alt="Navy rotary telephone base"
                   width={1024}
                   height={1024}
                   loading="lazy"
-                  className="phone-ring-shake relative w-full rounded-[2rem] object-cover shadow-lift transition-transform duration-500 group-hover:scale-[1.02]"
-                />
-                <span
-                  aria-hidden
-                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] h-44 w-44 -translate-x-1/2 rounded-full border border-signal/50"
-                />
-                <span
-                  aria-hidden
-                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] h-44 w-44 -translate-x-1/2 rounded-full border border-signal/30"
-                  style={{ animationDelay: "1.2s" }}
+                  className="relative z-10 w-full rounded-[2rem] object-cover shadow-lift transition-transform duration-500 group-hover:scale-[1.02]"
                 />
 
+                {/* vibrating receiver */}
+                <img
+                  src={phoneReceiver}
+                  alt="Navy telephone receiver ringing in its cradle"
+                  width={1024}
+                  height={1024}
+                  loading="lazy"
+                  className="phone-ring-shake pointer-events-none absolute left-1/2 top-[6%] z-20 w-[78%] -translate-x-1/2 drop-shadow-[0_12px_28px_rgba(20,28,54,0.35)]"
+                />
+
+                {/* call waves around the receiver */}
+                <span
+                  aria-hidden
+                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] z-10 h-44 w-44 -translate-x-1/2 rounded-full border border-signal/50"
+                />
+                <span
+                  aria-hidden
+                  className="wave-ring pointer-events-none absolute left-1/2 top-[10%] z-10 h-44 w-44 -translate-x-1/2 rounded-full border border-signal/30"
+                  style={{ animationDelay: "1.2s" }}
+                />
               </Link>
 
               <p className="relative mt-5 text-center text-[0.7rem] font-bold uppercase tracking-[0.2em] text-navy-soft">
