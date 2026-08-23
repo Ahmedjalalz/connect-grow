@@ -1,8 +1,8 @@
 /**
- * "One conversation, many channels" — a sticky, scroll-driven composition where
- * real communication objects light up one at a time around a single customer.
+ * "One conversation, many channels" — a click-driven composition where
+ * real communication objects light up around a single customer.
  */
-import { useScrollProgress } from "@/hooks/use-scroll-reveal";
+import { useState } from "react";
 import phoneImg from "@/assets/cx/obj-phone-modern.png";
 import chatImg from "@/assets/cx/obj-chat.png";
 import emailImg from "@/assets/cx/obj-email.png";
@@ -28,13 +28,8 @@ const CHANNELS: Channel[] = [
 ];
 
 export function ChannelsSection() {
-  const { ref, progress } = useScrollProgress<HTMLDivElement>();
+  const [stage, setStage] = useState(0);
 
-  // 5 stages spread across the scroll, with a lead-in.
-  const stage = Math.min(
-    CHANNELS.length - 1,
-    Math.max(0, Math.floor(progress * (CHANNELS.length + 0.35))),
-  );
 
   return (
     <section className="relative surface-navy">
