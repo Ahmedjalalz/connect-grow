@@ -28,7 +28,7 @@ export function RotarySection() {
               Interactive Service Switchboard
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
-              One line. <span className="text-signal">Eleven ways</span> to be answered.
+              One line. <span className="text-signal">Ten ways</span> to be answered.
             </h2>
             <p className="mt-5 max-w-lg text-sm leading-relaxed text-primary-foreground/65">
               Whatever your business needs to communicate, there is a dedicated pod for it. Turn the dial or tap any channel below to switch the live service preview.
@@ -57,7 +57,7 @@ export function RotarySection() {
             {/* Guide prompt above dial */}
             <div className="mb-4 flex items-center gap-2 rounded-full border border-primary-foreground/20 bg-primary-foreground/[0.08] px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-md backdrop-blur-sm">
               <MousePointer2 className="h-3.5 w-3.5 text-signal animate-bounce" />
-              <span>Turn dial or click hole <strong>#1 - #11</strong></span>
+              <span>Turn dial or click hole <strong>#1 - #10</strong></span>
             </div>
 
             <div className="relative w-full">
@@ -133,7 +133,7 @@ export function RotarySection() {
                   to="/services"
                   className="text-xs font-semibold text-primary-foreground/60 hover:text-primary-foreground transition-colors"
                 >
-                  View all 11 services →
+                  View all 10 services →
                 </Link>
               </div>
             </div>
@@ -141,7 +141,7 @@ export function RotarySection() {
             {/* Quick Switch Channel Buttons */}
             <div className="mt-6">
               <p className="mb-2.5 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-primary-foreground/50">
-                Quick dial channels (1–11):
+                Quick dial channels (1–10):
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {SERVICES.map((s, i) => (

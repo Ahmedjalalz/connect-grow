@@ -29,7 +29,6 @@ const ICONS: Record<ServiceSlug, typeof PhoneCall> = {
   "appointment-setting": CalendarCheck,
   "sales-outreach": Send,
   "technical-support": MonitorCheck,
-  "back-office-data-entry": FileSpreadsheet,
   "custom-solutions": Share2,
 };
 
@@ -43,7 +42,6 @@ const CAPTIONS: Record<ServiceSlug, string> = {
   "appointment-setting": "Calendar · confirmed",
   "sales-outreach": "Sequence · in flight",
   "technical-support": "Diagnostics · resolved",
-  "back-office-data-entry": "Records · verified",
   "custom-solutions": "Channels · unified",
 };
 

@@ -8,7 +8,6 @@ export type ServiceSlug =
   | "appointment-setting"
   | "sales-outreach"
   | "technical-support"
-  | "back-office-data-entry"
   | "custom-solutions";
 
 export type DeviceShape =
@@ -162,20 +161,6 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    slug: "back-office-data-entry",
-    name: "Back-office / Data Entry",
-    short: "The quiet work, done right.",
-    blurb:
-      "Order processing, CRM cleanup, invoicing, moderation and data entry with double-entry checks and audit trails on every batch.",
-    device: "drawer",
-    metric: { value: "99.6%", label: "accuracy rate" },
-    bullets: [
-      "Order, invoice and claim processing",
-      "CRM and database cleanup",
-      "Double-entry verification",
-    ],
-  },
-  {
     slug: "custom-solutions",
     name: "Custom Solutions",
     short: "Built around your workflow.",
@@ -202,7 +187,6 @@ export const QUOTE_SERVICE_OPTIONS = [
   "Appointment setting",
   "Sales outreach",
   "Technical support",
-  "Back-office/data entry",
   "Other",
 ] as const;
 

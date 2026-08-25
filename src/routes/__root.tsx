@@ -82,7 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Outsourced call center and customer experience pods for B2B teams: inbound, outbound, chat, email, lead gen and back-office.",
+          "Outsourced call center and customer experience pods for B2B teams: inbound, outbound, chat, email, lead gen and technical support.",
       },
       { name: "author", content: "KyteLine" },
       { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
@@ -94,7 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:site_name", content: "KyteLine" },
-      { name: "keywords", content: "outsourced call center, inbound call support, outbound calling, live chat support, email support outsourcing, lead generation, appointment setting, technical support outsourcing, back-office data entry, B2B customer experience" },
+      { name: "keywords", content: "outsourced call center, inbound call support, outbound calling, live chat support, email support outsourcing, lead generation, appointment setting, technical support outsourcing, B2B customer experience" },
     ],
     links: [
       {

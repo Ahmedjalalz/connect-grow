@@ -22,7 +22,7 @@ const THREAD: Turn[] = [
   },
   {
     role: "Team",
-    text: "Same pod, named team lead, weekly reporting. Inbound, outbound, chat, email and back-office on one line.",
+    text: "Same pod, named team lead, weekly reporting. Inbound, outbound, chat, email and technical support on one line.",
   },
   {
     role: "Customer",

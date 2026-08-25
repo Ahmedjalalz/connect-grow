@@ -12,13 +12,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Inbound and outbound calling, live chat, email support, lead generation and back-office pods. Launch a trained customer experience team in weeks.",
+          "Inbound and outbound calling, live chat, email support, lead generation and technical support pods. Launch a trained customer experience team in weeks.",
       },
       { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
       {
         property: "og:description",
         content:
-          "Trained agents for inbound support, outbound calling, live chat, lead generation and back-office work. Coverage in weeks, not quarters.",
+          "Trained agents for inbound support, outbound calling, live chat, lead generation and custom CX pods. Coverage in weeks, not quarters.",
       },
       { property: "og:url", content: "/" },
       { property: "og:type", content: "website" },
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "Outsourced call center and CX pods for B2B teams: inbound, outbound, chat, email, lead gen and back-office.",
+          "Outsourced call center and CX pods for B2B teams: inbound, outbound, chat, email, lead gen and technical support.",
       },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/")({
           "@type": "ProfessionalService",
           name: "KyteLine",
           description:
-            "KyteLine provides outsourced call center and customer experience teams for B2B companies: inbound call support, outbound calling, live chat, email support, lead generation, appointment setting, sales outreach, technical support and back-office data entry.",
+            "KyteLine provides outsourced call center and customer experience teams for B2B companies: inbound call support, outbound calling, live chat, email support, lead generation, appointment setting, sales outreach, technical support and custom solutions.",
           serviceType: [
             "Inbound Call Support",
             "Outbound Calling",
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/")({
             "Appointment Setting",
             "Sales Outreach",
             "Technical Support",
-            "Back-office & Data Entry",
+            "Custom CX Solutions",
           ],
           areaServed: "Worldwide",
           availableLanguage: ["English", "Spanish", "Urdu", "Arabic"],
@@ -102,7 +102,7 @@ function Home() {
                 customer experience
               </strong>{" "}
               pods for B2B teams — inbound, outbound, chat, email and
-              back-office, live in{" "}
+              custom workflows, live in{" "}
               <strong className="font-semibold text-primary">two weeks</strong>.
             </p>
 

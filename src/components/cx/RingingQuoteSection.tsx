@@ -90,8 +90,6 @@ export function RingingQuoteSection() {
                   className="wave-ring pointer-events-none absolute left-1/2 top-[10%] z-0 h-44 w-44 -translate-x-1/2 rounded-full border border-signal/30"
                   style={{ animationDelay: "1.2s" }}
                 />
-
-
               </Link>
 
               <p className="relative mt-5 text-center text-[0.7rem] font-bold uppercase tracking-[0.2em] text-navy-soft">

@@ -65,16 +65,6 @@ const SPOTS: Spot[] = [
     side: "left",
   },
   {
-    id: "notes",
-    x: 54,
-    y: 76,
-    w: 20,
-    h: 16,
-    title: "Back-office",
-    body: "Data entry, order handling and the admin that quietly piles up.",
-    side: "left",
-  },
-  {
     id: "documents",
     x: 88,
     y: 64,
