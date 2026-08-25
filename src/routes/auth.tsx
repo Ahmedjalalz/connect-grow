@@ -2,6 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { DEMO_CREDENTIALS, isSignedIn, signInDemo } from "@/lib/local-leads";
+import { Logo } from "@/components/site/Logo";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -45,13 +46,7 @@ function AuthPage() {
     <div className="relative flex min-h-screen items-center justify-center px-5">
       <div aria-hidden className="absolute inset-0 grid-blueprint opacity-60" />
       <div className="relative w-full max-w-sm rounded-3xl border border-border bg-card p-8 shadow-lift">
-        <Link to="/" className="inline-block">
-          <img
-            src="/Kyeline-logo-transparent.png"
-            alt="KyteLine Logo"
-            className="h-8 w-auto object-contain"
-          />
-        </Link>
+        <Logo variant="light" size="md" />
         <h1 className="mt-5 font-display text-2xl font-semibold">Lead desk</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Demo sign-in — no backend connected yet.

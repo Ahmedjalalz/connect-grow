@@ -13,6 +13,7 @@ import {
   getBookings,
   type Booking,
 } from "@/lib/local-leads";
+import { Logo } from "@/components/site/Logo";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -67,13 +68,7 @@ function AdminPage() {
       <header className="surface-navy">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-6">
           <div className="flex items-center gap-3.5">
-            <Link to="/" className="inline-block">
-              <img
-                src="/Kyeline-logo-transparent-white.png"
-                alt="KyteLine Logo"
-                className="h-7 w-auto object-contain"
-              />
-            </Link>
+            <Logo variant="dark" size="sm" />
             <h1 className="border-l border-primary-foreground/20 pl-3 font-display text-xl font-semibold">
               Lead desk
             </h1>
