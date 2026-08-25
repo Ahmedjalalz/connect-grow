@@ -94,6 +94,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:site_name", content: "KyteLine" },
+      { property: "og:image", content: "/KyteLine.png" },
+      { name: "twitter:image", content: "/KyteLine.png" },
       { name: "keywords", content: "outsourced call center, inbound call support, outbound calling, live chat support, email support outsourcing, lead generation, appointment setting, technical support outsourcing, B2B customer experience" },
     ],
     links: [
@@ -107,7 +109,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/KyteLine.png", type: "image/png" },
+      { rel: "apple-touch-icon", href: "/KyteLine.png" },
     ],
     scripts: [
       {

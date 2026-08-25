@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { DEMO_CREDENTIALS, isSignedIn, signInDemo } from "@/lib/local-leads";
@@ -45,9 +45,13 @@ function AuthPage() {
     <div className="relative flex min-h-screen items-center justify-center px-5">
       <div aria-hidden className="absolute inset-0 grid-blueprint opacity-60" />
       <div className="relative w-full max-w-sm rounded-3xl border border-border bg-card p-8 shadow-lift">
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl surface-navy">
-          <span className="h-3 w-3 rounded-full border-2 border-primary-foreground/80" />
-        </span>
+        <Link to="/" className="inline-block">
+          <img
+            src="/Kyeline-logo-transparent.png"
+            alt="KyteLine Logo"
+            className="h-8 w-auto object-contain"
+          />
+        </Link>
         <h1 className="mt-5 font-display text-2xl font-semibold">Lead desk</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Demo sign-in — no backend connected yet.

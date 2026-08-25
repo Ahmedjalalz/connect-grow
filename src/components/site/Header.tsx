@@ -16,13 +16,11 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5">
         <Link to="/" className="group flex items-center gap-2.5">
-          <span className="relative flex h-8 w-8 items-center justify-center rounded-lg surface-navy">
-            <span className="h-3 w-3 rounded-full border-2 border-primary-foreground/80" />
-            <span className="absolute inset-0 rounded-lg ring-1 ring-inset ring-primary-foreground/20" />
-          </span>
-          <span className="font-display text-[1.05rem] font-semibold tracking-tight">
-            Kyte<span className="text-navy-soft">Line</span>
-          </span>
+          <img
+            src="/Kyeline-logo-transparent.png"
+            alt="KyteLine Logo"
+            className="h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

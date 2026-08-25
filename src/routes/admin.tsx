@@ -66,11 +66,17 @@ function AdminPage() {
     <div className="min-h-screen">
       <header className="surface-navy">
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-6">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
-              KyteLine
-            </p>
-            <h1 className="mt-1 font-display text-2xl font-semibold">Lead desk</h1>
+          <div className="flex items-center gap-3.5">
+            <Link to="/" className="inline-block">
+              <img
+                src="/Kyeline-logo-transparent-white.png"
+                alt="KyteLine Logo"
+                className="h-7 w-auto object-contain"
+              />
+            </Link>
+            <h1 className="border-l border-primary-foreground/20 pl-3 font-display text-xl font-semibold">
+              Lead desk
+            </h1>
           </div>
           <div className="flex items-center gap-3">
             <Link

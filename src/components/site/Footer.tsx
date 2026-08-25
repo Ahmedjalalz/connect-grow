@@ -6,10 +6,14 @@ export function Footer() {
     <footer className="mt-24 surface-navy">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <p className="font-display text-xl font-semibold">
-            Kyte<span className="text-steel">Line</span>
-          </p>
-          <p className="mt-3 max-w-xs text-sm text-primary-foreground/70">
+          <Link to="/" className="inline-block">
+            <img
+              src="/Kyeline-logo-transparent-white.png"
+              alt="KyteLine Logo"
+              className="h-8 w-auto object-contain"
+            />
+          </Link>
+          <p className="mt-4 max-w-xs text-sm text-primary-foreground/70">
             Outsourced call center and customer experience teams for growing B2B
             operations. Coverage in weeks, not quarters.
           </p>
