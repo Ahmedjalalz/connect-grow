@@ -81,7 +81,9 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
     setReturning(false);
     setHeld(hole);
     onPreview?.(hole);
-    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    try {
+      (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    } catch {}
   };
 
   useEffect(() => {
@@ -105,7 +107,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
     const up = () => {
       const drag = dragRef.current;
       if (!drag) return;
-      const reached = drag.total >= drag.max * 0.85;
+      const reached = drag.total >= Math.max(15, drag.max * 0.78);
       dragRef.current = null;
       setReturning(true);
       setRotation(0);
@@ -159,32 +161,22 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       {/* dial plate — sits over the phone's dial recess */}
       <div
         ref={plateRef}
-        className="absolute left-1/2 top-1/2 aspect-square w-[43%] -translate-x-1/2 -translate-y-1/2 touch-none"
+        className="absolute left-1/2 top-1/2 aspect-square w-[43%] -translate-x-1/2 -translate-y-1/2 touch-none select-none"
         style={{ touchAction: "none" }}
       >
-        {/* fixed number ring, read through the holes */}
-        <div className="absolute inset-0 z-10 pointer-events-auto">
+        {/* fixed number ring underneath the transparent holes of the wheel */}
+        <div className="absolute inset-0 pointer-events-none select-none">
           {Array.from({ length: count }, (_, i) => i + 1).map((n) => {
             const a = ((holeAngle(n) - 90) * Math.PI) / 180;
             const isActive = n === active;
             const isHeld = n === held;
             return (
-              <button
+              <span
                 key={n}
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  dialTo(n);
-                }}
-                onPointerDown={(e) => {
-                  e.stopPropagation();
-                  dialTo(n);
-                }}
-                aria-label={`Dial ${n}`}
-                className={`absolute flex h-[19%] w-[19%] items-center justify-center rounded-full font-display text-[clamp(0.7rem,1.6vw,0.95rem)] font-semibold transition-all duration-300 touch-manipulation cursor-pointer ${
+                className={`absolute flex h-[19%] w-[19%] items-center justify-center rounded-full font-display text-[clamp(0.7rem,1.6vw,0.95rem)] font-semibold transition-all duration-300 select-none ${
                   isActive || isHeld
-                    ? "bg-signal/25 text-primary-foreground shadow-[0_0_18px_2px_color-mix(in_oklab,var(--signal)_45%,transparent)] scale-110"
-                    : "text-primary-foreground/70 hover:bg-primary-foreground/10 active:scale-95"
+                    ? "bg-signal/30 text-primary-foreground shadow-[0_0_20px_3px_color-mix(in_oklab,var(--signal)_55%,transparent)] scale-110"
+                    : "text-primary-foreground/70"
                 }`}
                 style={{
                   left: `${50 + Math.cos(a) * HOLE_RADIUS * 100 - 9.5}%`,
@@ -192,15 +184,15 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
                 }}
               >
                 {n}
-              </button>
+              </span>
             );
           })}
         </div>
 
-        {/* rotating chrome finger wheel */}
+        {/* rotating chrome finger wheel — receives all touch and pointer drag events */}
         <img
           src={dialWheel}
-          alt="Interactive rotary dial wheel - drag clockwise to dial"
+          alt="Interactive rotary dial wheel - touch any hole and drag clockwise to the stop"
           width={1024}
           height={1024}
           loading="lazy"
@@ -221,7 +213,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         <span
           aria-hidden
           title="Finger Stop"
-          className="absolute h-[8%] w-[8%] rounded-full bg-signal shadow-[0_0_12px_2px_rgba(255,200,0,0.6)]"
+          className="pointer-events-none absolute h-[8%] w-[8%] rounded-full bg-signal shadow-[0_0_12px_2px_rgba(255,200,0,0.6)]"
           style={{
             left: `${50 + Math.cos(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4}%`,
             top: `${50 + Math.sin(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4}%`,
@@ -229,11 +221,11 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         />
       </div>
 
-      {/* Subtle rotational instruction helper arc */}
+      {/* Rotational instruction guide */}
       <div className="pointer-events-none absolute inset-x-0 bottom-4 flex items-center justify-center">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/15 bg-navy-deep/80 px-3 py-1 text-[0.68rem] font-medium tracking-wider text-primary-foreground/80 shadow-md backdrop-blur-sm">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/15 bg-navy-deep/80 px-3.5 py-1 text-[0.68rem] font-medium tracking-wider text-primary-foreground/85 shadow-md backdrop-blur-sm">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal animate-ping" />
-          Drag hole clockwise to stop, or tap number directly
+          Put finger in hole & drag clockwise to stop
         </span>
       </div>
     </div>
