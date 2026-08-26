@@ -168,7 +168,8 @@ function ServicesPage() {
                 }}
               />
 
-                <div
+                <Reveal
+                  variant={i % 2 === 0 ? "left" : "right"}
                   className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-10"
                 >
                   {/* Number tag: Always top-left of the section grid, regardless of column order */}
