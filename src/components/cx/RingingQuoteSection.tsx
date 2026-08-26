@@ -64,8 +64,8 @@ export function RingingQuoteSection() {
                 <img
                   src={phoneBase}
                   alt="Navy desk telephone base"
-                  width={641}
-                  height={808}
+                  width={928}
+                  height={1152}
                   loading="lazy"
                   className="relative z-10 w-full drop-shadow-[0_30px_55px_rgba(20,28,54,0.38)] transition-transform duration-500 group-hover:scale-[1.02]"
                 />
