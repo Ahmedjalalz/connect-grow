@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { DeviceArt, DeviceIcon } from "@/components/DeviceArt";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { Reveal } from "@/components/site/Reveal";
 import { SERVICES } from "@/lib/services";
 
 export const Route = createFileRoute("/services")({
