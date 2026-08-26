@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, Globe2, ShieldCheck } from "lucide-react";
 import { HeroPhone } from "@/components/hero/HeroPhone";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { Reveal } from "@/components/site/Reveal";
 import { RotarySection } from "@/components/services/RotarySection";
 import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
 
@@ -146,10 +147,43 @@ function Home() {
       {/* ---------------- ROTARY DIAL ---------------- */}
       <RotarySection />
 
+      {/* ---------------- TRUST MARQUEE ---------------- */}
+      <section className="relative overflow-hidden border-y border-border/60 bg-card/60 py-5">
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+        <div className="flex w-max marquee-track gap-12 px-6">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="flex shrink-0 items-center gap-12">
+              {[
+                "24/7 coverage",
+                "SOC-2 aligned processes",
+                "Named team lead",
+                "Live in 2 weeks",
+                "Weekly QA reporting",
+                "4 languages",
+                "Omnichannel pods",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="flex items-center gap-3 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ---------------- PROCESS TEASER BANNER ---------------- */}
-      <section className="mx-auto w-full max-w-6xl px-5 py-14">
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-border/70 bg-card p-8 sm:p-12 shadow-soft">
+      <Reveal as="section" variant="scale" className="mx-auto w-full max-w-6xl px-5 py-16">
+        <div className="lift-card sheen relative overflow-hidden rounded-[2.5rem] border border-border/70 bg-card p-8 sm:p-12 shadow-soft">
           <div aria-hidden className="absolute inset-0 grid-blueprint opacity-40" />
+          <div
+            aria-hidden
+            className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-signal/10 blur-[70px]"
+          />
           <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div className="max-w-xl">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.16em] text-navy-soft">
@@ -172,12 +206,14 @@ function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ---------------- CONSULTATION ---------------- */}
       <section className="relative overflow-hidden border-b border-border/60 bg-secondary/30">
+        <div aria-hidden className="absolute inset-x-0 top-0 h-24 section-fade-top" />
         <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28 flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1">
+          <Reveal variant="left" className="flex-1">
+
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">Expert Guidance</p>
             <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
               Not sure where to start? <br/>
@@ -192,8 +228,8 @@ function Home() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-          </div>
-          <div className="flex-1 relative">
+          </Reveal>
+          <Reveal variant="right" delay={120} className="flex-1 relative">
             <div className="absolute -inset-12 bg-primary/10 blur-[80px] rounded-full opacity-50" />
             <div className="absolute -top-10 -right-10 h-32 w-32 bg-signal/10 blur-[60px] rounded-full float-reverse" />
             
@@ -247,7 +283,7 @@ function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -279,21 +315,31 @@ function Home() {
                 title: "Go live & tune",
                 body: "Soft launch, daily QA in week one, then weekly reporting with a named team lead.",
               },
-            ].map((s) => (
-              <li
+            ].map((s, i) => (
+              <Reveal
+                as="li"
                 key={s.step}
-                className="relative rounded-2xl border border-primary-foreground/12 bg-primary-foreground/[0.04] p-6"
+                delay={i * 110}
+                className="group lift-card relative overflow-hidden rounded-[1.75rem] border border-primary-foreground/12 bg-primary-foreground/[0.05] p-7 backdrop-blur-sm hover:bg-primary-foreground/[0.08]"
               >
-                <span className="font-display text-3xl font-semibold text-primary-foreground/25">
+                <div
+                  aria-hidden
+                  className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-signal/15 blur-[46px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                <span className="relative font-display text-4xl font-semibold text-primary-foreground/25">
                   {s.step}
                 </span>
-                <h3 className="mt-3 font-display text-lg font-semibold">
+                <h3 className="relative mt-3 font-display text-lg font-semibold">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">
+                <p className="relative mt-2 text-sm leading-relaxed text-primary-foreground/70">
                   {s.body}
                 </p>
-              </li>
+                <span
+                  aria-hidden
+                  className="mt-6 block h-px w-full bg-gradient-to-r from-signal/50 via-primary-foreground/15 to-transparent"
+                />
+              </Reveal>
             ))}
           </ol>
         </div>

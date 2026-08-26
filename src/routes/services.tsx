@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Check } from "lucide-react";
 import { DeviceArt, DeviceIcon } from "@/components/DeviceArt";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { Reveal } from "@/components/site/Reveal";
 import { SERVICES } from "@/lib/services";
 
 export const Route = createFileRoute("/services")({
@@ -168,7 +169,8 @@ function ServicesPage() {
                 }}
               />
 
-                <div
+                <Reveal
+                  variant={i % 2 === 0 ? "left" : "right"}
                   className="relative mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-20 lg:pl-10"
                 >
                   {/* Number tag: Always top-left of the section grid, regardless of column order */}
@@ -347,7 +349,7 @@ function ServicesPage() {
                   </div>
                 </div>
 
-              </div>
+              </Reveal>
 
               {/* separator after section */}
               {fancy && !dark && (
