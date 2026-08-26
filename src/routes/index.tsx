@@ -315,21 +315,31 @@ function Home() {
                 title: "Go live & tune",
                 body: "Soft launch, daily QA in week one, then weekly reporting with a named team lead.",
               },
-            ].map((s) => (
-              <li
+            ].map((s, i) => (
+              <Reveal
+                as="li"
                 key={s.step}
-                className="relative rounded-2xl border border-primary-foreground/12 bg-primary-foreground/[0.04] p-6"
+                delay={i * 110}
+                className="group lift-card relative overflow-hidden rounded-[1.75rem] border border-primary-foreground/12 bg-primary-foreground/[0.05] p-7 backdrop-blur-sm hover:bg-primary-foreground/[0.08]"
               >
-                <span className="font-display text-3xl font-semibold text-primary-foreground/25">
+                <div
+                  aria-hidden
+                  className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-signal/15 blur-[46px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                />
+                <span className="relative font-display text-4xl font-semibold text-primary-foreground/25">
                   {s.step}
                 </span>
-                <h3 className="mt-3 font-display text-lg font-semibold">
+                <h3 className="relative mt-3 font-display text-lg font-semibold">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-primary-foreground/70">
+                <p className="relative mt-2 text-sm leading-relaxed text-primary-foreground/70">
                   {s.body}
                 </p>
-              </li>
+                <span
+                  aria-hidden
+                  className="mt-6 block h-px w-full bg-gradient-to-r from-signal/50 via-primary-foreground/15 to-transparent"
+                />
+              </Reveal>
             ))}
           </ol>
         </div>
