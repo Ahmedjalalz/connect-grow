@@ -227,8 +227,8 @@ function Home() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
-          </div>
-          <div className="flex-1 relative">
+          </Reveal>
+          <Reveal variant="right" delay={120} className="flex-1 relative">
             <div className="absolute -inset-12 bg-primary/10 blur-[80px] rounded-full opacity-50" />
             <div className="absolute -top-10 -right-10 h-32 w-32 bg-signal/10 blur-[60px] rounded-full float-reverse" />
             
