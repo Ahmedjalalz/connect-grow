@@ -348,7 +348,7 @@ function ServicesPage() {
                   </div>
                 </div>
 
-              </div>
+              </Reveal>
 
               {/* separator after section */}
               {fancy && !dark && (
