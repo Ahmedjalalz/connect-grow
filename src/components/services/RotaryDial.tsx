@@ -179,8 +179,8 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
                     : "text-primary-foreground/70"
                 }`}
                 style={{
-                  left: `${50 + Math.cos(a) * HOLE_RADIUS * 100 - 9.5}%`,
-                  top: `${50 + Math.sin(a) * HOLE_RADIUS * 100 - 9.5}%`,
+                  left: `${(50 + Math.cos(a) * HOLE_RADIUS * 100 - 9.5).toFixed(3)}%`,
+                  top: `${(50 + Math.sin(a) * HOLE_RADIUS * 100 - 9.5).toFixed(3)}%`,
                 }}
               >
                 {n}
@@ -215,8 +215,8 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
           title="Finger Stop"
           className="pointer-events-none absolute h-[8%] w-[8%] rounded-full bg-signal shadow-[0_0_12px_2px_rgba(255,200,0,0.6)]"
           style={{
-            left: `${50 + Math.cos(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4}%`,
-            top: `${50 + Math.sin(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4}%`,
+            left: `${(50 + Math.cos(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4).toFixed(3)}%`,
+            top: `${(50 + Math.sin(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4).toFixed(3)}%`,
           }}
         />
       </div>
