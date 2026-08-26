@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, Globe2, ShieldCheck } from "lucide-react";
 import { HeroPhone } from "@/components/hero/HeroPhone";
 import { SiteLayout } from "@/components/site/SiteLayout";
+import { Reveal } from "@/components/site/Reveal";
 import { RotarySection } from "@/components/services/RotarySection";
 import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
 
