@@ -83,7 +83,7 @@ export function Header() {
                             {s.name}
                           </span>
                           <span className="mt-0.5 block text-xs leading-snug text-muted-foreground line-clamp-1">
-                            {s.tagline ?? "Trained pods, live in two weeks."}
+                            {s.short}
                           </span>
                         </span>
                       </Link>
