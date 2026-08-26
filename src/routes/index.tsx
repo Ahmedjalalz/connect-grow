@@ -146,10 +146,43 @@ function Home() {
       {/* ---------------- ROTARY DIAL ---------------- */}
       <RotarySection />
 
+      {/* ---------------- TRUST MARQUEE ---------------- */}
+      <section className="relative overflow-hidden border-y border-border/60 bg-card/60 py-5">
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
+        <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
+        <div className="flex w-max marquee-track gap-12 px-6">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="flex shrink-0 items-center gap-12">
+              {[
+                "24/7 coverage",
+                "SOC-2 aligned processes",
+                "Named team lead",
+                "Live in 2 weeks",
+                "Weekly QA reporting",
+                "4 languages",
+                "Omnichannel pods",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="flex items-center gap-3 whitespace-nowrap text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ---------------- PROCESS TEASER BANNER ---------------- */}
-      <section className="mx-auto w-full max-w-6xl px-5 py-14">
-        <div className="relative overflow-hidden rounded-[2.5rem] border border-border/70 bg-card p-8 sm:p-12 shadow-soft">
+      <Reveal as="section" variant="scale" className="mx-auto w-full max-w-6xl px-5 py-16">
+        <div className="lift-card sheen relative overflow-hidden rounded-[2.5rem] border border-border/70 bg-card p-8 sm:p-12 shadow-soft">
           <div aria-hidden className="absolute inset-0 grid-blueprint opacity-40" />
+          <div
+            aria-hidden
+            className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-signal/10 blur-[70px]"
+          />
           <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-8">
             <div className="max-w-xl">
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/80 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.16em] text-navy-soft">
@@ -172,12 +205,14 @@ function Home() {
             </Link>
           </div>
         </div>
-      </section>
+      </Reveal>
 
       {/* ---------------- CONSULTATION ---------------- */}
       <section className="relative overflow-hidden border-b border-border/60 bg-secondary/30">
+        <div aria-hidden className="absolute inset-x-0 top-0 h-24 section-fade-top" />
         <div className="relative mx-auto max-w-6xl px-5 py-20 md:py-28 flex flex-col md:flex-row items-center gap-12">
-          <div className="flex-1">
+          <Reveal variant="left" className="flex-1">
+
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">Expert Guidance</p>
             <h2 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
               Not sure where to start? <br/>
