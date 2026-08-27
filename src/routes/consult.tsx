@@ -48,11 +48,27 @@ export const Route = createFileRoute("/consult")({
         content:
           "Choose a slot and talk to a call center outsourcing expert. 15 minutes, no commitment.",
       },
-      { property: "og:url", content: "/consult" },
+      { property: "og:url", content: "https://www.kyteline.com/consult" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:secure_url", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "500" },
+      { property: "og:image:height", content: "500" },
+      { property: "og:image:alt", content: "Book a CX Consultation with KyteLine" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Book a CX Consultation — KyteLine" },
+      {
+        name: "twitter:description",
+        content:
+          "Pick a date and time slot to speak with a KyteLine call center strategy expert. 15 minutes, no commitment.",
+      },
+      { name: "twitter:image", content: "https://www.kyteline.com/KyteLine.png" },
     ],
-    links: [{ rel: "canonical", href: "/consult" }],
+    links: [
+      { rel: "canonical", href: "https://www.kyteline.com/consult" },
+      { rel: "image_src", href: "https://www.kyteline.com/KyteLine.png" },
+    ],
   }),
   component: ConsultExpertPage,
 });

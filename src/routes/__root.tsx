@@ -78,27 +78,52 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "KyteLine — Outsourced Call Center & CX Teams" },
+      { title: "KyteLine — Outsourced Call Center & CX Teams for B2B" },
       {
         name: "description",
         content:
-          "Outsourced call center and customer experience pods for B2B teams: inbound, outbound, chat, email, lead gen and technical support.",
+          "Outsourced call center and customer experience pods for B2B teams: inbound support, outbound calling, live chat, email support, lead gen and technical support.",
       },
+      { name: "keywords", content: "outsourced call center, inbound call support, outbound calling, live chat support, email support outsourcing, lead generation, appointment setting, technical support outsourcing, B2B customer experience, CX outsourcing" },
       { name: "author", content: "KyteLine" },
+      { name: "publisher", content: "https://www.kyteline.com" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      { name: "theme-color", content: "#0B132B" },
+      
+      // Open Graph (WhatsApp, Facebook, LinkedIn)
+      { property: "og:site_name", content: "KyteLine" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://www.kyteline.com/" },
       { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
       {
         property: "og:description",
         content:
-          "Outsourced call center and customer experience pods for B2B teams, live in two weeks.",
+          "Launch dedicated outsourced call center and customer experience pods for your B2B business: inbound, outbound, live chat, email, and technical support.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_US" },
+      { property: "og:image", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:secure_url", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "500" },
+      { property: "og:image:height", content: "500" },
+      { property: "og:image:alt", content: "KyteLine — Outsourced Call Center & CX Teams" },
+
+      // Twitter Cards
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:site_name", content: "KyteLine" },
-      { property: "og:image", content: "/KyteLine.png" },
-      { name: "twitter:image", content: "/KyteLine.png" },
-      { name: "keywords", content: "outsourced call center, inbound call support, outbound calling, live chat support, email support outsourcing, lead generation, appointment setting, technical support outsourcing, B2B customer experience" },
+      { name: "twitter:site", content: "@KyteLine" },
+      { name: "twitter:creator", content: "@KyteLine" },
+      { name: "twitter:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      {
+        name: "twitter:description",
+        content:
+          "Launch dedicated outsourced call center and customer experience pods for your B2B business in weeks.",
+      },
+      { name: "twitter:image", content: "https://www.kyteline.com/KyteLine.png" },
+      { name: "twitter:image:alt", content: "KyteLine Logo" },
     ],
     links: [
+      { rel: "canonical", href: "https://www.kyteline.com/" },
+      { rel: "image_src", href: "https://www.kyteline.com/KyteLine.png" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -119,7 +144,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "KyteLine",
-          url: "/",
+          url: "https://www.kyteline.com/",
+          logo: "https://www.kyteline.com/KyteLine.png",
           description:
             "KyteLine builds outsourced call center and customer experience teams for growing B2B operations.",
           contactPoint: [

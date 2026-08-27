@@ -20,8 +20,14 @@ export const Route = createFileRoute("/services")({
         content:
           "Ten outsourced customer experience services, each with a dedicated pod, scripts, QA and reporting.",
       },
-      { property: "og:url", content: "/services" },
+      { property: "og:url", content: "https://www.kyteline.com/services" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:secure_url", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "500" },
+      { property: "og:image:height", content: "500" },
+      { property: "og:image:alt", content: "KyteLine Call Center & CX Services" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Call Center & CX Services — KyteLine" },
       {
@@ -29,8 +35,30 @@ export const Route = createFileRoute("/services")({
         content:
           "Inbound, outbound, chat, email, lead generation, appointment setting, technical support and custom solutions.",
       },
+      { name: "twitter:image", content: "https://www.kyteline.com/KyteLine.png" },
     ],
-    links: [{ rel: "canonical", href: "/services" }],
+    links: [
+      { rel: "canonical", href: "https://www.kyteline.com/services" },
+      { rel: "image_src", href: "https://www.kyteline.com/KyteLine.png" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: "KyteLine Customer Experience Services",
+          provider: {
+            "@type": "Organization",
+            name: "KyteLine",
+            url: "https://www.kyteline.com/",
+            logo: "https://www.kyteline.com/KyteLine.png",
+          },
+          serviceType: "Outsourced Customer Experience and Call Center",
+          url: "https://www.kyteline.com/services",
+        }),
+      },
+    ],
   }),
   component: ServicesPage,
 });

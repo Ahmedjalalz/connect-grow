@@ -21,8 +21,14 @@ export const Route = createFileRoute("/")({
         content:
           "Trained agents for inbound support, outbound calling, live chat, lead generation and custom CX pods. Coverage in weeks, not quarters.",
       },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://www.kyteline.com/" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:secure_url", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "500" },
+      { property: "og:image:height", content: "500" },
+      { property: "og:image:alt", content: "KyteLine — Outsourced Call Center & CX Teams" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
       {
@@ -30,8 +36,12 @@ export const Route = createFileRoute("/")({
         content:
           "Outsourced call center and CX pods for B2B teams: inbound, outbound, chat, email, lead gen and technical support.",
       },
+      { name: "twitter:image", content: "https://www.kyteline.com/KyteLine.png" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "https://www.kyteline.com/" },
+      { rel: "image_src", href: "https://www.kyteline.com/KyteLine.png" },
+    ],
     scripts: [
       {
         type: "application/ld+json",
@@ -39,6 +49,7 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
           name: "KyteLine",
+          image: "https://www.kyteline.com/KyteLine.png",
           description:
             "KyteLine provides outsourced call center and customer experience teams for B2B companies: inbound call support, outbound calling, live chat, email support, lead generation, appointment setting, sales outreach, technical support and custom solutions.",
           serviceType: [
@@ -55,7 +66,7 @@ export const Route = createFileRoute("/")({
           ],
           areaServed: "Worldwide",
           availableLanguage: ["English", "Spanish", "Urdu", "Arabic"],
-          url: "/",
+          url: "https://www.kyteline.com/",
         }),
       },
     ],

@@ -22,11 +22,27 @@ export const Route = createFileRoute("/quote")({
         content:
           "A three-step quote request: pick your services, tell us your team size, leave your details.",
       },
-      { property: "og:url", content: "/quote" },
+      { property: "og:url", content: "https://www.kyteline.com/quote" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:secure_url", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "500" },
+      { property: "og:image:height", content: "500" },
+      { property: "og:image:alt", content: "Get a Quote from KyteLine" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Get a Quote — KyteLine" },
+      {
+        name: "twitter:description",
+        content:
+          "Tell us which support lines you need, how large your operation is, and where to reach you.",
+      },
+      { name: "twitter:image", content: "https://www.kyteline.com/KyteLine.png" },
     ],
-    links: [{ rel: "canonical", href: "/quote" }],
+    links: [
+      { rel: "canonical", href: "https://www.kyteline.com/quote" },
+      { rel: "image_src", href: "https://www.kyteline.com/KyteLine.png" },
+    ],
   }),
   component: QuotePage,
 });

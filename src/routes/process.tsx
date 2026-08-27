@@ -24,11 +24,27 @@ export const Route = createFileRoute("/process")({
         content:
           "Discover how our 6-step customer experience blueprint transforms your support and sales operations.",
       },
-      { property: "og:url", content: "/process" },
+      { property: "og:url", content: "https://www.kyteline.com/process" },
       { property: "og:type", content: "article" },
+      { property: "og:image", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:secure_url", content: "https://www.kyteline.com/KyteLine.png" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:width", content: "500" },
+      { property: "og:image:height", content: "500" },
+      { property: "og:image:alt", content: "The KyteLine CX Process" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Our Process — KyteLine" },
+      {
+        name: "twitter:description",
+        content:
+          "Discover how our 6-step customer experience blueprint transforms your support and sales operations.",
+      },
+      { name: "twitter:image", content: "https://www.kyteline.com/KyteLine.png" },
     ],
-    links: [{ rel: "canonical", href: "/process" }],
+    links: [
+      { rel: "canonical", href: "https://www.kyteline.com/process" },
+      { rel: "image_src", href: "https://www.kyteline.com/KyteLine.png" },
+    ],
   }),
   component: ProcessPage,
 });
