@@ -6,8 +6,8 @@
  * release — the wheel springs back and the matching service is selected.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
-import dialWheel from "@/assets/rotary-dial.png";
-import phoneBody from "@/assets/rotary-phone.jpg";
+import dialWheel from "@/assets/rotary-dial.webp";
+import phoneBody from "@/assets/rotary-phone.webp";
 
 /** clockwise degrees from 12 o'clock, measured from the dial artwork */
 const STOP_ANGLE = 128;

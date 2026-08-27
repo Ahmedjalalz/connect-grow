@@ -4,7 +4,7 @@
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, RotateCcw } from "lucide-react";
-import boardImg from "@/assets/cx/switchboard.jpg";
+import boardImg from "@/assets/cx/switchboard.webp";
 
 type Jack = { id: string; no: string; label: string; y: number };
 

@@ -3,11 +3,11 @@
  * real communication objects light up around a single customer.
  */
 import { useState } from "react";
-import phoneImg from "@/assets/cx/obj-phone-modern.png";
-import chatImg from "@/assets/cx/obj-chat.png";
-import emailImg from "@/assets/cx/obj-email.png";
-import smsImg from "@/assets/cx/obj-sms.png";
-import calendarImg from "@/assets/cx/obj-calendar.png";
+import phoneImg from "@/assets/cx/obj-phone-modern.webp";
+import chatImg from "@/assets/cx/obj-chat.webp";
+import emailImg from "@/assets/cx/obj-email.webp";
+import smsImg from "@/assets/cx/obj-sms.webp";
+import calendarImg from "@/assets/cx/obj-calendar.webp";
 
 type Channel = {
   key: string;

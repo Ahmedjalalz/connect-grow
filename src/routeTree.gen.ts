@@ -15,6 +15,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ConsultRouteImport } from './routes/consult'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as QuoteRouteImport } from './routes/quote'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
@@ -47,6 +48,11 @@ const QuoteRoute = QuoteRouteImport.update({
   path: '/quote',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/consult': typeof ConsultRoute
   '/process': typeof ProcessRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
   '/admin': typeof AuthenticatedAdminRoute
 }
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/consult': typeof ConsultRoute
   '/process': typeof ProcessRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
   '/admin': typeof AuthenticatedAdminRoute
 }
@@ -84,16 +92,31 @@ export interface FileRoutesById {
   '/consult': typeof ConsultRoute
   '/process': typeof ProcessRoute
   '/quote': typeof QuoteRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/services': typeof ServicesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/auth' | '/consult' | '/process' | '/quote' | '/services' | '/admin'
+    | '/'
+    | '/auth'
+    | '/consult'
+    | '/process'
+    | '/quote'
+    | '/reset-password'
+    | '/services'
+    | '/admin'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/auth' | '/consult' | '/process' | '/quote' | '/services' | '/admin'
+    | '/'
+    | '/auth'
+    | '/consult'
+    | '/process'
+    | '/quote'
+    | '/reset-password'
+    | '/services'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -102,6 +125,7 @@ export interface FileRouteTypes {
     | '/consult'
     | '/process'
     | '/quote'
+    | '/reset-password'
     | '/services'
     | '/_authenticated/admin'
   fileRoutesById: FileRoutesById
@@ -113,6 +137,7 @@ export interface RootRouteChildren {
   ConsultRoute: typeof ConsultRoute
   ProcessRoute: typeof ProcessRoute
   QuoteRoute: typeof QuoteRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ServicesRoute: typeof ServicesRoute
 }
 
@@ -160,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuoteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -195,6 +227,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConsultRoute: ConsultRoute,
   ProcessRoute: ProcessRoute,
   QuoteRoute: QuoteRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ServicesRoute: ServicesRoute,
 }
 export const routeTree = rootRouteImport

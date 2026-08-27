@@ -48,6 +48,9 @@ export function Logo({
       <img
         src={isDark ? "/Kyeline-logo-transparent-white.png" : "/Kyeline-logo-transparent.png"}
         alt="KyteLine Logo"
+        width={36}
+        height={36}
+        decoding="async"
         className={cn(
           config.img,
           "object-contain transition-transform duration-200 group-hover:scale-105",

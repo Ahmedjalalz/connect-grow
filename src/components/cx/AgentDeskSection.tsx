@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { X, Sparkles } from "lucide-react";
-import deskImg from "@/assets/cx/agent-desk.jpg";
+import deskImg from "@/assets/cx/agent-desk.webp";
 
 type Spot = {
   id: string;
