@@ -81,12 +81,10 @@ export function monthGrid(month: Date): { date: Date; inMonth: boolean }[] {
   });
 }
 
-/** Weekends closed, past days closed, and no more than 60 days out. */
+/** Past days closed, and no more than 60 days out. */
 export function isBookableDay(date: Date, today = startOfDay(new Date())) {
   const d = startOfDay(date);
   if (d < today) return false;
-  const weekday = d.getDay();
-  if (weekday === 0 || weekday === 6) return false;
   const limit = new Date(today);
   limit.setDate(limit.getDate() + 60);
   return d <= limit;
