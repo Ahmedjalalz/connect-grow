@@ -4,7 +4,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/SiteLayout";
-import { addLead } from "@/lib/local-leads";
+import { supabase } from "@/integrations/supabase/client";
 import { OPERATION_SIZES, QUOTE_SERVICE_OPTIONS } from "@/lib/services";
 
 export const Route = createFileRoute("/quote")({
@@ -72,17 +72,16 @@ function QuotePage() {
     }
     setErrors({});
     setSubmitting(true);
-    try {
-      addLead({
-        services,
-        operation_size: size,
-        name: parsed.data.name,
-        email: parsed.data.email,
-        company: parsed.data.company,
-        phone: parsed.data.phone,
-        message: parsed.data.message?.length ? parsed.data.message : null,
-      });
-    } catch {
+    const { error } = await supabase.from("leads").insert({
+      services,
+      operation_size: size,
+      name: parsed.data.name,
+      email: parsed.data.email,
+      company: parsed.data.company,
+      phone: parsed.data.phone,
+      message: parsed.data.message?.length ? parsed.data.message : null,
+    });
+    if (error) {
       setSubmitting(false);
       toast.error("We couldn't save that. Please try again.");
       return;

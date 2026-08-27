@@ -14,6 +14,60 @@ export type Database = {
   }
   public: {
     Tables: {
+      bookings: {
+        Row: {
+          company: string | null
+          created_at: string
+          duration_minutes: number
+          email: string
+          id: string
+          name: string
+          notes: string | null
+          phone: string | null
+          slot_date: string
+          slot_time: string
+          status: Database["public"]["Enums"]["booking_status"]
+          team_size: string | null
+          timezone: string | null
+          topic: string | null
+          updated_at: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          duration_minutes?: number
+          email: string
+          id?: string
+          name: string
+          notes?: string | null
+          phone?: string | null
+          slot_date: string
+          slot_time: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          team_size?: string | null
+          timezone?: string | null
+          topic?: string | null
+          updated_at?: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          duration_minutes?: number
+          email?: string
+          id?: string
+          name?: string
+          notes?: string | null
+          phone?: string | null
+          slot_date?: string
+          slot_time?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          team_size?: string | null
+          timezone?: string | null
+          topic?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           company: string
@@ -89,9 +143,17 @@ export type Database = {
         }
         Returns: boolean
       }
+      taken_slots: {
+        Args: { _from: string; _to: string }
+        Returns: {
+          slot_date: string
+          slot_time: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "user"
+      booking_status: "requested" | "confirmed" | "completed" | "cancelled"
       lead_stage:
         | "new_lead"
         | "qualification"
@@ -230,6 +292,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "user"],
+      booking_status: ["requested", "confirmed", "completed", "cancelled"],
       lead_stage: [
         "new_lead",
         "qualification",

@@ -1,7 +1,8 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { DEMO_CREDENTIALS, isSignedIn, signInDemo } from "@/lib/local-leads";
+import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable";
 import { Logo } from "@/components/site/Logo";
 
 export const Route = createFileRoute("/auth")({
@@ -26,20 +27,53 @@ export const Route = createFileRoute("/auth")({
 
 function AuthPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState(DEMO_CREDENTIALS.email);
-  const [password, setPassword] = useState(DEMO_CREDENTIALS.password);
+  const [mode, setMode] = useState<"signin" | "signup">("signin");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
-    if (isSignedIn()) navigate({ to: "/admin" });
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) navigate({ to: "/admin" });
+    });
   }, [navigate]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!signInDemo(email, password)) {
-      toast.error("Wrong demo credentials.");
+    setBusy(true);
+    if (mode === "signin") {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      setBusy(false);
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+      navigate({ to: "/admin" });
       return;
     }
-    navigate({ to: "/admin" });
+
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo: `${window.location.origin}/auth` },
+    });
+    setBusy(false);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+    toast.success("Account created. Check your inbox to confirm, then sign in.");
+    setMode("signin");
+  };
+
+  const handleGoogle = async () => {
+    try {
+      await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+    } catch {
+      toast.error("Google sign-in is unavailable right now.");
+    }
   };
 
   return (
@@ -49,10 +83,24 @@ function AuthPage() {
         <Logo variant="light" size="md" />
         <h1 className="mt-5 font-display text-2xl font-semibold">Lead desk</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Demo sign-in — no backend connected yet.
+          {mode === "signin"
+            ? "Sign in to review leads and consultations."
+            : "Create a team account for the lead desk."}
         </p>
 
-        <form onSubmit={handleSubmit} className="mt-7 space-y-4">
+        <button
+          type="button"
+          onClick={handleGoogle}
+          className="mt-6 w-full rounded-xl border border-border bg-background py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+        >
+          Continue with Google
+        </button>
+
+        <div className="my-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+          <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
+        </div>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
           <label className="block">
             <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
               Email
@@ -72,6 +120,7 @@ function AuthPage() {
             <input
               type="password"
               required
+              minLength={6}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
@@ -79,16 +128,29 @@ function AuthPage() {
           </label>
           <button
             type="submit"
-            className="w-full rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground"
+            disabled={busy}
+            className="w-full rounded-xl bg-primary py-3 text-sm font-semibold text-primary-foreground disabled:opacity-50"
           >
-            Sign in
+            {busy ? "Please wait…" : mode === "signin" ? "Sign in" : "Create account"}
           </button>
         </form>
 
-        <p className="mt-5 rounded-xl bg-secondary px-4 py-3 text-xs leading-relaxed text-muted-foreground">
-          Demo login: <strong>{DEMO_CREDENTIALS.email}</strong> /{" "}
-          <strong>{DEMO_CREDENTIALS.password}</strong>
-        </p>
+        <button
+          type="button"
+          onClick={() => setMode(mode === "signin" ? "signup" : "signin")}
+          className="mt-5 w-full text-xs font-semibold text-primary hover:underline"
+        >
+          {mode === "signin"
+            ? "Need an account? Sign up"
+            : "Already have an account? Sign in"}
+        </button>
+
+        <Link
+          to="/"
+          className="mt-4 block text-center text-xs font-semibold text-muted-foreground hover:text-primary"
+        >
+          Back to site
+        </Link>
       </div>
     </div>
   );
