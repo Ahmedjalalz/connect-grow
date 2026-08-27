@@ -392,7 +392,7 @@ function ConsultExpertPage() {
                       })}
                     </div>
                     <p className="mt-4 text-xs text-muted-foreground">
-                      Weekends are closed. All times shown in{" "}
+                      All times shown in{" "}
                       <span className="font-semibold text-primary">{form.timezone}</span>.
                     </p>
                   </div>
