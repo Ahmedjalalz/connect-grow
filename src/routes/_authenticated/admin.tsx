@@ -17,6 +17,7 @@ import {
 import { formatSlot, slotEndLabel } from "@/lib/booking";
 
 export const Route = createFileRoute("/_authenticated/admin")({
+  ssr: false,
   head: () => ({
     meta: [
       { title: "Lead Pipeline — KyteLine Admin" },
