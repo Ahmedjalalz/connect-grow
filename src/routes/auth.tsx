@@ -63,7 +63,7 @@ function AuthPage() {
       return;
     }
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: { emailRedirectTo: `${window.location.origin}/auth` },
@@ -71,6 +71,11 @@ function AuthPage() {
     setBusy(false);
     if (error) {
       toast.error(error.message);
+      return;
+    }
+    if (data.session) {
+      toast.success("Account created and signed in!");
+      navigate({ to: "/admin" });
       return;
     }
     toast.success("Account created. Check your inbox to confirm, then sign in.");
