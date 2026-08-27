@@ -5,7 +5,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Logo } from "@/components/site/Logo";
 
 export const Route = createFileRoute("/auth")({
-  ssr: false,
   head: () => ({
     meta: [
       { title: "Team Sign In — KyteLine Lead Desk" },
@@ -83,22 +82,6 @@ function AuthPage() {
     setMode("signin");
   };
 
-  const handleGoogle = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: `${window.location.origin}/auth`,
-        },
-      });
-      if (error) {
-        toast.error(error.message);
-      }
-    } catch {
-      toast.error("Google sign-in is unavailable right now.");
-    }
-  };
-
   return (
     <div className="relative flex min-h-screen items-center justify-center px-5">
       <div aria-hidden className="absolute inset-0 grid-blueprint opacity-60" />
@@ -111,19 +94,7 @@ function AuthPage() {
             : "Create a team account for the lead desk."}
         </p>
 
-        <button
-          type="button"
-          onClick={handleGoogle}
-          className="mt-6 w-full rounded-xl border border-border bg-background py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
-        >
-          Continue with Google
-        </button>
-
-        <div className="my-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
-          <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <label className="block">
             <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
               Email
