@@ -263,7 +263,7 @@ function ConsultExpertPage() {
                   {[
                     `${SLOT_DURATION_MINUTES} minutes, video or phone`,
                     "No commitment, no sales maze",
-                    "Weekdays, slots update live",
+                    "Slots update live",
                   ].map((line) => (
                     <li key={line} className="flex items-start gap-2.5">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
