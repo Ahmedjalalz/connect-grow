@@ -6,7 +6,6 @@
 import {
   BarChart3,
   CalendarCheck,
-  FileSpreadsheet,
   Headphones,
   Mail,
   MessageCircle,

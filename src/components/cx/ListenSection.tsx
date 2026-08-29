@@ -37,25 +37,37 @@ export function ListenSection() {
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const raf = useRef<number | null>(null);
+  const elapsedRef = useRef(0);
 
   useEffect(() => {
     if (!playing) return;
-    const start = performance.now() - elapsed;
+    const start = performance.now() - elapsedRef.current;
+    let lastReportedSec = -1;
+    let lastHead = -1;
+
     const tick = (now: number) => {
-      const e = now - start;
+      const e = Math.min(DURATION, now - start);
+      elapsedRef.current = e;
+      const currentHead = Math.floor((e / DURATION) * BAR_COUNT);
+      const currentSec = Math.floor(e / 250);
+
+      if (currentHead !== lastHead || currentSec !== lastReportedSec || e >= DURATION) {
+        lastHead = currentHead;
+        lastReportedSec = currentSec;
+        setElapsed(e);
+      }
+
       if (e >= DURATION) {
-        setElapsed(DURATION);
         setPlaying(false);
         return;
       }
-      setElapsed(e);
       raf.current = requestAnimationFrame(tick);
     };
+
     raf.current = requestAnimationFrame(tick);
     return () => {
       if (raf.current) cancelAnimationFrame(raf.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing]);
 
   const progress = elapsed / DURATION;
@@ -69,7 +81,10 @@ export function ListenSection() {
       setPlaying(false);
       return;
     }
-    if (elapsed >= DURATION) setElapsed(0);
+    if (elapsedRef.current >= DURATION) {
+      elapsedRef.current = 0;
+      setElapsed(0);
+    }
     setPlaying(true);
   };
 

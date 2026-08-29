@@ -81,12 +81,14 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
     setReturning(false);
     setHeld(hole);
     onPreview?.(hole);
-    try {
-      (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
-    } catch {}
+    if (typeof (e.target as HTMLElement).setPointerCapture === "function") {
+      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    }
   };
 
   useEffect(() => {
+    let animFrame: number | null = null;
+
     const move = (e: PointerEvent) => {
       const drag = dragRef.current;
       if (!drag) return;
@@ -101,10 +103,21 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       // resistance past the finger stop
       const clamped = Math.min(drag.max, drag.total);
       const over = Math.max(0, drag.total - drag.max);
-      setRotation(clamped + over * 0.12);
+      const nextRot = clamped + over * 0.12;
+
+      if (animFrame === null) {
+        animFrame = requestAnimationFrame(() => {
+          animFrame = null;
+          setRotation(nextRot);
+        });
+      }
     };
 
     const up = () => {
+      if (animFrame !== null) {
+        cancelAnimationFrame(animFrame);
+        animFrame = null;
+      }
       const drag = dragRef.current;
       if (!drag) return;
       const reached = drag.total >= Math.max(15, drag.max * 0.78);
@@ -116,10 +129,11 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       if (reached) onSelect(drag.hole);
     };
 
-    window.addEventListener("pointermove", move);
+    window.addEventListener("pointermove", move, { passive: true });
     window.addEventListener("pointerup", up);
     window.addEventListener("pointercancel", up);
     return () => {
+      if (animFrame !== null) cancelAnimationFrame(animFrame);
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
       window.removeEventListener("pointercancel", up);
@@ -151,9 +165,10 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       <img
         src={phoneBody}
         alt="Deep navy vintage rotary telephone"
-        width={1024}
-        height={1024}
+        width={800}
+        height={800}
         loading="lazy"
+        decoding="async"
         className="relative h-full w-full rounded-[2.5rem] object-cover"
         draggable={false}
       />
@@ -193,9 +208,10 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         <img
           src={dialWheel}
           alt="Interactive rotary dial wheel - touch any hole and drag clockwise to the stop"
-          width={1024}
-          height={1024}
+          width={560}
+          height={560}
           loading="lazy"
+          decoding="async"
           draggable={false}
           onPointerDown={onPointerDown}
           className="pointer-events-auto absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing hover:brightness-110 transition-[filter] touch-none select-none"

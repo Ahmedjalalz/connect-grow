@@ -51,9 +51,10 @@ export function HeroPhone() {
           <img
             src={receiver}
             alt="Navy telephone receiver hanging from a coiled cord - tap or hover to ring"
-            width={768}
-            height={1280}
+            width={600}
+            height={1000}
             fetchPriority="high"
+            loading="eager"
             decoding="async"
             draggable={false}
             className="relative mx-auto w-full select-none drop-shadow-[0_30px_45px_rgba(20,28,54,0.28)] transition-all duration-300 group-hover:drop-shadow-[0_35px_55px_rgba(20,28,54,0.38)]"

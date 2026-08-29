@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, Globe2, ShieldCheck } from "lucide-react";
+import receiverImg from "@/assets/receiver.webp";
 import { HeroPhone } from "@/components/hero/HeroPhone";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Reveal } from "@/components/site/Reveal";
@@ -39,6 +40,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:image", content: "https://www.kyteline.com/KyteLine.png" },
     ],
     links: [
+      { rel: "preload", as: "image", href: receiverImg, type: "image/webp" },
       { rel: "canonical", href: "https://www.kyteline.com/" },
       { rel: "image_src", href: "https://www.kyteline.com/KyteLine.png" },
     ],

@@ -9,22 +9,34 @@ export function BeforeAfterSection() {
   const [pos, setPos] = useState(48);
   const stage = useRef<HTMLDivElement | null>(null);
   const dragging = useRef(false);
+  const animFrame = useRef<number | null>(null);
 
   const move = useCallback((clientX: number) => {
-    const el = stage.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    setPos(Math.min(96, Math.max(4, ((clientX - r.left) / r.width) * 100)));
+    if (animFrame.current !== null) return;
+    animFrame.current = requestAnimationFrame(() => {
+      animFrame.current = null;
+      const el = stage.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      setPos(Math.min(96, Math.max(4, ((clientX - r.left) / r.width) * 100)));
+    });
   }, []);
 
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
       if (dragging.current) move(e.clientX);
     };
-    const stop = () => (dragging.current = false);
-    window.addEventListener("pointermove", onMove);
+    const stop = () => {
+      dragging.current = false;
+      if (animFrame.current !== null) {
+        cancelAnimationFrame(animFrame.current);
+        animFrame.current = null;
+      }
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("pointerup", stop);
     return () => {
+      if (animFrame.current !== null) cancelAnimationFrame(animFrame.current);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", stop);
     };
@@ -32,7 +44,9 @@ export function BeforeAfterSection() {
 
   const onPointerDown = (e: React.PointerEvent) => {
     dragging.current = true;
-    (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+    if (typeof (e.currentTarget as HTMLElement).setPointerCapture === "function") {
+      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    }
     move(e.clientX);
   };
 
@@ -42,9 +56,9 @@ export function BeforeAfterSection() {
 
   const onPointerUp = (e: React.PointerEvent) => {
     dragging.current = false;
-    try {
-      (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
-    } catch {}
+    if (typeof (e.currentTarget as HTMLElement).releasePointerCapture === "function") {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    }
   };
 
   const onTouchMove = (e: React.TouchEvent) => {

@@ -46,11 +46,12 @@ export function Logo({
   const content = (
     <>
       <img
-        src={isDark ? "/Kyeline-logo-transparent-white.png" : "/Kyeline-logo-transparent.png"}
+        src={isDark ? "/Kyeline-logo-transparent-white.webp" : "/Kyeline-logo-transparent.webp"}
         alt="KyteLine Logo"
         width={36}
         height={36}
         decoding="async"
+        loading="eager"
         className={cn(
           config.img,
           "object-contain transition-transform duration-200 group-hover:scale-105",

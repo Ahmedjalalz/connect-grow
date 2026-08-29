@@ -18,8 +18,17 @@ export function Header() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
+    let prev = window.scrollY > 12;
+    setScrolled(prev);
+
+    const onScroll = () => {
+      const next = window.scrollY > 12;
+      if (next !== prev) {
+        prev = next;
+        setScrolled(next);
+      }
+    };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
