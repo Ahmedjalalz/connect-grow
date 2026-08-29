@@ -266,10 +266,10 @@ function ConsultExpertPage() {
               <div className="mt-8 rounded-3xl border border-border bg-card p-6 shadow-soft">
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full surface-navy font-display text-lg font-bold">
-                    AJ
+                    AH
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-primary">Ahmed Jalal</p>
+                    <p className="text-sm font-semibold text-primary">Alexander Hayes</p>
                     <p className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
                       CX strategy expert
                     </p>

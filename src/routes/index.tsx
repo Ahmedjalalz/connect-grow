@@ -251,11 +251,11 @@ function Home() {
                   <div className="relative">
                     <div className="absolute -inset-1 bg-gradient-navy rounded-full blur-[2px] opacity-20" />
                     <div className="h-16 w-16 rounded-2xl bg-navy flex items-center justify-center text-white font-display text-2xl font-bold relative shadow-lift">
-                      AJ
+                      AH
                     </div>
                   </div>
                   <div>
-                    <p className="text-xl font-bold text-primary tracking-tight">Ahmed Jalal</p>
+                    <p className="text-xl font-bold text-primary tracking-tight">Alexander Hayes</p>
                     <p className="text-[0.65rem] text-navy-soft font-bold uppercase tracking-[0.2em] mt-0.5">CX Strategy Expert</p>
                   </div>
                 </div>
