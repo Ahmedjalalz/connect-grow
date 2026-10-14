@@ -8,6 +8,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import dialWheel from "@/assets/rotary-dial.webp";
 import phoneBody from "@/assets/rotary-phone.webp";
+import { FrostedGlassHand } from "./FrostedGlassHand";
 
 /** clockwise degrees from 12 o'clock, measured from the dial artwork */
 const STOP_ANGLE = 128;
@@ -24,7 +25,17 @@ const travelFor = (n: number) => {
 
 const HOLE_RADIUS = 0.337; // fraction of dial size, matches the wheel artwork
 
+const DEMO_HOLE = 3;
+const DEMO_START_ANGLE = holeAngle(DEMO_HOLE); // 46 deg
+const DEMO_TRAVEL = travelFor(DEMO_HOLE); // 82 deg
 
+const getHolePercent = (angleDeg: number) => {
+  const rad = ((angleDeg - 90) * Math.PI) / 180;
+  return {
+    x: 50 + Math.cos(rad) * HOLE_RADIUS * 100,
+    y: 50 + Math.sin(rad) * HOLE_RADIUS * 100,
+  };
+};
 
 type Props = {
   count: number;
@@ -48,6 +59,34 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   const [returning, setReturning] = useState(false);
   const [held, setHeld] = useState<number | null>(null);
 
+  // Demo state
+  const initialHolePos = getHolePercent(DEMO_START_ANGLE);
+  const [handPos, setHandPos] = useState({
+    x: initialHolePos.x + 7,
+    y: initialHolePos.y + 11,
+    angle: 16,
+  });
+  const [handOpacity, setHandOpacity] = useState(0);
+  const [isPressing, setIsPressing] = useState(false);
+  const [showRipple, setShowRipple] = useState(false);
+
+  const hasPlayedDemoRef = useRef(false);
+  const hasUserInteractedRef = useRef(false);
+  const demoAnimRef = useRef<number | null>(null);
+  const demoTimeoutRefs = useRef<number[]>([]);
+
+  const cancelDemo = useCallback(() => {
+    if (demoAnimRef.current !== null) {
+      cancelAnimationFrame(demoAnimRef.current);
+      demoAnimRef.current = null;
+    }
+    demoTimeoutRefs.current.forEach(window.clearTimeout);
+    demoTimeoutRefs.current = [];
+    setHandOpacity(0);
+    setShowRipple(false);
+    setIsPressing(false);
+  }, []);
+
   const pointerAngle = useCallback((x: number, y: number) => {
     const el = plateRef.current;
     if (!el) return 0;
@@ -66,7 +105,6 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         const d = Math.abs(((angle - holeAngle(n) + 540) % 360) - 180);
         if (d < bestDiff) {
           bestDiff = d;
-          best = n;
         }
       }
       return best;
@@ -75,16 +113,160 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   );
 
   const onPointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    hasUserInteractedRef.current = true;
+    cancelDemo();
     const a = pointerAngle(e.clientX, e.clientY);
     const hole = nearestHole(a);
     dragRef.current = { id: e.pointerId, lastAngle: a, total: 0, hole, max: travelFor(hole) };
     setReturning(false);
     setHeld(hole);
     onPreview?.(hole);
-    if (typeof (e.target as HTMLElement).setPointerCapture === "function") {
-      (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    if (typeof (e.currentTarget as HTMLElement).setPointerCapture === "function") {
+      try {
+        (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+      } catch {}
     }
   };
+
+  useEffect(() => {
+    if (active !== 1) {
+      hasUserInteractedRef.current = true;
+      cancelDemo();
+    }
+  }, [active, cancelDemo]);
+
+  // Automated demonstration cycle that repeats until user interacts
+  const playDemoCycle = useCallback(() => {
+    if (hasUserInteractedRef.current) return;
+
+    // Reset starting position slightly offset for glide-in
+    setHandPos({ x: initialHolePos.x + 7, y: initialHolePos.y + 11, angle: 16 });
+    setHandOpacity(0);
+    setIsPressing(false);
+    setReturning(false);
+
+    const tGlide = window.setTimeout(() => {
+      if (hasUserInteractedRef.current) return;
+
+      // 1. Glide hand in smoothly to hole #3
+      setHandOpacity(1);
+      setHandPos({ x: initialHolePos.x, y: initialHolePos.y, angle: 18 });
+
+      // 2. Press down
+      const tPress = window.setTimeout(() => {
+        if (hasUserInteractedRef.current) return;
+        setIsPressing(true);
+        setShowRipple(true);
+        setHeld(DEMO_HOLE);
+        onPreview?.(DEMO_HOLE);
+
+        // 3. Begin smooth rotary sweep
+        const tDrag = window.setTimeout(() => {
+          if (hasUserInteractedRef.current) return;
+          setShowRipple(false);
+
+          const dragStartTime = performance.now();
+          const dragDuration = 1100; // ms
+
+          const stepDrag = (now: number) => {
+            if (hasUserInteractedRef.current) return;
+            const elapsed = now - dragStartTime;
+            const progress = Math.min(1, elapsed / dragDuration);
+            // easeInOutCubic curve
+            const ease =
+              progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+            const currentRot = DEMO_TRAVEL * ease;
+            setRotation(currentRot);
+
+            const currentAngle = DEMO_START_ANGLE + currentRot;
+            const pos = getHolePercent(currentAngle);
+            setHandPos({
+              x: pos.x,
+              y: pos.y,
+              angle: 18 + ease * 20,
+            });
+
+            if (progress < 1) {
+              demoAnimRef.current = requestAnimationFrame(stepDrag);
+            } else {
+              // Reached the finger stop!
+              const tStop = window.setTimeout(() => {
+                if (hasUserInteractedRef.current) return;
+                // Lift finger
+                setIsPressing(false);
+
+                const tRelease = window.setTimeout(() => {
+                  if (hasUserInteractedRef.current) return;
+                  // Release dial wheel to spring back, trigger selection, fade hand
+                  setReturning(true);
+                  setRotation(0);
+                  setHeld(null);
+                  onPreview?.(null);
+                  setHandOpacity(0);
+                  onSelect(DEMO_HOLE);
+
+                  // 4. Repeat cycle after a natural pause if user hasn't interacted
+                  const tNext = window.setTimeout(() => {
+                    if (!hasUserInteractedRef.current) {
+                      playDemoCycle();
+                    }
+                  }, 2200);
+                  demoTimeoutRefs.current.push(tNext);
+                }, 200);
+                demoTimeoutRefs.current.push(tRelease);
+              }, 240);
+              demoTimeoutRefs.current.push(tStop);
+            }
+          };
+
+          demoAnimRef.current = requestAnimationFrame(stepDrag);
+        }, 320);
+        demoTimeoutRefs.current.push(tDrag);
+      }, 600);
+      demoTimeoutRefs.current.push(tPress);
+    }, 120);
+    demoTimeoutRefs.current.push(tGlide);
+  }, [initialHolePos.x, initialHolePos.y, onSelect, onPreview]);
+
+  // Start demonstration when scrolled into view
+  useEffect(() => {
+    const el = plateRef.current;
+    if (!el) return;
+
+    let isVisible = false;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry?.isIntersecting) {
+          isVisible = true;
+          if (!hasUserInteractedRef.current) {
+            const tStart = window.setTimeout(() => {
+              if (isVisible && !hasUserInteractedRef.current) {
+                playDemoCycle();
+              }
+            }, 1000);
+            demoTimeoutRefs.current.push(tStart);
+          }
+        } else {
+          isVisible = false;
+          cancelDemo();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      cancelDemo();
+    };
+  }, [cancelDemo, playDemoCycle]);
 
   useEffect(() => {
     let animFrame: number | null = null;
@@ -92,6 +274,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
     const move = (e: PointerEvent) => {
       const drag = dragRef.current;
       if (!drag) return;
+      if (e.pointerId !== drag.id) return;
       const a = pointerAngle(e.clientX, e.clientY);
       // incremental delta, unwrapped — lets total travel exceed 180deg
       let step = a - drag.lastAngle;
@@ -113,20 +296,22 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       }
     };
 
-    const up = () => {
+    const up = (e?: PointerEvent) => {
       if (animFrame !== null) {
         cancelAnimationFrame(animFrame);
         animFrame = null;
       }
       const drag = dragRef.current;
       if (!drag) return;
+      if (e && e.pointerId !== drag.id) return;
       const reached = drag.total >= Math.max(15, drag.max * 0.78);
+      const hole = drag.hole;
       dragRef.current = null;
       setReturning(true);
       setRotation(0);
       setHeld(null);
       onPreview?.(null);
-      if (reached) onSelect(drag.hole);
+      if (reached) onSelect(hole);
     };
 
     window.addEventListener("pointermove", move, { passive: true });
@@ -141,19 +326,6 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   }, [pointerAngle, onSelect, onPreview]);
 
   rotationRef.current = rotation;
-
-  /** tap / keyboard fallback: dial the number without precise dragging */
-  const dialTo = (n: number) => {
-    setReturning(false);
-    setRotation(travelFor(n));
-    setHeld(n);
-    window.setTimeout(() => {
-      setReturning(true);
-      setRotation(0);
-      setHeld(null);
-      onSelect(n);
-    }, 420);
-  };
 
   return (
     <div className="relative mx-auto aspect-square w-full max-w-[540px] select-none">
@@ -213,10 +385,13 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
           loading="lazy"
           decoding="async"
           draggable={false}
+          onDragStart={(e) => e.preventDefault()}
           onPointerDown={onPointerDown}
           className="pointer-events-auto absolute inset-0 h-full w-full cursor-grab active:cursor-grabbing hover:brightness-110 transition-[filter] touch-none select-none"
           style={{
             touchAction: "none",
+            userSelect: "none",
+            WebkitUserSelect: "none",
             transform: `rotate(${rotation}deg)`,
             transition: returning
               ? "transform 900ms cubic-bezier(0.22, 1.4, 0.3, 1)"
@@ -235,13 +410,34 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
             top: `${(50 + Math.sin(((STOP_ANGLE - 90) * Math.PI) / 180) * 46 - 4).toFixed(3)}%`,
           }}
         />
+
+        {/* Subtle touch ripple when finger touches down */}
+        {showRipple && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-signal bg-signal/25 animate-ping z-30"
+            style={{
+              left: `${handPos.x}%`,
+              top: `${handPos.y}%`,
+            }}
+          />
+        )}
+
+        {/* Animated Frosted Glass Demonstration Hand */}
+        <FrostedGlassHand
+          x={handPos.x}
+          y={handPos.y}
+          angle={handPos.angle}
+          isPressing={isPressing}
+          opacity={handOpacity}
+        />
       </div>
 
       {/* Rotational instruction guide */}
       <div className="pointer-events-none absolute inset-x-0 bottom-4 flex items-center justify-center">
         <span className="inline-flex items-center gap-1.5 rounded-full border border-primary-foreground/15 bg-navy-deep/80 px-3.5 py-1 text-[0.68rem] font-medium tracking-wider text-primary-foreground/85 shadow-md backdrop-blur-sm">
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-signal animate-ping" />
-          Put finger in hole & drag clockwise to stop
+          Drag clockwise to stop bracket & release
         </span>
       </div>
     </div>
