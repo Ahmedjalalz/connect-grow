@@ -10,6 +10,7 @@ import dialWheel from "@/assets/rotary-dial.webp";
 import phoneBody from "@/assets/rotary-phone.webp";
 import { FrostedGlassHand } from "./FrostedGlassHand";
 
+// Interactive rotary switchboard with automated gesture demonstration
 /** clockwise degrees from 12 o'clock, measured from the dial artwork */
 const STOP_ANGLE = 128;
 const HOLE_ANGLES = [110, 78, 46, 14, 342, 310, 278, 246, 214, 182];
