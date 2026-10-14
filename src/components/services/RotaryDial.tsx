@@ -63,13 +63,12 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   // Demo state
   const initialHolePos = getHolePercent(DEMO_START_ANGLE);
   const [handPos, setHandPos] = useState({
-    x: initialHolePos.x + 7,
-    y: initialHolePos.y + 11,
-    angle: 16,
+    x: initialHolePos.x,
+    y: initialHolePos.y,
+    angle: 18,
   });
   const [handOpacity, setHandOpacity] = useState(0);
   const [isPressing, setIsPressing] = useState(false);
-  const [showRipple, setShowRipple] = useState(false);
 
   const hasPlayedDemoRef = useRef(false);
   const hasUserInteractedRef = useRef(false);
@@ -84,7 +83,6 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
     demoTimeoutRefs.current.forEach(window.clearTimeout);
     demoTimeoutRefs.current = [];
     setHandOpacity(0);
-    setShowRipple(false);
     setIsPressing(false);
   }, []);
 
@@ -143,96 +141,87 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
   const playDemoCycle = useCallback(() => {
     if (hasUserInteractedRef.current) return;
 
-    // Reset starting position slightly offset for glide-in
-    setHandPos({ x: initialHolePos.x + 7, y: initialHolePos.y + 11, angle: 16 });
+    // Reset starting position right at hole #3
+    setHandPos({ x: initialHolePos.x, y: initialHolePos.y, angle: 18 });
     setHandOpacity(0);
     setIsPressing(false);
     setReturning(false);
 
-    const tGlide = window.setTimeout(() => {
+    const tAppear = window.setTimeout(() => {
       if (hasUserInteractedRef.current) return;
 
-      // 1. Glide hand in smoothly to hole #3
+      // 1. Hand fades in directly at Hole #3 and engages immediately
       setHandOpacity(1);
-      setHandPos({ x: initialHolePos.x, y: initialHolePos.y, angle: 18 });
+      setIsPressing(true);
+      setHeld(DEMO_HOLE);
+      onPreview?.(DEMO_HOLE);
 
-      // 2. Press down
-      const tPress = window.setTimeout(() => {
+      // 2. Proceed straight into the rotary dial sweep (no separate tap pause)
+      const tDrag = window.setTimeout(() => {
         if (hasUserInteractedRef.current) return;
-        setIsPressing(true);
-        setShowRipple(true);
-        setHeld(DEMO_HOLE);
-        onPreview?.(DEMO_HOLE);
 
-        // 3. Begin smooth rotary sweep
-        const tDrag = window.setTimeout(() => {
+        const dragStartTime = performance.now();
+        const dragDuration = 1100; // ms
+
+        const stepDrag = (now: number) => {
           if (hasUserInteractedRef.current) return;
-          setShowRipple(false);
+          const elapsed = now - dragStartTime;
+          const progress = Math.min(1, elapsed / dragDuration);
+          // easeInOutCubic curve
+          const ease =
+            progress < 0.5
+              ? 4 * progress * progress * progress
+              : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
-          const dragStartTime = performance.now();
-          const dragDuration = 1100; // ms
+          const currentRot = DEMO_TRAVEL * ease;
+          setRotation(currentRot);
 
-          const stepDrag = (now: number) => {
-            if (hasUserInteractedRef.current) return;
-            const elapsed = now - dragStartTime;
-            const progress = Math.min(1, elapsed / dragDuration);
-            // easeInOutCubic curve
-            const ease =
-              progress < 0.5
-                ? 4 * progress * progress * progress
-                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+          const currentAngle = DEMO_START_ANGLE + currentRot;
+          const pos = getHolePercent(currentAngle);
+          setHandPos({
+            x: pos.x,
+            y: pos.y,
+            angle: 18 + ease * 20,
+          });
 
-            const currentRot = DEMO_TRAVEL * ease;
-            setRotation(currentRot);
+          if (progress < 1) {
+            demoAnimRef.current = requestAnimationFrame(stepDrag);
+          } else {
+            // Reached the finger stop!
+            const tStop = window.setTimeout(() => {
+              if (hasUserInteractedRef.current) return;
+              // Lift finger
+              setIsPressing(false);
 
-            const currentAngle = DEMO_START_ANGLE + currentRot;
-            const pos = getHolePercent(currentAngle);
-            setHandPos({
-              x: pos.x,
-              y: pos.y,
-              angle: 18 + ease * 20,
-            });
-
-            if (progress < 1) {
-              demoAnimRef.current = requestAnimationFrame(stepDrag);
-            } else {
-              // Reached the finger stop!
-              const tStop = window.setTimeout(() => {
+              const tRelease = window.setTimeout(() => {
                 if (hasUserInteractedRef.current) return;
-                // Lift finger
-                setIsPressing(false);
+                // Release dial wheel to spring back, trigger selection, fade hand
+                setReturning(true);
+                setRotation(0);
+                setHeld(null);
+                onPreview?.(null);
+                setHandOpacity(0);
+                onSelect(DEMO_HOLE);
 
-                const tRelease = window.setTimeout(() => {
-                  if (hasUserInteractedRef.current) return;
-                  // Release dial wheel to spring back, trigger selection, fade hand
-                  setReturning(true);
-                  setRotation(0);
-                  setHeld(null);
-                  onPreview?.(null);
-                  setHandOpacity(0);
-                  onSelect(DEMO_HOLE);
+                // Repeat cycle after natural pause if user hasn't interacted
+                const tNext = window.setTimeout(() => {
+                  if (!hasUserInteractedRef.current) {
+                    playDemoCycle();
+                  }
+                }, 2200);
+                demoTimeoutRefs.current.push(tNext);
+              }, 180);
+              demoTimeoutRefs.current.push(tRelease);
+            }, 200);
+            demoTimeoutRefs.current.push(tStop);
+          }
+        };
 
-                  // 4. Repeat cycle after a natural pause if user hasn't interacted
-                  const tNext = window.setTimeout(() => {
-                    if (!hasUserInteractedRef.current) {
-                      playDemoCycle();
-                    }
-                  }, 2200);
-                  demoTimeoutRefs.current.push(tNext);
-                }, 200);
-                demoTimeoutRefs.current.push(tRelease);
-              }, 240);
-              demoTimeoutRefs.current.push(tStop);
-            }
-          };
-
-          demoAnimRef.current = requestAnimationFrame(stepDrag);
-        }, 320);
-        demoTimeoutRefs.current.push(tDrag);
-      }, 600);
-      demoTimeoutRefs.current.push(tPress);
-    }, 120);
-    demoTimeoutRefs.current.push(tGlide);
+        demoAnimRef.current = requestAnimationFrame(stepDrag);
+      }, 140);
+      demoTimeoutRefs.current.push(tDrag);
+    }, 60);
+    demoTimeoutRefs.current.push(tAppear);
   }, [initialHolePos.x, initialHolePos.y, onSelect, onPreview]);
 
   // Start demonstration when scrolled into view
@@ -413,17 +402,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
           }}
         />
 
-        {/* Subtle touch ripple when finger touches down */}
-        {showRipple && (
-          <span
-            aria-hidden
-            className="pointer-events-none absolute h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full border border-signal bg-signal/25 animate-ping z-30"
-            style={{
-              left: `${handPos.x}%`,
-              top: `${handPos.y}%`,
-            }}
-          />
-        )}
+
 
         {/* Animated Frosted Glass Demonstration Hand */}
         <FrostedGlassHand
