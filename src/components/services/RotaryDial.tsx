@@ -106,6 +106,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         const d = Math.abs(((angle - holeAngle(n) + 540) % 360) - 180);
         if (d < bestDiff) {
           bestDiff = d;
+          best = n;
         }
       }
       return best;
@@ -305,7 +306,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       const drag = dragRef.current;
       if (!drag) return;
       if (e && e.pointerId !== drag.id) return;
-      const reached = drag.total >= Math.max(15, drag.max * 0.78);
+      const reached = drag.total >= Math.max(10, drag.max * 0.72);
       const hole = drag.hole;
       dragRef.current = null;
       setReturning(true);
