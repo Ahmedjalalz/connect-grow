@@ -19,13 +19,13 @@ import { formatSlot, slotEndLabel } from "@/lib/booking";
 export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     meta: [
-      { title: "Lead Pipeline — KyteLine Admin" },
+      { title: "Lead Pipeline | KyteLine Admin" },
       {
         name: "description",
         content:
           "Internal pipeline for KyteLine quote requests, from new lead through to won or lost.",
       },
-      { property: "og:title", content: "Lead Pipeline — KyteLine Admin" },
+      { property: "og:title", content: "Lead Pipeline | KyteLine Admin" },
       {
         property: "og:description",
         content: "Internal lead pipeline for incoming quote requests.",
@@ -311,7 +311,7 @@ function AdminPage() {
                             {b.company ? ` · ${b.company}` : ""}
                           </p>
                           <p className="mt-1 text-xs text-muted-foreground">
-                            {b.topic ?? "General"} · {b.team_size ?? "—"} ·{" "}
+                            {b.topic ?? "General"} · {b.team_size ?? "N/A"} ·{" "}
                             {b.timezone ?? "UTC"}
                           </p>
                         </div>

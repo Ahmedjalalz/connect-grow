@@ -78,7 +78,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "KyteLine — Outsourced Call Center & CX Teams for B2B" },
+      { title: "KyteLine | Outsourced Call Center & CX Teams for B2B" },
       {
         name: "description",
         content:
@@ -94,7 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "KyteLine" },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://www.kyteline.com/" },
-      { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      { property: "og:title", content: "KyteLine | Outsourced Call Center & CX Teams" },
       {
         property: "og:description",
         content:
@@ -106,13 +106,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image:type", content: "image/png" },
       { property: "og:image:width", content: "500" },
       { property: "og:image:height", content: "500" },
-      { property: "og:image:alt", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      { property: "og:image:alt", content: "KyteLine | Outsourced Call Center & CX Teams" },
 
       // Twitter Cards
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@KyteLine" },
       { name: "twitter:creator", content: "@KyteLine" },
-      { name: "twitter:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      { name: "twitter:title", content: "KyteLine | Outsourced Call Center & CX Teams" },
       {
         name: "twitter:description",
         content:

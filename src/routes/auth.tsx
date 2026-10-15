@@ -10,13 +10,13 @@ type AuthMode = "signin" | "signup" | "forgot" | "resend";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Team Sign In — KyteLine Lead Desk" },
+      { title: "Team Sign In | KyteLine Lead Desk" },
       {
         name: "description",
         content:
           "Sign in to the KyteLine internal lead desk to review and progress incoming quote requests.",
       },
-      { property: "og:title", content: "Team Sign In — KyteLine" },
+      { property: "og:title", content: "Team Sign In | KyteLine" },
       {
         property: "og:description",
         content: "Internal sign in for the KyteLine lead desk.",

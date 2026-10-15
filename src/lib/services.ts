@@ -39,7 +39,7 @@ export const SERVICES: Service[] = [
     name: "Inbound Call Support",
     short: "Every ring answered, on brand.",
     blurb:
-      "Trained agents pick up in seconds, follow your scripts and escalation paths, and log every call in your CRM — 24/7 coverage without a hiring cycle.",
+      "Trained agents pick up in seconds, follow your scripts and escalation paths, and log every call in your CRM, giving you 24/7 coverage without a hiring cycle.",
     device: "handset",
     metric: { value: "< 20s", label: "avg. answer time" },
     bullets: [
@@ -67,7 +67,7 @@ export const SERVICES: Service[] = [
     name: "Live Chat Support",
     short: "Answers before they bounce.",
     blurb:
-      "Human agents inside your website chat, app or WhatsApp — concurrent conversations, sub-minute first replies, and handoffs that never drop context.",
+      "Human agents handle live chat across your website, app, or WhatsApp with concurrent conversations, sub-minute first replies, and seamless context handoffs.",
     device: "chat",
     metric: { value: "48s", label: "first reply" },
     bullets: [
@@ -95,7 +95,7 @@ export const SERVICES: Service[] = [
     name: "Customer Service",
     short: "One team, every channel.",
     blurb:
-      "A blended CX pod that owns phone, chat, email and social for your accounts — with reporting your leadership can actually read.",
+      "A blended CX pod that owns phone, chat, email, and social across your accounts, backed by clear reporting your leadership can actually use.",
     device: "headset",
     metric: { value: "4.8/5", label: "CSAT" },
     bullets: [
@@ -137,7 +137,7 @@ export const SERVICES: Service[] = [
     name: "Sales Outreach",
     short: "SDR muscle, on demand.",
     blurb:
-      "A dedicated outreach squad running your sequences end to end — messaging tests, follow-through and clean CRM hygiene included.",
+      "A dedicated outreach squad running your sequences end to end, complete with messaging tests, consistent follow-through, and clean CRM hygiene.",
     device: "target",
     metric: { value: "6+", label: "touches per prospect" },
     bullets: [
@@ -151,7 +151,7 @@ export const SERVICES: Service[] = [
     name: "Technical Support",
     short: "Tier 1 and 2 that actually resolves.",
     blurb:
-      "Product-trained agents run diagnostics, follow runbooks and close tickets — escalating to your engineers only when it's genuinely needed.",
+      "Product-trained agents run diagnostics, follow runbooks, and close tickets, escalating to your engineers only when genuinely needed.",
     device: "terminal",
     metric: { value: "82%", label: "first-contact resolution" },
     bullets: [
@@ -165,7 +165,7 @@ export const SERVICES: Service[] = [
     name: "Custom Solutions",
     short: "Built around your workflow.",
     blurb:
-      "Odd hours, niche languages, hybrid roles, regulated scripts — tell us the shape of the problem and we design the pod around it.",
+      "From odd hours and niche languages to hybrid roles and regulated scripts: tell us what you need, and we build the pod around it.",
     device: "blueprint",
     metric: { value: "2 wks", label: "typical ramp-up" },
     bullets: [

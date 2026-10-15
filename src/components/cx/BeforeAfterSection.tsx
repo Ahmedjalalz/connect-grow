@@ -1,5 +1,5 @@
 /**
- * Interactive before/after of a support operation — a draggable divider wipes
+ * Interactive before/after of a support operation: a draggable divider wipes
  * between two live-looking support consoles. Illustrative numbers only.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -74,7 +74,7 @@ export function BeforeAfterSection() {
       <div className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
-            Step four — improve
+            Step 04 · Improve
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
             What <span className="text-signal">better CX</span> looks like.
@@ -123,8 +123,8 @@ export function BeforeAfterSection() {
         </div>
 
         <p className="mt-5 text-xs leading-relaxed text-primary-foreground/45">
-          Illustrative scenario for demonstration only — not measured company
-          performance.
+          Illustrative scenario for demonstration only (not measured company
+          performance).
         </p>
       </div>
     </section>
@@ -144,7 +144,7 @@ const AFTER_STATS = [
 ];
 
 const BEFORE_ROWS = [
-  { icon: PhoneMissed, title: "Missed call — 4 attempts", meta: "No callback logged", bad: true },
+  { icon: PhoneMissed, title: "Missed call (4 attempts)", meta: "No callback logged", bad: true },
   { icon: MessageSquare, title: "\"Is anyone there?\"", meta: "Chat open 41 min", bad: true },
   { icon: AlertTriangle, title: "Ticket #2841 escalated", meta: "Overdue by 3 days", bad: true },
   { icon: Timer, title: "Email backlog", meta: "31 threads untouched", bad: true },

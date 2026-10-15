@@ -1,5 +1,5 @@
 /**
- * Interactive vintage switchboard — drag a braided patch cable from a customer
+ * Interactive vintage switchboard: drag a braided patch cable from a customer
  * line into a service jack. Built on a photographed switchboard panel.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -17,8 +17,8 @@ const JACKS: Jack[] = [
 ];
 
 const PLUGS = [
-  { id: "a", label: "Customer — inbound", y: 32 },
-  { id: "b", label: "Customer — callback", y: 64 },
+  { id: "a", label: "Customer: Inbound", y: 32 },
+  { id: "b", label: "Customer: Callback", y: 64 },
 ];
 
 const PLUG_X = 15;
@@ -94,7 +94,7 @@ export function SwitchboardSection() {
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
-              Step three — route
+              Step 03 · Route
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
               Patch the caller through to{" "}

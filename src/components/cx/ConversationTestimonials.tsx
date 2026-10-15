@@ -14,7 +14,7 @@ const THREAD: Turn[] = [
   },
   {
     role: "Team",
-    text: "We built a dedicated support workflow around your business — scripts and runbooks written with you, then trained against real tickets.",
+    text: "We built a dedicated support workflow around your business, writing custom scripts and runbooks with you and training against real tickets.",
   },
   {
     role: "Customer",
@@ -41,7 +41,7 @@ export function ConversationTestimonials() {
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">
-              Step five — deliver
+              Step 05 · Deliver
             </p>
             <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.4rem]">
               The conversation that{" "}
@@ -53,8 +53,8 @@ export function ConversationTestimonials() {
               runs.
             </p>
             <p className="mt-6 text-xs leading-relaxed text-muted-foreground/80">
-              Illustrative conversation composed from our own onboarding
-              process — not a named client statement.
+              Illustrative conversation composed from our onboarding
+              process (not an individual client statement).
             </p>
           </div>
 
@@ -112,7 +112,7 @@ export function ConversationTestimonials() {
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-signal/15">
                   <Check className="h-3.5 w-3.5" />
                 </span>
-                Pod live — coverage handed over
+                Pod live · Coverage handed over
               </div>
             </div>
           </div>

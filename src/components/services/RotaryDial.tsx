@@ -3,7 +3,7 @@
  *
  * Physical model: each finger hole sits at a fixed angle on the wheel. Put a
  * pointer in a hole, drag clockwise until that hole reaches the finger stop,
- * release — the wheel springs back and the matching service is selected.
+ * and release; the wheel springs back and the matching service is selected.
  */
 import { useCallback, useEffect, useRef, useState } from "react";
 import dialWheel from "@/assets/rotary-dial.webp";
@@ -267,7 +267,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
       if (!drag) return;
       if (e.pointerId !== drag.id) return;
       const a = pointerAngle(e.clientX, e.clientY);
-      // incremental delta, unwrapped — lets total travel exceed 180deg
+      // incremental delta, unwrapped: lets total travel exceed 180deg
       let step = a - drag.lastAngle;
       if (step < -180) step += 360;
       if (step > 180) step -= 360;
@@ -336,7 +336,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
         draggable={false}
       />
 
-      {/* dial plate — sits over the phone's dial recess */}
+      {/* dial plate: sits over the phone's dial recess */}
       <div
         ref={plateRef}
         className="absolute left-1/2 top-1/2 aspect-square w-[43%] -translate-x-1/2 -translate-y-1/2 touch-none select-none"
@@ -367,7 +367,7 @@ export function RotaryDial({ count, active, onSelect, onPreview }: Props) {
           })}
         </div>
 
-        {/* rotating chrome finger wheel — receives all touch and pointer drag events */}
+        {/* rotating chrome finger wheel: receives all touch and pointer drag events */}
         <img
           src={dialWheel}
           alt="Interactive rotary dial wheel - touch any hole and drag clockwise to the stop"

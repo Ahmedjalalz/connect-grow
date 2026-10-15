@@ -36,13 +36,13 @@ import {
 export const Route = createFileRoute("/consult")({
   head: () => ({
     meta: [
-      { title: "Book a CX Consultation — Free 15-Min Call | KyteLine" },
+      { title: "Book a CX Consultation: Free 15-Min Call | KyteLine" },
       {
         name: "description",
         content:
           "Pick a date and time slot to speak with a KyteLine call center strategy expert. Get a roadmap for inbound support, outbound calling and CX outsourcing.",
       },
-      { property: "og:title", content: "Book a CX Consultation — KyteLine" },
+      { property: "og:title", content: "Book a CX Consultation | KyteLine" },
       {
         property: "og:description",
         content:
@@ -57,7 +57,7 @@ export const Route = createFileRoute("/consult")({
       { property: "og:image:height", content: "500" },
       { property: "og:image:alt", content: "Book a CX Consultation with KyteLine" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Book a CX Consultation — KyteLine" },
+      { name: "twitter:title", content: "Book a CX Consultation | KyteLine" },
       {
         name: "twitter:description",
         content:
@@ -222,7 +222,7 @@ function ConsultExpertPage() {
                 <Detail
                   icon={<Video className="h-4 w-4" />}
                   label="Format"
-                  value="Video call — link in the invite"
+                  value="Video call (link in the invite)"
                 />
               </dl>
               <p className="mt-6 rounded-2xl bg-secondary px-4 py-3 text-sm text-muted-foreground">

@@ -12,13 +12,13 @@ import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
 export const Route = createFileRoute("/process")({
   head: () => ({
     meta: [
-      { title: "Our Process — How We Deliver World-Class CX | KyteLine" },
+      { title: "Our Process: How We Deliver World-Class CX | KyteLine" },
       {
         name: "description",
         content:
           "Explore the end-to-end KyteLine operational framework. From listening and multi-channel routing to rapid queue response, continuous QA, and dedicated agent workstations.",
       },
-      { property: "og:title", content: "Our Process — KyteLine" },
+      { property: "og:title", content: "Our Process | KyteLine" },
       {
         property: "og:description",
         content:
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/process")({
       { property: "og:image:height", content: "500" },
       { property: "og:image:alt", content: "The KyteLine CX Process" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Our Process — KyteLine" },
+      { name: "twitter:title", content: "Our Process | KyteLine" },
       {
         name: "twitter:description",
         content:
@@ -90,7 +90,7 @@ function ProcessPage() {
             </h1>
 
             <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted-foreground">
-              Building an outsourced CX team isn't just about picking up calls — it's about engineering empathy, speed, and continuous refinement into every single customer touchpoint.
+              Building an effective outsourced CX team takes more than answering calls. It requires speed, genuine empathy, and continuous coaching across every customer touchpoint.
             </p>
 
             <p className="mt-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
@@ -136,22 +136,22 @@ function ProcessPage() {
         </div>
       </section>
 
-      {/* ---------------- STEP ONE — LISTEN ---------------- */}
+      {/* ---------------- STEP ONE: LISTEN ---------------- */}
       <ListenSection />
 
-      {/* ---------------- STEP TWO — CONNECT ---------------- */}
+      {/* ---------------- STEP TWO: CONNECT ---------------- */}
       <ChannelsSection />
 
-      {/* ---------------- STEP THREE — RESPOND ---------------- */}
+      {/* ---------------- STEP THREE: RESPOND ---------------- */}
       <QueueSection />
 
-      {/* ---------------- STEP FOUR — IMPROVE ---------------- */}
+      {/* ---------------- STEP FOUR: IMPROVE ---------------- */}
       <BeforeAfterSection />
 
-      {/* ---------------- STEP FIVE — DELIVER ---------------- */}
+      {/* ---------------- STEP FIVE: DELIVER ---------------- */}
       <ConversationTestimonials />
 
-      {/* ---------------- STEP SIX — THE DESK ---------------- */}
+      {/* ---------------- STEP SIX: THE DESK ---------------- */}
       <AgentDeskSection />
 
       {/* ---------------- HOW ONBOARDING RUNS ---------------- */}

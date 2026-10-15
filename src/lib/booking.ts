@@ -1,4 +1,4 @@
-/** Consultation scheduling helpers — pure date math, no side effects. */
+/** Consultation scheduling helpers: pure date math, no side effects. */
 
 export const TIME_SLOTS = [
   "09:00",
@@ -24,7 +24,7 @@ export const CONSULT_TOPICS = [
   "Appointment setting",
   "Technical support",
   "Back-office / data entry",
-  "Not sure yet — advise me",
+  "Not sure yet (advise me)",
 ] as const;
 
 export const TEAM_SIZES = ["1–5", "6–20", "21–50", "50+"] as const;

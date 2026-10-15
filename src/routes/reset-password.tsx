@@ -8,12 +8,12 @@ import { Logo } from "@/components/site/Logo";
 export const Route = createFileRoute("/reset-password")({
   head: () => ({
     meta: [
-      { title: "Set New Password — KyteLine Lead Desk" },
+      { title: "Set New Password | KyteLine Lead Desk" },
       {
         name: "description",
         content: "Reset your KyteLine lead desk account password.",
       },
-      { property: "og:title", content: "Set New Password — KyteLine" },
+      { property: "og:title", content: "Set New Password | KyteLine" },
       { name: "robots", content: "noindex" },
     ],
   }),

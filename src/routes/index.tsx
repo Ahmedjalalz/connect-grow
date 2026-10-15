@@ -10,13 +10,13 @@ import { RingingQuoteSection } from "@/components/cx/RingingQuoteSection";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "KyteLine — Outsourced Call Center & CX Teams for B2B" },
+      { title: "KyteLine | Outsourced Call Center & CX Teams for B2B" },
       {
         name: "description",
         content:
           "Inbound and outbound calling, live chat, email support, lead generation and technical support pods. Launch a trained customer experience team in weeks.",
       },
-      { property: "og:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      { property: "og:title", content: "KyteLine | Outsourced Call Center & CX Teams" },
       {
         property: "og:description",
         content:
@@ -29,9 +29,9 @@ export const Route = createFileRoute("/")({
       { property: "og:image:type", content: "image/png" },
       { property: "og:image:width", content: "500" },
       { property: "og:image:height", content: "500" },
-      { property: "og:image:alt", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      { property: "og:image:alt", content: "KyteLine | Outsourced Call Center & CX Teams" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "KyteLine — Outsourced Call Center & CX Teams" },
+      { name: "twitter:title", content: "KyteLine | Outsourced Call Center & CX Teams" },
       {
         name: "twitter:description",
         content:
@@ -94,7 +94,7 @@ function Home() {
         />
 
         <div className="relative mx-auto grid w-full max-w-6xl gap-4 px-5 pb-20 pt-0 md:grid-cols-[1.05fr_0.95fr] md:pb-28 md:pt-0">
-          {/* copy column — CTAs sit around the earpiece height of the receiver */}
+          {/* copy column: CTAs sit around the earpiece height of the receiver */}
           <div className="flex flex-col justify-center pt-8 pb-4 md:pt-20 md:pb-0">
             <span className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
@@ -104,7 +104,7 @@ function Home() {
             <h1 className="mt-6 max-w-xl font-display text-4xl font-semibold leading-[1.06] sm:text-5xl lg:text-[3.4rem]">
               Your customers call.
               <br />
-              <span className="text-gradient-navy">We answer</span> — like we
+              <span className="text-gradient-navy">We answer</span> like we
               work there.
             </h1>
 
@@ -115,7 +115,7 @@ function Home() {
               <strong className="font-semibold text-primary">
                 customer experience
               </strong>{" "}
-              pods for B2B teams — inbound, outbound, chat, email and
+              pods for B2B teams across inbound, outbound, chat, email, and
               custom workflows, live in{" "}
               <strong className="font-semibold text-primary">two weeks</strong>.
             </p>

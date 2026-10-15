@@ -1,5 +1,5 @@
 /**
- * "One conversation, many channels" — a click-driven composition where
+ * "One conversation, many channels": a click-driven composition where
  * real communication objects light up around a single customer.
  */
 import { useState } from "react";
@@ -45,7 +45,7 @@ export function ChannelsSection() {
 
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground/50">
-                Step two — connect
+                Step 02 · Connect
               </p>
               <h2 className="mt-3 font-display text-2xl font-semibold leading-[1.12] sm:text-[2.3rem]">
                 Your customers don't care which channel they use.
@@ -53,9 +53,7 @@ export function ChannelsSection() {
                 <span className="text-signal">They just want an answer.</span>
               </h2>
               <p className="mt-5 max-w-md text-sm leading-relaxed text-primary-foreground/65">
-                One person, five ways of reaching you. Pick a channel — we staff
-                every line with the same context, the same tone and the same
-                runbook, so the conversation never restarts.
+                One person, five ways to reach you. Whichever channel they pick, our team works from the same shared context, tone, and runbook so conversations never start over.
               </p>
 
               <ul className="mt-8 space-y-2.5">

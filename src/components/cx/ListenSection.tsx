@@ -1,5 +1,5 @@
 /**
- * "Listen to the customer" — a large studio-style waveform that plays back a
+ * "Listen to the customer": a large studio-style waveform that plays back a
  * support conversation. Visual only (no audio file), driven by rAF timing.
  */
 import { useEffect, useRef, useState } from "react";
@@ -99,16 +99,14 @@ export function ListenSection() {
       <div className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">
-            Step one — listen
+            Step 01 · Listen
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
             Every customer has{" "}
             <span className="text-gradient-navy">something to say.</span>
           </h2>
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
-            Great customer experience doesn't start with a script — it starts
-            with hearing the person on the other end of the line. Press play and
-            listen in on how a handled conversation sounds.
+            Great customer experience starts with genuinely hearing the caller, not reading off a rigid script. Press play to see how our agents navigate a live conversation.
           </p>
         </div>
 
@@ -172,7 +170,7 @@ export function ListenSection() {
                   {playing ? "Stop" : "Play conversation"}
                 </button>
                 <p className="text-xs leading-relaxed text-muted-foreground">
-                  Illustrative conversation — visual playback, no audio.
+                  Illustrative conversation (visual playback, no audio).
                 </p>
               </div>
             </div>

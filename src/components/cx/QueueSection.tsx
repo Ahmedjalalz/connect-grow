@@ -1,5 +1,5 @@
 /**
- * "The Queue" — drag the slider and the waiting line physically empties out.
+ * "The Queue": drag the slider and the waiting line physically empties out.
  * Numbers are illustrative, stated as such in the UI.
  */
 import { useMemo, useState } from "react";
@@ -23,7 +23,7 @@ export function QueueSection() {
       <div className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-28">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-navy-soft">
-            Step three — respond
+            Step 03 · Respond
           </p>
           <h2 className="mt-3 font-display text-3xl font-semibold leading-[1.1] sm:text-[2.6rem]">
             Less waiting.{" "}
@@ -114,8 +114,8 @@ export function QueueSection() {
                 Better coverage. Less waiting.
               </p>
               <p className="max-w-sm text-xs leading-relaxed text-muted-foreground">
-                Illustrative scenario for demonstration only — not measured
-                company performance.
+                Illustrative scenario for demonstration only (not measured
+                company performance).
               </p>
             </div>
           </div>

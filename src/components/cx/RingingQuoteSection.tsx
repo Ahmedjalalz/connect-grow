@@ -1,5 +1,5 @@
 /**
- * Closing CTA — the rotary phone from the services dial, now with the receiver
+ * Closing CTA: the rotary phone from the services dial, now with the receiver
  * resting in its cradle and ringing. Answering it = getting a quote.
  *
  * The phone is split into two layers: a static base and a vibrating receiver.
@@ -25,7 +25,7 @@ export function RingingQuoteSection() {
             <div>
               <span className="inline-flex items-center gap-2 rounded-full border border-signal/40 bg-signal/10 px-3.5 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.2em] text-navy-soft">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-signal" />
-                Incoming — line 1
+                Incoming Call · Line 1
               </span>
 
               <h2 className="mt-6 max-w-xl font-display text-3xl font-semibold leading-[1.1] sm:text-4xl">
@@ -35,8 +35,8 @@ export function RingingQuoteSection() {
               </h2>
 
               <p className="mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
-                Answering takes three short steps — what to pick up, how big the
-                operation is, and where to send the numbers. No sales maze, no
+                Answering takes three simple steps: choose what to support, pick your
+                team size, and tell us where to send the numbers. No sales maze, no
                 20-field form.
               </p>
 
@@ -45,7 +45,7 @@ export function RingingQuoteSection() {
                 className="group mt-9 inline-flex items-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
               >
                 <PhoneCall className="h-4 w-4 transition-transform group-hover:rotate-12" />
-                Answer the call — get a quote
+                Answer the call to get a quote
               </Link>
             </div>
 
@@ -67,7 +67,7 @@ export function RingingQuoteSection() {
                   width={928}
                   height={1152}
                   loading="lazy"
-                  className="relative z-10 w-full drop-shadow-[0_30px_55px_rgba(20,28,54,0.38)] transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="relative z-10 w-full drop-shadow-[0_30px_55px_rgba(20,28,54,0.38)]"
                 />
 
                 {/* receiver resting face-down in the cradle, vibrating */}
